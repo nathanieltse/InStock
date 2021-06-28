@@ -1,13 +1,6 @@
 @use './colors' as *;
 
 //screen size
-$desktop-size:1440px;
-$tablet-size:768px;
+$desktop-size:1280px;
+$tablet-size:767px;
 $mobile-size:320px;
-
-//logo
-$logo-height:1.25rem;
-$logo-width:7.5rem;
-
-//divider
-$divider:0.0625rem solid $border-color;
