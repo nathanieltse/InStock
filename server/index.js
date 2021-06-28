@@ -3,7 +3,7 @@ const cors = require("cors");
 const app = express();
 
 //routes goes here
-
+const warehouseRoutes = require('./routes/warehouse');
 
 //env variables 
 require("dotenv").config();
@@ -16,7 +16,7 @@ app.use(cors());
 
 
 //endoints 
-
+app.use('/api', warehouseRoutes);
 
 //listening on port 8080
 app.listen(port, () => {
