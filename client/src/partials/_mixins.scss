@@ -1,0 +1,111 @@
+@use './colors' as *;
+@use './variables' as *;
+@use './typographys' as *;
+@use './spacings' as *;
+
+//spacing mixins
+
+@mixin tablet {
+    @media (min-width:$tablet-size) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width:$desktop-size) {
+        @content;
+    }
+}
+
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+    @content;
+}
+
+@mixin flex-row {
+    display: flex;
+    flex-direction: row;
+    @content;
+}
+
+@mixin wrapper-sidespace {
+    margin:$mobile-block-sidespace;
+
+    @include tablet {
+        margin:$tablet-block-sidespace;
+    }
+
+    @include desktop {
+        margin: $normal-block-sidespace;
+    }
+}
+
+//elements mixins
+
+@mixin reset-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+@mixin button {
+    font-size: $mobile-label-font;
+    font-weight: $weight-demi;
+    line-height: $mobile-label-line-height;
+    text-align: center;
+    height: 3rem;
+    width: 100%;
+    border-radius: 0.25rem;
+    border-style: none;
+    background-color: $primary-color;
+    color: $primary-white;
+
+    &:hover {
+        background-color: $secondary-color;
+        cursor: pointer;
+    }
+    @include tablet {
+        font-size: $normal-label-font;
+        line-height: $normal-label-line-height;
+        width: 6rem;
+    }
+} 
+
+@mixin avatar {
+    background-color: $primary-neutral-color;
+    overflow: hidden;
+    border-radius: 50%;
+    min-width: 3rem;
+    width: 3rem;
+    height: 3rem;
+}
+
+@mixin formfield {
+    width: 100%;
+    height: 3rem;
+    border: 0.15rem solid $border-color;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    background-color: $secondary-neutral-color;
+    font-size: $mobile-body-font;
+    font-weight: $weight-regular;
+    line-height: $mobile-body-line-height;
+
+    &::placeholder {
+        color:$primary-black;
+    }
+
+    &:focus {
+        outline:none;
+        border-color: $primary-color;
+    }
+    
+    @include tablet {
+        width: 15rem;
+        height: 3rem;
+        padding: 0.8rem;
+        font-size: $normal-body-font;
+        line-height: $normal-body-line-height;
+    }
+}
