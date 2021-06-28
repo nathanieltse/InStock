@@ -50,62 +50,125 @@
 }
 
 @mixin button {
-    font-size: $mobile-label-font;
+    font-size: $mobile-label-btn-link-font;
     font-weight: $weight-demi;
-    line-height: $mobile-label-line-height;
+    line-height: $mobile-label-btn-link-line-height;
     text-align: center;
-    height: 3rem;
+    height: 2.25rem;
     width: 100%;
-    border-radius: 0.25rem;
+    padding: 0 1rem;
+    border-radius: 1.25rem;
     border-style: none;
-    background-color: $primary-color;
-    color: $primary-white;
 
     &:hover {
-        background-color: $secondary-color;
         cursor: pointer;
     }
+
     @include tablet {
-        font-size: $normal-label-font;
-        line-height: $normal-label-line-height;
-        width: 6rem;
+        font-size: $normal-label-btn-link-font;
+        line-height: $normal-label-btn-link-line-height;
+        height: 2.375rem;
     }
 } 
 
-@mixin avatar {
-    background-color: $primary-neutral-color;
-    overflow: hidden;
-    border-radius: 50%;
-    min-width: 3rem;
-    width: 3rem;
-    height: 3rem;
+@mixin text-link{
+    color:$primary-color-indigo;
+    text-decoration: none;
+
+    @include tablet {
+        
+        &:hover{
+            text-decoration: underline;
+        }
+    }
 }
 
 @mixin formfield {
     width: 100%;
-    height: 3rem;
-    border: 0.15rem solid $border-color;
-    border-radius: 0.25rem;
-    padding: 1rem;
-    background-color: $secondary-neutral-color;
-    font-size: $mobile-body-font;
-    font-weight: $weight-regular;
-    line-height: $mobile-body-line-height;
+    height: 2.375rem;
+    border-radius: 1.25rem;
+    padding: 0 1rem;
+    background-color: $white;
+    font-size: $mobile-m-body-font;
+    line-height: $mobile-m-body-line-height;
+    color: $primary-color-black;
 
     &::placeholder {
-        color:$primary-black;
+        color:$secondary-color-slate
     }
 
-    &:focus {
+    &:active {
         outline:none;
-        border-color: $primary-color;
+        border-color: $primary-color-indigo;
     }
     
     @include tablet {
-        width: 15rem;
-        height: 3rem;
+        height: 2.25rem;
         padding: 0.8rem;
-        font-size: $normal-body-font;
-        line-height: $normal-body-line-height;
+        font-size: $normal-m-body-font;
+        line-height: $normal-m-body-line-height;
+    }
+}
+
+@mixin formfield-error {
+    outline:none;
+    border-color: $support-color-red;
+}
+
+@mixin radio-btn-text-inactive{
+    margin-left: 0.5rem;
+    color:$secondary-color-slate;
+    font-size: $mobile-m-body-font;
+    line-height: $mobile-m-body-line-height;
+
+    @include tablet {
+        font-size: $normal-m-body-font;
+        line-height: $normal-m-body-line-height;
+    }
+}
+
+@mixin radio-btn-text-active{
+    margin-left: 0.5rem;
+    color:$primary-color-black;
+    font-size: $mobile-m-body-font;
+    line-height: $mobile-m-body-line-height;
+
+    @include tablet {
+        font-size: $normal-m-body-font;
+        line-height: $normal-m-body-line-height;
+    }
+}
+
+@mixin tag-in-stock{
+    height:1.5rem;
+    padding:0 0.5rem;
+    border-radius: 1.25rem;
+    color:$support-color-green;
+    background-color: $support-color-background-green;
+    font-size: $mobile-label-btn-link-font;
+    line-height: $mobile-label-btn-link-line-height;
+    font-weight: $weight-semi;
+
+    @include tablet{
+        height:1.625rem;
+        font-size: $normal-label-btn-link-font;
+        line-height: $normal-label-btn-link-line-height;
+    }
+}
+
+@mixin tag-stock-out{
+    height:1.5rem;
+    padding:0 0.5rem;
+    border-radius: 1.25rem;
+    color:$support-color-red;
+    background-color: $support-color-background-red;
+    font-size: $mobile-label-btn-link-font;
+    line-height: $mobile-label-btn-link-line-height;
+    font-weight: $weight-semi;
+
+    @include tablet{
+        height:1.625rem;
+        font-size: $normal-label-btn-link-font;
+        line-height: $normal-label-btn-link-line-height;
     }
 }
