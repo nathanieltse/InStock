@@ -3,6 +3,7 @@ import { getWarehouses } from "../../utils/api.js"
 import deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
 import editIcon from "../../assets/Icons/edit-24px.svg"
 import chevron from "../../assets/Icons/chevron_right-24px.svg"
+import search from "../../assets/Icons/search-24px.svg"
 import "./WarehouseList.scss";
 
 export default class WarehouseList extends Component {
@@ -23,7 +24,24 @@ export default class WarehouseList extends Component {
     render() {
         return (
             <section className="warehouse">
-                <h1 className="warehouse__title">Warehouses</h1>
+                <section className="warehouse__header">
+                    <h1 className="warehouse__title">Warehouses</h1>
+                    <form className="warehouse__form">
+                        <input
+                            className="warehouse__form-input"
+                            type="text"
+                            name="search"
+                            placeholder="Search"
+                        />
+                        <img className="warehouse__form-search" src={search} />
+                        <input
+                            className="warehouse__form-input warehouse__form-input--submit"
+                            type="submit"
+                            name="addWarehouse"
+                            value="Add New Warehouse"
+                        />
+                    </form>
+                </section>
                 {this.state.warehouseList.map(item => {
                     return (
                         <>

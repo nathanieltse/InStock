@@ -8,15 +8,55 @@
     box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
     border-radius: 3px;
     font-family: $primary-font;
+    &__header{
+        width: 100%;
+    }
+
     &__title{
         color: $primary-color-black;
         font-size: $mobile-header-font;
         line-height: $mobile-header-line-height;
         font-weight: $weight-semi;
         padding-left: 1rem;
+        margin-bottom: 0;
         @include tablet{
             font-size: $normal-header-font;
             line-height: $normal-header-line-height;
+        }
+    }
+    &__form{
+        padding: 1rem;
+        overflow: hidden;
+        position: relative;
+
+        &-search{
+            position: absolute;
+            top: 1.85rem;
+            right: 8%;
+        }
+        &-input{
+            border-radius: 20px;
+            width: 100%;
+            border: 1px solid $secondary-color-cloud;
+            height: 2.25rem;
+            padding: 0 1rem;
+            line-height: 20px;
+            font-size: $mobile-m-body-font;
+            margin: .5rem 0;
+            box-sizing: border-box;
+            @include tablet{
+                height: 2.375rem;
+            }
+            @include desktop{
+                height: 2.375rem;
+            }
+
+            &--submit{
+                background-color: $primary-color-indigo;
+                color: $white;
+                width: 100%;
+                font-weight: $weight-semi;
+            }
         }
     }
     &__list{
