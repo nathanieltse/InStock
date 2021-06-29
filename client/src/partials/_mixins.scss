@@ -41,6 +41,29 @@
     }
 }
 
+//typography mixins
+@mixin medium-body-text{
+    font-weight: $weight-regurlar;
+    font-size: $mobile-m-body-font;
+    line-height: $mobile-m-body-line-height;
+
+    @include tablet{
+    font-size: $normal-m-body-font;
+    line-height: $normal-m-body-line-height;
+    }
+}
+
+@mixin small-body-text{
+    font-weight: $weight-regurlar;
+    font-size: $mobile-s-body-font;
+    line-height: $mobile-s-body-line-height;
+
+    @include tablet{
+    font-size: $normal-s-body-font;
+    line-height: $normal-s-body-line-height;
+    }
+}
+
 //elements mixins
 
 @mixin reset-list {
