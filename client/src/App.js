@@ -1,8 +1,8 @@
 import './App.scss';
 import React, {Component} from "react";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
-import WarehouseList from "../../src/pages/WarehouseList";
-import WarehouseMainDisplay from "../../src/pages/WarehouseMainDisplay";
+import {BrowserRouter, Route, Switch} from "react-router-dom"
+import WarehouseList from "../src/pages/WarehouseList/WarehouseList";
+import WarehouseMainDisplay from "../src/pages/WarehouseMainDisplay/WarehouseMainDisplay";
 
 
 
@@ -11,6 +11,7 @@ class App extends Component{
   render(){
  
   return (
+    <div>
       <BrowserRouter>
         <Switch>
 
@@ -20,6 +21,8 @@ class App extends Component{
 
         </Switch>
     </BrowserRouter>
+    <h1>In Stock</h1>
+    </div>
   )}
 }
 
