@@ -1,0 +1,20 @@
+@use '../../partials/colors' as *;
+@use '../../partials/typographys' as *;
+@use '../../partials/variables' as *;
+@use '../../partials/spacings' as *;
+@use '../../partials/mixins' as *;
+
+.footer{
+    background-color: $backgrdoun-color-grey;
+    padding: $max-space 0;
+
+    @include desktop {
+        padding: $medium-space*1.5 0;
+    }
+
+    &__text{
+        @include small-body-text;
+        color:$secondary-color-slate;
+        text-align: center;
+    }
+}

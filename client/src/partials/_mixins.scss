@@ -41,6 +41,29 @@
     }
 }
 
+//typography mixins
+@mixin medium-body-text{
+    font-weight: $weight-regurlar;
+    font-size: $mobile-m-body-font;
+    line-height: $mobile-m-body-line-height;
+
+    @include tablet{
+    font-size: $normal-m-body-font;
+    line-height: $normal-m-body-line-height;
+    }
+}
+
+@mixin small-body-text{
+    font-weight: $weight-regular;
+    font-size: $mobile-s-body-font;
+    line-height: $mobile-s-body-line-height;
+
+    @include tablet{
+    font-size: $normal-s-body-font;
+    line-height: $normal-s-body-line-height;
+    }
+}
+
 //elements mixins
 
 @mixin reset-list {
@@ -51,7 +74,7 @@
 
 @mixin button {
     font-size: $mobile-label-btn-link-font;
-    font-weight: $weight-demi;
+    font-weight: $weight-semi;
     line-height: $mobile-label-btn-link-line-height;
     text-align: center;
     height: 2.25rem;
@@ -68,6 +91,7 @@
         font-size: $normal-label-btn-link-font;
         line-height: $normal-label-btn-link-line-height;
         height: 2.375rem;
+        width: auto;
     }
 } 
 
