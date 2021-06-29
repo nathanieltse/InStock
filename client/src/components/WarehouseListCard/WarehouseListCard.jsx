@@ -2,6 +2,7 @@ import React from 'react'
 import DeleteEditCard from "../DeleteEditCard/DeleteEditCard"
 import chevron from "../../assets/Icons/chevron_right-24px.svg"
 import "./WarehouseListCard.scss"
+import { Link } from "react-router-dom";
 
 function WarehouseListCard({warehouse}) {
             return (
@@ -10,7 +11,10 @@ function WarehouseListCard({warehouse}) {
                         <section className="warehouse__listItem">
                             <h4 className="warehouse__listItem-title">WAREHOUSE</h4>
                             <h3 className="warehouse__listItem-text warehouse__listItem-text--name">{warehouse.name}
-                                <img className="warehouse__listItem-text--img" src={chevron} /></h3>
+                                <Link to={`/warehouses/${warehouse.id}`} >
+                                    <img className="warehouse__listItem-text--img" src={chevron} />
+                                </Link>
+                            </h3>
                         </section>
                         <section className="warehouse__listItem warehouse__listItem-address">
                             <h4 className="warehouse__listItem-title">ADDRESS</h4>

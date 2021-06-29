@@ -4,6 +4,8 @@
 @use "../../partials/spacings" as *;
 @use "../../partials/variables" as *;
 
+
+
 .warehouse{
     background-color: $white;
     box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
@@ -87,6 +89,17 @@
                 width: 100%;
                 font-weight: $weight-semi;
             }
+        }
+    }
+    &__labels{
+        background-color: $secondary-color-cloud;
+        @include tablet{
+            @include flex-row;
+            justify-content: space-around;
+            //width: 94%;
+        } 
+        &-item--address{
+           // width: 15%;
         }
     }
 }
