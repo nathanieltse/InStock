@@ -10,6 +10,14 @@
     font-family: $primary-font;
     &__header{
         width: 100%;
+        @include tablet{
+            @include flex-row{
+                max-width: 100%;
+                justify-content: space-between;
+                align-items: center;
+                margin: 1rem 0;
+            };
+        }
     }
 
     &__title{
@@ -22,12 +30,20 @@
         @include tablet{
             font-size: $normal-header-font;
             line-height: $normal-header-line-height;
+            padding-left: 1.75rem;
+            margin: 0;
         }
     }
     &__form{
         padding: 1rem;
         overflow: hidden;
         position: relative;
+
+        @include tablet{
+            @include flex-row{
+                padding-right: 1.75rem;
+            }
+        }
 
         &-search{
             position: absolute;
@@ -46,10 +62,13 @@
             box-sizing: border-box;
             @include tablet{
                 height: 2.375rem;
+                margin: 0 .5rem;
             }
             @include desktop{
                 height: 2.375rem;
             }
+            // &--search{
+            // }
 
             &--submit{
                 background-color: $primary-color-indigo;

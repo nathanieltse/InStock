@@ -28,12 +28,12 @@ export default class WarehouseList extends Component {
                     <h1 className="warehouse__title">Warehouses</h1>
                     <form className="warehouse__form">
                         <input
-                            className="warehouse__form-input"
+                            className="warehouse__form-input warehouse__form-input--search"
                             type="text"
                             name="search"
                             placeholder="Search"
                         />
-                        <img className="warehouse__form-search" src={search} />
+                        {/* <img className="warehouse__form-search" src={search} /> */}
                         <input
                             className="warehouse__form-input warehouse__form-input--submit"
                             type="submit"
