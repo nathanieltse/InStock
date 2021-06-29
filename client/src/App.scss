@@ -1,4 +1,6 @@
+@use "../src/partials/typographys" as *;
 .App {
   text-align: center;
+  font-family: $primary-font;
 }
 

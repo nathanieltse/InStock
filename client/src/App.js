@@ -1,8 +1,8 @@
 import './App.scss';
 import React, {Component} from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import WarehouseList from "../../src/pages/WarehouseList";
-import WarehouseMainDisplay from "../../src/pages/WarehouseMainDisplay";
+import WarehouseMainDisplay from '../src/pages/WarehouseMainDisplay/WarehouseMainDisplay'
+import WarehouseList from '../src/pages/WarehouseList/WarehouseList'
 
 
 
