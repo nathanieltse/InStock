@@ -5,9 +5,41 @@
 @use '../../partials/mixins' as *;
 
 .nav{
-    background-color:$background-color-graphite ;
+    background-color:$background-color-graphite;
 
-    &__logo{
+    &__logo-wrapper{
+        width: 100%;
+        padding: $normal-space 0;
+    }
+
+    &__logo-img{
+        height:$logo-height;
+        width: $logo-width;
+        display: block;
+        margin: 0 auto;
+    }
+
+    &__wrapper{
+        @include wrapper-sidespace;
+        @include flex-row;
+    }
+
+    &__link{
+        @include button;
+        text-decoration: none;
+        color: $secondary-color-cloud;
+        margin-bottom: $normal-space;
+        line-height: 2.25rem;
         
+        
+        &:hover{
+            text-decoration: underline;
+            color: $white;
+        }
+    }
+
+    &__link--active{
+        color: $white;
+        background-color:$primary-color-black ;
     }
 }

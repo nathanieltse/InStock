@@ -5,9 +5,13 @@ import './PageHeader.scss'
 const PageHeader = () => {
     return (
         <nav className="nav">
-            <img className="nav__logo" src={logo} alt="instock logo"/>
-            <Link to="/">Warehouses</Link>
-            <Link to="/inventory">Inventory</Link>
+            <div className="nav__logo-wrapper">
+                <img className="nav__logo-img" src={logo} alt="instock logo"/>
+            </div>
+            <div className="nav__wrapper">
+                <Link className="nav__link nav__link--active" to="/">Warehouses</Link>
+                <Link className="nav__link" to="/inventory">Inventory</Link>
+            </div>
         </nav>
     )
 }
