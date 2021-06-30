@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const warehouses = require('../data/warehouses.json')
 const inventories = require('../data/inventories.json')
-const dumy = require('../data/dumy.json')
+
 
 const fs= require("fs");
 const { json } = require('express');
