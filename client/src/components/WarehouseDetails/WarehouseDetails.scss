@@ -1,0 +1,14 @@
+@use "../../partials/_colors" as *;
+@use "../../partials/typographys" as *;
+@use "../../partials/mixins" as *;
+@use "../../partials/spacings" as *;
+
+.details__container{
+    display: flex;
+    justify-content: space-around;
+}
+
+.address__container{
+    width: 125px;
+    border: 2px solid blue;
+}

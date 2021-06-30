@@ -1,0 +1,17 @@
+@use "../../partials/_colors" as *;
+@use "../../partials/typographys" as *;
+@use "../../partials/mixins" as *;
+@use "../../partials/spacings" as *;
+
+.main-header{
+    @include flex-row{
+        justify-content: flex-start;
+        margin-left: 1rem;
+    }
+    @include desktop{
+        margin-left: 1.75rem;
+    }
+    &__img{
+        padding-right: .25rem;
+    }
+}

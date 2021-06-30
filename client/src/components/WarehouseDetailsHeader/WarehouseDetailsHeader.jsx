@@ -1,0 +1,21 @@
+import React from 'react'
+import "./WarehouseDetailsHeader.scss"
+import { Link } from 'react-router-dom'
+import backArrow from "../../assets/Icons/arrow_back-24px.svg"
+
+function MainHeader({ warehouse }) {
+    return (
+        <div className="main-header">
+            <Link to="/warehouses">
+                <img
+                    className="main-header__img"
+                    src={backArrow}
+                    alt="Arrow Icon to go back a page"
+                />
+            </Link>
+            <h1 className="main-header__title">{warehouse.name}</h1>
+        </div>
+    )
+}
+
+export default MainHeader
