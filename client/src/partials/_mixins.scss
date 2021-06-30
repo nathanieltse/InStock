@@ -139,6 +139,13 @@
     border-color: $support-color-red;
 }
 
+@mixin element-body {
+    background-color: $white;
+    box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+    border-radius: 0.1875rem;
+    padding:0 $normal-space;
+}
+
 @mixin radio-btn-text-inactive{
     margin-left: 0.5rem;
     color:$secondary-color-slate;
