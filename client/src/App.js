@@ -6,6 +6,7 @@ import InventoryPage from './pages/InventoryPage/InventoryPage'
 import Footer from './components/PageFooter/PageFooter'
 import AddWarehouse from "./components/AddWarehouse/AddWarehouse"
 import EditWarehouseForm from './components/EditWarehouseForm/EditWarehouseForm'
+import WarehouseDetails from './components/WarehouseDetails/WarehouseDetails';
 
 
 
