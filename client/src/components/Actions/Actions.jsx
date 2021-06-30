@@ -6,15 +6,17 @@ import "./Actions.scss"
 
 function DeleteEdit({path}) {
     return (
-        <section className="icons">
-            <img
-                className="icons__delete"
-                src={deleteIcon}
-                alt="Delete Icon"
-            />
-            <Link to={`/warehouses/${path}/edit`}>
+        <section className="actions">
+            <Link className="actions__link">
                 <img
-                    className="icons__edit"
+                    className="actions__delete"
+                    src={deleteIcon}
+                    alt="Delete Icon"
+                />
+            </Link>
+            <Link className="actions__link" to={`/warehouses/${path}/edit`}>
+                <img
+                    className="actions__edit"
                     src={editIcon}
                     alt="Edit Icon"
                 />
