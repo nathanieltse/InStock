@@ -10,7 +10,7 @@ function MainHeader() {
                 src={backArrow}
                 alt="Arrow Icon to go back a page"
             />
-            <h1 className="main-header__title">Add New Warehouse</h1>
+            <h1 className="main-header__title">Add Your Warehouse</h1>
         </div>
     )
 }

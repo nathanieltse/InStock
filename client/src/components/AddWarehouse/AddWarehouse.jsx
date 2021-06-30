@@ -1,5 +1,5 @@
 import React from 'react'
-import WarehouseForm from "../WarehouseForm/WarehouseForm"
+import WarehouseAddForm from "../WarehouseAddForm/WarehouseAddForm"
 import MainHeader from "../MainHeader/MainHeader"
 
 
@@ -7,7 +7,7 @@ function AddWarehouse() {
     return (
         <div>
             <MainHeader />
-            <WarehouseForm
+            <WarehouseAddForm
             />
         </div>
     )
