@@ -4,7 +4,6 @@ import PageHeader from '../../components/PageHeader/PageHeader'
 import "../../App.scss"
 
 
-
 class WarehouseMainDisplay extends Component {
 
     render(){
