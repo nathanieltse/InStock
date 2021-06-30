@@ -6,12 +6,13 @@
 
 .nav{
     background-color:$background-color-graphite;
-    padding: $normal-space 0;
+    padding: $normal-space 0 $normal-space*4 ;
 
     @include tablet {
         @include flex-row{
             justify-content: space-between;
         }
+        padding-bottom: $normal-space*5;
     }
 
     &__logo-wrapper{

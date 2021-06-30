@@ -4,6 +4,6 @@
 @use '../../partials/spacings' as *;
 @use '../../partials/mixins' as *;
 
-.inventory-wrapper{
+.warehouse-wrapper{
     @include wrapper-sidespace;
 }
