@@ -6,6 +6,7 @@ import "../../App.scss"
 import WarehouseList from "../../components/WarehouseList/WarehouseList"
 
 
+
 class WarehouseMainDisplay extends Component {
 
     state = {

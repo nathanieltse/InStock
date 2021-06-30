@@ -16,8 +16,9 @@ class App extends Component{
     <div>
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={AddWarehouse}  />
-          {/* <Route exact path="/" component={WarehouseMainDisplay}/> */}
+          
+          <Route exact path="/" component={WarehouseMainDisplay}/>
+          <Route path="/warehouses/add" component={AddWarehouse} />
           <Route path="/inventory" component={InventoryPage}/>
 
           {/* <Route exact path="/" component={WarehouseList}/> */}

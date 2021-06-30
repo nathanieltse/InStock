@@ -1,6 +1,7 @@
 import "./WarehouseList.scss";
 import WarehouseListCard from "../WarehouseListCard/WarehouseListCard"
 import Labels from "../Labels/Labels"
+import { Link } from "react-router-dom"
 
 import React from 'react'
 
@@ -16,12 +17,14 @@ function WarehouseList({warehouseList}) {
                         name="search"
                         placeholder="Search..."
                     />
+                    <Link to="/warehouses/add">
                     <input
                         className="warehouse__form-input warehouse__form-input--submit"
                         type="submit"
                         name="addWarehouse"
                         value="+ Add New Warehouse"
-                    />
+                        />
+                    </Link>
                 </form>
             </section>
             <section className="warehouse__labels">
