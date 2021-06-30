@@ -3,10 +3,11 @@ import WarehouseAddForm from "../WarehouseAddForm/WarehouseAddForm"
 import MainHeader from "../MainHeader/MainHeader"
 
 
-function AddWarehouse() {
+function AddWarehouse(props) {
+    
     return (
         <div>
-            <MainHeader />
+            <MainHeader navigate={props}/>
             <WarehouseAddForm
             />
         </div>
