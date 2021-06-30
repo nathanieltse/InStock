@@ -5,6 +5,7 @@ import WarehouseList from "./components/WarehouseList/WarehouseList";
 import WarehousePage from "./pages/WarehousePage/WarehousePage";
 import InventoryPage from './pages/InventoryPage/InventoryPage'
 import Footer from './components/PageFooter/PageFooter'
+import WarehouseForm from './components/WarehouseForm/WarehouseForm'
 
 
 
@@ -20,6 +21,7 @@ const App = () => {
             {/* <Route exact path="/" component={WarehouseList}/> */}
           </Switch>
       </BrowserRouter>
+      <WarehouseForm/>
       <Footer />
       </div>
     )
