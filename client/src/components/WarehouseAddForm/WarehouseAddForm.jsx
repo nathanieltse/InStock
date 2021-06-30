@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./WarehouseForm.scss";
+import "./WarehouseAddForm.scss";
 
 class WarehouseForm extends Component {
 
