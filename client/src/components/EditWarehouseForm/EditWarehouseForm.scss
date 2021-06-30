@@ -6,14 +6,14 @@
 
 .warehouseform{
     @include element-body;
-    margin:0 2rem;
 
-    @include tablet {
-        @include flex-row{
-            justify-content: space-between;
-            flex-wrap: wrap;
+    &__wrapper{
+        @include tablet{
+            @include flex-row{
+                justify-content: space-between;
+            }
+            padding:$medium-space 0;
         }
-        
     }
 
     &__left,&__right{
@@ -21,8 +21,8 @@
         padding:$medium-space $normal-space ;
 
         @include tablet{
-            width: 44%;
-            // margin:$medium-space $normal-space ;
+            width: 50%;
+            padding:0 $medium-space ;
         }
     }
 
@@ -56,7 +56,8 @@
         background-color: $background-color-grey;
 
         @include tablet {
-            width: 100%
+            justify-content:flex-end;
+            padding:$regular-space $medium-space ;
         }
         
     }
