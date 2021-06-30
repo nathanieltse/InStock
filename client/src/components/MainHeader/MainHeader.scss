@@ -2,17 +2,28 @@
 @use "../../partials/typographys" as *;
 @use "../../partials/mixins" as *;
 @use "../../partials/spacings" as *;
+@use "../../partials/variables" as *;
 
 .main-header{
     @include flex-row{
         justify-content: flex-start;
-        margin-left: 1rem;
+        
     }
-    @include desktop{
-        margin-left: 1.75rem;
-    }
+    padding:1.5rem 0;
+    border-bottom: $divider;
+    
+
     &__img{
         padding-right: .25rem;
+        margin-left: 1rem;
         cursor: pointer;
+
+        @include desktop{
+            margin-left: 1.75rem;
+        }
+    }
+
+    &__title{
+        margin: 0;
     }
 }

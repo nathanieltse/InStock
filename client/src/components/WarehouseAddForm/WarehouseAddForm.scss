@@ -9,7 +9,6 @@
     @include tablet{
         @include flex-row;
         justify-content:space-between;
-        border-top: 1px solid $secondary-color-cloud;
 
         &::after{
             content: "";
