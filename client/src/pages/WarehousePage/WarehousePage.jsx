@@ -1,5 +1,6 @@
 import { Component } from 'react';
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
+import { getWarehouses } from "../../utils/api.js"
 import PageHeader from '../../components/PageHeader/PageHeader'
 import "./WarehousePage.scss"
 
