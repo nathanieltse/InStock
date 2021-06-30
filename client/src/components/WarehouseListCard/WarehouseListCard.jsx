@@ -31,7 +31,7 @@ function WarehouseListCard({ warehouse }) {
                     <p className="card__listItem-text">{warehouse.contact.email}</p>
                 </section>
             </div>
-            <Actions />
+            <Actions path={warehouse.id}/>
         </>
     )
 }
