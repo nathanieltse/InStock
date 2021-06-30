@@ -12,7 +12,7 @@ function WarehouseListCard({warehouse}) {
                             <h4 className="warehouse__listItem-title">WAREHOUSE</h4>
                             <h3 className="warehouse__listItem-text warehouse__listItem-text--name">{warehouse.name}
                                 <Link to={`/warehouses/${warehouse.id}`} >
-                                    <img className="warehouse__listItem-text--img" src={chevron} />
+                                    <img className="warehouse__listItem-text--img" src={chevron} alt="expand arrow"/>
                                 </Link>
                             </h3>
                         </section>
