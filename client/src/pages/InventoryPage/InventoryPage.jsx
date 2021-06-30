@@ -5,9 +5,12 @@ import './InventoryPage.scss'
 class InventoryPage extends Component {
     render () {
         return (
-            <section>
-                <PageHeader/>
-            </section>
+            <>
+                <PageHeader path={this.props.match.url}/> 
+                <section className="inventory-wrapper">
+                    
+                </section>
+            </>
         )
     }
 }

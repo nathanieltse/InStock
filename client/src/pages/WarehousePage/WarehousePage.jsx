@@ -1,16 +1,18 @@
 import { Component } from 'react';
 import {Link} from "react-router-dom"
 import PageHeader from '../../components/PageHeader/PageHeader'
-import "../../App.scss"
+import "./WarehousePage.scss"
 
 
 class WarehouseMainDisplay extends Component {
-
+    
     render(){
         return (
-            <section>
-                <PageHeader/>
-            </section>
+            <>
+                <PageHeader path={this.props.match.url}/> 
+                <section className="warehouse-wrapper">
+                </section>
+            </>
         )
     }
 }
