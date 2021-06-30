@@ -1,11 +1,16 @@
 @use "../src/partials/typographys" as *;
+@use "../src/partials/colors" as *;
+@use "../src/partials/spacings" as *;
+@use "../src/partials/mixins" as *;
+@use "../src/partials/variables" as *;
 
 
 
 
-.App {
-  box-sizing: border-box;
-  text-align: center;
-  font-family: $primary-font;
+.app {
+  
+  &__body{
+    background-color: $background-color-grey;
+  }
 }
 

@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { Link } from "react-router-dom"
 import { getWarehouses } from "../../utils/api.js"
 import PageHeader from '../../components/PageHeader/PageHeader'
-import "../../App.scss"
+import "./WarehousePage.scss"
 import WarehouseList from "../../components/WarehouseList/WarehouseList"
 import axios from 'axios';
 
@@ -29,11 +29,12 @@ class WarehouseMainDisplay extends Component {
 
     render(){
         return (
-            <section>
-                <PageHeader />
-                <WarehouseList warehouseList={this.state.warehouseList}/>
-              
-            </section>
+            <>
+                <PageHeader path={this.props.match.url}/> 
+                <section className="warehouse-wrapper">
+                    <WarehouseList warehouseList={this.state.warehouseList}/>
+                </section>
+            </>
         )
     }
 }
