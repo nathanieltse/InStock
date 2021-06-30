@@ -1,12 +1,12 @@
 import React from 'react'
-import DeleteEditCard from "../DeleteEditCard/DeleteEditCard"
+import Actions from "../Actions/Actions"
 import chevron from "../../assets/Icons/chevron_right-24px.svg"
 import "./WarehouseListCard.scss"
 import { Link } from "react-router-dom";
 
 function WarehouseListCard({warehouse}) {
             return (
-                <>
+                <section className="warehouse">
                     <div className="warehouse__list" key={warehouse.id}>
                         <section className="warehouse__listItem">
                             <h4 className="warehouse__listItem-title">WAREHOUSE</h4>
@@ -31,8 +31,8 @@ function WarehouseListCard({warehouse}) {
                             <p className="warehouse__listItem-text">{warehouse.contact.email}</p>
                         </section>
                     </div>
-                    <DeleteEditCard />
-                </>
+                    <Actions />
+                </section>
             )
 }
 
