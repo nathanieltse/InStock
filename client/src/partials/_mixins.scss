@@ -94,6 +94,23 @@
         width: auto;
     }
 } 
+@mixin button-cancel{
+    background-color: $white;
+    border:1px solid $secondary-color-cloud;
+    color: $secondary-color-slate;
+}
+
+@mixin button-cta{
+    background-color: $primary-color-indigo;
+    color:$white
+
+}
+
+@mixin  button-warning {
+    background-color: $support-color-red;
+    color:$white
+}
+
 
 @mixin text-link{
     color:$primary-color-indigo;
@@ -108,10 +125,9 @@
 }
 
 @mixin formfield {
-    width: 100%;
-    height: 2.375rem;
     border-radius: 1.25rem;
-    padding: 0 1rem;
+    border: 1px solid $secondary-color-cloud;
+    padding: 0.5rem 1rem;
     background-color: $white;
     font-size: $mobile-m-body-font;
     line-height: $mobile-m-body-line-height;
@@ -123,12 +139,14 @@
 
     &:active {
         outline:none;
-        border-color: $primary-color-indigo;
+        border:1px solid $primary-color-indigo;
+    }
+
+    &:hover {
+        border: 1px solid $secondary-color-cloud;
     }
     
     @include tablet {
-        height: 2.25rem;
-        padding: 0.8rem;
         font-size: $normal-m-body-font;
         line-height: $normal-m-body-line-height;
     }
@@ -137,6 +155,18 @@
 @mixin formfield-error {
     outline:none;
     border-color: $support-color-red;
+}
+
+@mixin element-body {
+    position: relative;
+    top:-4rem;
+    background-color: $white;
+    box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+    border-radius: 0.1875rem;
+
+    @include tablet{
+        top:-5.5rem;
+    }
 }
 
 @mixin radio-btn-text-inactive{

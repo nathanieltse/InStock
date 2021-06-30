@@ -5,11 +5,15 @@
 @use '../../partials/mixins' as *;
 
 .footer{
-    background-color: $backgrdoun-color-grey;
+    background-color: $background-color-grey;
     padding: $max-space 0;
 
+    @include tablet {
+        padding: $max-space*2 0 $max-space;
+    }
+
     @include desktop {
-        padding: $medium-space*1.5 0;
+        padding: $max-space*3 0 $max-space;
     }
 
     &__text{

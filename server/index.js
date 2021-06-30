@@ -7,7 +7,7 @@ const warehouseRoutes = require('./routes/warehouse');
 
 //env variables 
 require("dotenv").config();
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8000
 
 //middleware
 app.use(express.json());
