@@ -3,7 +3,7 @@
 @use "../../partials/mixins" as *;
 @use "../../partials/spacings" as *;
 
-.warehouse{
+.card{
     &:hover{
         background: rgba(46, 102, 230, 0.07);
     }
@@ -70,9 +70,6 @@
             left: 4px;
         }
     }
-          
-    
-
 }
 
 
