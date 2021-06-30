@@ -1,9 +1,12 @@
 import { Component } from 'react';
-import { Link } from "react-router-dom"
+import {BrowserRouter, Route, Switch, Link} from "react-router-dom"
 import { getWarehouses } from "../../utils/api.js"
 import PageHeader from '../../components/PageHeader/PageHeader'
-import "./WarehousePage.scss"
 import WarehouseList from "../../components/WarehouseList/WarehouseList"
+import Footer from '../../components/PageFooter/PageFooter'
+import AddWarehouse from "../../components/AddWarehouse/AddWarehouse"
+import EditWarehouseForm from '../../components/EditWarehouseForm/EditWarehouseForm'
+import "./WarehousePage.scss"
 
 
 
@@ -27,9 +30,23 @@ class WarehouseMainDisplay extends Component {
         return (
             <>
                 <PageHeader path={this.props.match.url}/> 
-                <section className="warehouse-wrapper">
-                    <WarehouseList warehouseList={this.state.warehouseList}/>
-                </section>
+                <BrowserRouter>
+                    <Switch>
+                    
+                    <section className="warehouse-wrapper">
+                        <Route exact path="/" render={routeProps => {
+                            return <WarehouseList warehouseList={this.state.warehouseList} {...routeProps}/>
+                        }}/>
+                        <Route path="/warehouses/add" component={AddWarehouse} />
+                        <Route path="/warehouses/:warehousesId/edit" component={EditWarehouseForm}/>
+                        {/* <WarehouseList warehouseList={this.state.warehouseList} /> */}
+                        
+                    </section>
+
+                    </Switch>
+                </BrowserRouter>
+                <Footer />
+                
             </>
         )
     }
