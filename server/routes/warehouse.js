@@ -7,10 +7,12 @@ const { v4: uuidv4 } = require('uuid');
 const fs= require("fs");
 const { json } = require('express');
 
+//get all warehouses
 router.get('/warehouses', ((req, res) => {
     res.status(200).json(warehouses)
 }))
 
+//get one warehouse
 router.get('/warehouses/:warehouseId', ((req, res) => {
     let { warehouseId } = req.params;
     const warehouseInfo = warehouses.find(warehouse => warehouse.id === warehouseId)
@@ -20,6 +22,8 @@ router.get('/warehouses/:warehouseId', ((req, res) => {
     res.status(200).json(warehouseInfo)
 }))
 
+
+//edit warehouse detail
 router.put('/warehouses/:warehouseId',((req,res)=>{
     let { warehouseId } = req.params;
     const selectedWarehouse = warehouses.find(warehouse => warehouse.id === warehouseId)
@@ -53,7 +57,8 @@ router.put('/warehouses/:warehouseId',((req,res)=>{
     })
 }))
 
-router.get('/inventories/:warehouseId', ((req, res) => {
+//get inventory in one warehouse
+router.get('/warehouses/:warehouseId/inventory', ((req, res) => {
     let { warehouseId } = req.params;
     const info = inventories.filter(inventory => inventory.warehouseID === warehouseId)
     if(!info) {
