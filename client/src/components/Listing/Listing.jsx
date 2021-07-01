@@ -1,24 +1,24 @@
-import WarehouseListCard from "../ListingCard/ListingCard"
+import ListingCard from "../ListingCard/ListingCard"
 import Labels from "../Labels/Labels"
 import { Link } from "react-router-dom"
 
 import "./Listing.scss";
 
-function WarehouseList({warehouseList}) {
+function Listing({warehouseList}) {
     return (
-        <section className="warehouse-list">
-            <section className="warehouse-list__header">
-                <h1 className="warehouse-list__title">Warehouses</h1>
-                <form className="warehouse-list__form">
+        <section className="listing">
+            <section className="listing__header">
+                <h1 className="listing__title">Warehouses</h1>
+                <form className="listing__form">
                     <input
-                        className="warehouse-list__form-input warehouse-list__form-input--search"
+                        className="listing__form-input listing__form-input--search"
                         type="text"
                         name="search"
                         placeholder="Search..."
                     />
                     <Link to="/warehouses/add">
                     <input
-                        className="warehouse-list__form-input warehouse-list__form-input--submit"
+                        className="listing__form-input listing__form-input--submit"
                         type="submit"
                         name="addWarehouse"
                         value="+ Add New Warehouse"
@@ -26,23 +26,23 @@ function WarehouseList({warehouseList}) {
                     </Link>
                 </form>
             </section>
-            <section className="warehouse-list__labels">
-                <Labels className="warehouse-list__labels-item" name="WAREHOUSE" />
-                <Labels className="warehouse-list__labels-item warehouse-list__labels-item--address" name="ADDRESS" />
-                <Labels className="warehouse-list__labels-item" name="CONTACT NAME" />
-                <Labels className="warehouse-list__labels-item" name="CONTACT INFORMATION" />
-                <Labels className="warehouse-list__labels-item" name="ACTIONS" />
+            <section className="listing__labels-container">
+                <Labels  name="WAREHOUSE" />
+                <Labels  name="ADDRESS" />
+                <Labels  name="CONTACT NAME" />
+                <Labels  name="CONTACT INFORMATION" />
+                <Labels  name="ACTIONS" />
             </section>
             {warehouseList.map(item => {
                 return (
-                        <WarehouseListCard warehouse={item} />
+                        <ListingCard data={item} />
                 )
             })}
         </section>
     )
 }
 
-export default WarehouseList
+export default Listing
 
 
 

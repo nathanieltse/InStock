@@ -6,12 +6,9 @@
 
 
 
-.warehouse-list{
+.listing{
     @include element-body;
-    background-color: $white;
-    box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
-    border-radius: 3px;
-    font-family: $primary-font;
+    
     &__header{
         width: 100%;
         @include tablet{
@@ -92,11 +89,16 @@
             }
         }
     }
-    &__labels{
+    &__labels-container{
         background-color: $background-color-grey;
+        box-sizing: border-box;
+        width: 100%;
+        display: none;
         @include tablet{
             @include flex-row;
-            justify-content: space-around;
+            justify-content:space-between;
+            padding: 0 $medium-space;
+
         } 
     }
 }

@@ -2,73 +2,79 @@
 @use "../../partials/typographys" as *;
 @use "../../partials/mixins" as *;
 @use "../../partials/spacings" as *;
+@use "../../partials/variables" as *;
  
-   .warehouse-list-card__list{
-       @include flex-column{
-           flex-wrap: wrap;
-           align-items: space-between;
-           justify-content: space-between;
-           height: 7rem;
-       };
-       border-top: 1px solid $secondary-color-cloud;
-       padding: 1rem 1rem 0 1rem;
-           @include tablet{
-               @include flex-row{
-                   justify-content: flex-start;
-                   align-items: center;
-               }
-               padding:1rem 1.75rem;
-               margin-bottom: 1.75rem;
-               height: 4.5rem;
-           }
-       &Item{
-           width: 50%;
-           @include tablet{
-               width: 20%;
-           }
-           &-address{
-               @include tablet{
-                   padding-right: .5rem;
-               }
-           }
-           &-title{
-               color:$secondary-color-slate;
-               line-height: $mobile-table-line-height;
-               font-size: $mobile-table-font;
-               font-weight: $weight-semi;
-               margin: 0;
-               @include tablet{
-                   display: none;
-               }
-           }
-           &-text{
-               color: $primary-color-black;
-               font-size: $mobile-m-body-font;
-               line-height: $mobile-m-body-line-height;
-               margin: 0;
-               padding: 0;
-               font-weight: $weight-regular;
-               @include tablet{
-                   font-size: $normal-m-body-font;
-                   line-height: $normal-m-body-line-height;
-               }
-               &--name{
-                   color: $primary-color-indigo;
-                   font-weight: $weight-semi;
-                   position: relative;
-                   @include tablet{
-                       font-size: $normal-m-body-font;
-                       line-height: $normal-m-body-line-height;
-                   }
-               }
-               &--img{
-                   width: 20px;
-                   position: absolute;
-                   top: 50%;
-                   transform: translateY(-45%);
-               }
-           }  
-       }
-   }
+.listingcard{
+    @include flex-row{
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: $regular-space;
+    }
+    border-top: $divider;
+    padding: $normal-space;
+   
+    @include tablet{
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content:none;
+        padding: $normal-space $medium-space;
+    }
+
+    &__item{
+        width: 45%;
+        order:0;
+        @include tablet{
+            width: 15%;
+        }
+
+        &:last-child{
+            width: 100%;
+            @include tablet{
+                width: 15%;
+            }
+        }
+
+
+        &--head{
+            @include tablet{
+                order:-1;
+            }            
+        }
+        &--priority{
+            @include tablet{
+                order:-1;
+            }
+        }
+    }
+
+    &__link{
+        @include flex-row;
+        text-decoration: none;
+        color:$primary-color-indigo;
+    }
+
+    &__main-text{
+        margin: 0;
+    }
+
+    &__title{
+        color:$secondary-color-slate;
+        margin: 0 0 $min-space 0;
+        @include tablet{
+            display: none;
+        }
+    }
+
+    &__text{
+        @include medium-body-text;
+        color: $primary-color-black;
+        margin: 0;
+        @include tablet{
+            font-size: $normal-m-body-font;
+            line-height: $normal-m-body-line-height;
+        }
+    }   
+    
+}
 
 
