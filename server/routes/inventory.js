@@ -4,7 +4,6 @@ const warehouses = require('../data/warehouses.json')
 const inventories = require('../data/inventories.json')
 const fs= require("fs")
 const { v4: uuidv4 } = require('uuid');
-const dummy = require('../data/dummy.json')
 
 
 router.get('/inventories', ((_req, res) => {
@@ -43,17 +42,18 @@ router.post('/inventories', ((req, res) => {
     })
 }));
 
+
 // router to update inventory item
-
 router.put('/inventory/:inventoryId', ((req, res) => {
-    let inventoryId  = req.params.inventoryId;
-    const { warehouseName, itemName, description, category, status, quantity } = req.body;
-    const selectedInventory = dummy.filter(inventory => inventory.id === inventoryId)
+    let inventoryId = req.params.inventoryId;
+    
+    //remember to send warehouseId from front-end
+    const {warehouseId,  warehouseName, itemName, description, category, status, quantity } = req.body;
 
-     if (warehouseName && itemName && description && category && status && quantity) {
+     if (warehouseId, warehouseName && itemName && description && category && status && quantity) {
         const newInventoryInfo = {
             id: inventoryId,
-            warehouseId: selectedInventory.warehouseID,
+            warehouseId,
             warehouseName,
             itemName,
             description,
@@ -61,15 +61,15 @@ router.put('/inventory/:inventoryId', ((req, res) => {
             status,
             quantity
         }
-         const newInventoryData = dummy.map(inventory => {
+         const newInventoryData = inventories.map(inventory => {
              if (inventory.id === inventoryId) {
                  return inventory = newInventoryInfo
              } else {
                  return inventory = inventory
              }
          })
-         console.log(newInventoryData)
-         fs.writeFile(__dirname + '/../data/dummy.json', JSON.stringify(newInventoryData, null, 2), (err) => {
+        
+         fs.writeFile(__dirname + '/../data/inventories.json', JSON.stringify(newInventoryData, null, 2), (err) => {
              if (err) {
                  console.log(err)
              } else {
@@ -77,7 +77,6 @@ router.put('/inventory/:inventoryId', ((req, res) => {
              }
          })
          res.status(200).json(newInventoryData)
-
     }
 }))
 
