@@ -3,7 +3,7 @@
 @use "../../partials/mixins" as *;
 @use "../../partials/spacings" as *;
  
-   .card__list{
+   .warehouse-list-card__list{
        @include flex-column{
            flex-wrap: wrap;
            align-items: space-between;

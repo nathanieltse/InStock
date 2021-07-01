@@ -6,7 +6,7 @@
 
 
 
-.warehouse{
+.warehouse-list{
     @include element-body;
     background-color: $white;
     box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
@@ -19,7 +19,7 @@
                 max-width: 100%;
                 justify-content: space-between;
                 align-items: center;
-                margin: 1rem 0;
+                padding: 1rem 0 0.1rem;
             };
         }
     }
@@ -29,8 +29,8 @@
         font-size: $mobile-header-font;
         line-height: $mobile-header-line-height;
         font-weight: $weight-semi;
-        padding-left: 1rem;
-        margin-bottom: 0;
+        padding-left:1rem;
+        margin: 0;
         
         @include tablet{
             font-size: $normal-header-font;

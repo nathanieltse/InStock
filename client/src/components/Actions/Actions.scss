@@ -4,18 +4,23 @@
 @use "../../partials/typographys" as *;
 @use "../../partials/variables" as *;
 
-.icons{
-            @include flex-row{
-                justify-content: space-between;
-            };
-            padding: 1rem;
-            @include tablet{
-               width: 35px;
-               height: 5rem;
-               margin-left: 85%;
-               margin-top: -8.5rem; 
-            }
-            &__edit{
-                padding-left: 1rem;
-            }
+.actions{
+    @include flex-row{
+        justify-content: space-between;
+    };
+    padding: 1rem;
+    @include tablet{
+        width: 35px;
+        height: 5rem;
+        margin-left: 85%;
+        margin-top: -8.5rem; 
+    }
+    &__edit{
+        padding-left: 1rem;
+    }
+
+    &__link{
+        display: block;
+    }
+    
 }

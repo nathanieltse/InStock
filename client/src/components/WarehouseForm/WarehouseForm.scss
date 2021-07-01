@@ -4,7 +4,7 @@
 @use '../../partials/spacings' as *;
 @use '../../partials/mixins' as *;
 
-.addWarehouseForm{
+.editwarehouseform{
     @include element-body;
 
     &__wrapper{
@@ -42,6 +42,24 @@
     &__input{
         @include formfield;
         margin-bottom: 0;
+    }
+
+    &__warning{
+        @include flex-row;
+
+        &--valid{
+            display: none;
+        }
+    }
+
+    &__warning-icon{
+        width: 1rem;
+    }
+
+    &__warning-text{
+        @include small-body-text;
+        margin:$min-space 0 0 $min-space;
+        color: $support-color-red;
     }
 
     &__title{
