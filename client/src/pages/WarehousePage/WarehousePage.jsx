@@ -9,7 +9,8 @@ import "./WarehousePage.scss"
 import axios from "axios"
 import WarehouseDetails from '../../components/WarehouseDetails/WarehouseDetails.jsx';
 
-
+//testing  
+import InventoryForm from "../../components/InventoryForm/InventoryForm"
 
 class WarehouseMainDisplay extends Component {
 
@@ -41,7 +42,7 @@ class WarehouseMainDisplay extends Component {
                         <Route exact path="/" render={routeProps => {
                             return <WarehouseList warehouseList={this.state.warehouseList} {...routeProps}/>
                         }}/>
-                        <Route path="/warehouses/add" component={WarehouseForm} />
+                        <Route path="/warehouses/add" component={InventoryForm} />
                         <Route path="/warehouses/:warehouseId/detail" component={WarehouseDetails}/>
                         <Route path="/warehouses/:warehousesId/edit" component={WarehouseForm}/>
                         
@@ -49,8 +50,7 @@ class WarehouseMainDisplay extends Component {
 
                     </Switch>
                 </BrowserRouter>
-                <Footer />
-                
+                <Footer /> 
             </>
         )
     }

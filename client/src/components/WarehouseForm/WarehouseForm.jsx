@@ -2,6 +2,7 @@ import { Component } from 'react'
 import axios from 'axios'
 import MainHeader from '../MainHeader/MainHeader'
 import errorIcon from '../../assets/Icons/error-24px.svg'
+import {addWarehouse} from "../../utils/api"
 import './WarehouseForm.scss'
 
 class EditWarehouseForm extends Component {
@@ -69,8 +70,25 @@ class EditWarehouseForm extends Component {
         e.preventDefault()
         //add warehouse
         const {name, address, city, country, contactName, position, phone, email} = this.state.form
-        if (name, address, city, country, contactName, position, phone, email){
-            console.log("form submitted")
+        if (name, address, city, country, contactName, position, phone, email) {
+            const data = {
+                "name": this.state.data.name,
+                "address": this.state.data.address,
+                "city": this.state.data.city,
+                "country": this.state.data.country,
+                "contact": {
+                    "name": this.state.data.contactName,
+                    "position": this.state.data.position,
+                    "phone": this.state.data.phone,
+                    "email": this.state.data.email,
+                }
+            }
+            addWarehouse(data)
+                .then((res => {
+                    console.log(res)
+                })).catch(err => {
+                    console.log(err)
+            })
         } else {
             alert("field can't be empty!")
         }

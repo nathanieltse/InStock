@@ -7,6 +7,7 @@ import InventoryPage from './pages/InventoryPage/InventoryPage';
 
 
 
+
 class App extends Component{
   
   render(){

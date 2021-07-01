@@ -3,6 +3,7 @@ import {BrowserRouter, Route, Switch} from "react-router-dom"
 import PageHeader from '../../components/PageHeader/PageHeader'
 import Footer from '../../components/PageFooter/PageFooter'
 import './InventoryPage.scss'
+// import InventoryForm from "../../components/InventoryForm/InventoryForm"
 
 class InventoryPage extends Component {
     render () {
@@ -12,7 +13,7 @@ class InventoryPage extends Component {
                 <BrowserRouter>
                     <section className="inventory-wrapper">
                         <Switch>
-                            
+                            {/* <Route path="api/inventory/:inventoryId" component={InventoryForm} /> */}
                         </Switch>
                     </section>
                 </BrowserRouter>

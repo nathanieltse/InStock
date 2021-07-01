@@ -13,3 +13,26 @@ export const getWarehouses = () => {
     })
 }
 
+export const addWarehouse = (data) => {
+    return new Promise((resolve, reject) => {
+        axios.post(`${URL}/warehouses/add`, data)
+            .then(res => {
+                resolve(res)
+            }).catch(err => {
+                reject(err)
+        })
+    })
+}
+
+export const addInventory = (data) => {
+    return new Promise((resolve, reject) => {
+        axios.post(`${URL}/inventories`, data)
+            .then(res => {
+                resolve(res)
+            })
+            .catch(err => {
+            reject(err)
+        })
+    })
+}
+

@@ -10,7 +10,7 @@ router.get('/inventory', ((_req, res) => {
     res.status(200).json(inventories)
 }))
 
-//get songle inventory info
+//get single inventory info
 router.get('/inventory/:inventoryId', ((req, res) => {
 
     const id = req.params.inventoryId
