@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const warehouses = require('../data/warehouses.json')
 const inventories = require('../data/inventories.json')
-
+const { v4: uuidv4 } = require('uuid');
 
 const fs= require("fs");
 const { json } = require('express');
@@ -69,7 +69,7 @@ router.get('/inventories/:warehouseId', ((req, res) => {
 //post endpoint for adding a new warehouse
 router.post('/warehouses/add', ((req, res) => {
     const newWarehouseInfo = {
-        "id": warehouseId,
+        "id": uuidv4(),
         "name": req.body.name,
         "address": req.body.address,
         "city": req.body.city,
@@ -88,7 +88,7 @@ router.post('/warehouses/add', ((req, res) => {
         if (err) {
             console.log(err)
         } else {
-            res.status(200).json("warehouse info updated")
+            res.status(200).json("warehouse Added")
         }
     })
 }))
