@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import {BrowserRouter, Route, Switch, Link} from "react-router-dom"
+import {BrowserRouter, Route, Switch} from "react-router-dom"
 import { getWarehouses } from "../../utils/api.js"
 import PageHeader from '../../components/PageHeader/PageHeader'
 import WarehouseList from "../../components/WarehouseList/WarehouseList"
@@ -19,7 +19,6 @@ class WarehouseMainDisplay extends Component {
     componentDidMount = () => {
         getWarehouses()
             .then(res => {
-                console.log(res.data)
                 this.setState({ warehouseList: res.data })
             }).catch(err => {
                 console.log(err)
@@ -39,8 +38,6 @@ class WarehouseMainDisplay extends Component {
                         }}/>
                         <Route path="/warehouses/add" component={AddWarehouse} />
                         <Route path="/warehouses/:warehousesId/edit" component={EditWarehouseForm}/>
-                        {/* <WarehouseList warehouseList={this.state.warehouseList} /> */}
-                        
                     </section>
 
                     </Switch>

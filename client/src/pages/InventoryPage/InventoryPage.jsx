@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import {BrowserRouter, Route, Switch} from "react-router-dom"
 import PageHeader from '../../components/PageHeader/PageHeader'
+import Footer from '../../components/PageFooter/PageFooter'
 import './InventoryPage.scss'
 
 class InventoryPage extends Component {
@@ -8,9 +9,14 @@ class InventoryPage extends Component {
         return (
             <>
                 <PageHeader path={this.props.match.url}/> 
-                <section className="inventory-wrapper">
-                    
-                </section>
+                <BrowserRouter>
+                    <section className="inventory-wrapper">
+                        <Switch>
+                            
+                        </Switch>
+                    </section>
+                </BrowserRouter>
+                <Footer />
             </>
         )
     }

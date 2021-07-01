@@ -46,6 +46,10 @@
 
     &__warning{
         @include flex-row;
+
+        &--valid{
+            display: none;
+        }
     }
 
     &__warning-icon{

@@ -13,12 +13,12 @@ class App extends Component{
   return (
     <div className="app__body">
       <BrowserRouter>
-        <Switch>
+      <Switch>
           
-          <Route exact path="/" component={WarehousePage}/>
           <Route path="/inventory" component={InventoryPage}/>
+          <Route path="/" component={WarehousePage}/>
 
-        </Switch>
+      </Switch>
       </BrowserRouter>
     
     </div>
