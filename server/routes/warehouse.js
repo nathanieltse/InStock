@@ -60,11 +60,11 @@ router.put('/warehouses/:warehouseId',((req,res)=>{
 //get inventory in one warehouse
 router.get('/warehouses/:warehouseId/inventory', ((req, res) => {
     let { warehouseId } = req.params;
-    const info = inventories.filter(inventory => inventory.warehouseID === warehouseId)
-    if(!info) {
+    const data = inventories.filter(inventory => inventory.warehouseID === warehouseId)
+    if(!data) {
     res.status(400).send(`There is no inventory under the ${warehouseId}`)
     }
-    res.status(200).json(info)
+    res.status(200).json(data)
 }))
 
 //post endpoint for adding a new warehouse

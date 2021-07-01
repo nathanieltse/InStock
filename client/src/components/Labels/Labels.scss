@@ -4,20 +4,24 @@
 @use "../../partials/spacings" as *;
 
 .label{
-    display: none;
-    @include tablet{
-            @include flex-row{
-                //width: 20%;
-        }
+    @include flex-row{
+        align-items: center;
+        width: 15%;
     }
 
     &__title{
-        font-size: $normal-table-font;
-        line-height: $normal-table-line-height;
+        color:$secondary-color-slate;
     }
+    
     &__img{
+        margin-right: auto;
         width: 1rem;
     }
+
+    &__action{
+        justify-content: flex-end;
+    }
+
     &__hide{
         display: none;
     }
