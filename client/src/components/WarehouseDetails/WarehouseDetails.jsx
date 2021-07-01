@@ -35,13 +35,13 @@ class WarehouseDetails extends Component{
             this.getWarehouse(warehouseId)
         }
     
-        componentDidUpdate(prevProps) {
-            const { warehouseId } = this.props.match.params;
+        // componentDidUpdate(prevProps) {
+        //     const { warehouseId } = this.props.match.params;
     
-            if (warehouseId !== prevProps.warehouseId) {
-                this.getWarehouse(warehouseId)
-            }
-        }
+        //     if (warehouseId !== prevProps.warehouseId) {
+        //         this.getWarehouse(warehouseId)
+        //     }
+        // }
 
         render(){
             if (this.state.warehouse===null){
