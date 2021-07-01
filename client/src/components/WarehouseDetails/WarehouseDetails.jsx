@@ -6,6 +6,7 @@ import "../../App.scss"
 import WarehouseList from "../../components/WarehouseList/WarehouseList"
 import axios from 'axios';
 import WarehouseDetailsHeader from '../../components/WarehouseDetailsHeader/WarehouseDetailsHeader'
+import editIcon from "../../assets/Icons/edit-24px.svg"
 import "../WarehouseDetails/WarehouseDetails.scss"
 
 class WarehouseDetails extends Component{
@@ -52,22 +53,35 @@ class WarehouseDetails extends Component{
           
         return (
             <>
-    
-                <div>
+                <div className="wd-wrapper__style">
+                <div wd-header__style>
                     <WarehouseDetailsHeader warehouse={warehouse} />
                 </div>
-                <div className="details__container">
-                    <main className="address__container">
-                    <p className="warehouse-address__style">WAREHOUSE ADDRESS: {warehouse.address}</p>
+                    <Link to={`/warehouses/${warehouse.id}/edit`}>
+                        <button className="wd-button__style"><img className="wd-edit-icon__style" src={editIcon} alt="edit icon"/>Edit</button>
+                    </Link>
+                </div>
+                <div className="wd__container">
+                    <main className="wd-address__container">
+                        <span className="wd-address__header">WAREHOUSE ADDRESS: 
+                            <p className="wd-address__style">{warehouse.address}</p>
+                            <p className="wd-address__style">{warehouse.city}, {warehouse.country}</p>
+                        </span>
                     </main>
-                    <div>
-                        <p className="contact-name__style">CONTACT NAME:{warehouse.contact.name}</p>
-                        <p className="contact-position__style">{warehouse.contact.position}</p>
+                <main className="wd-contact-info__wrapper">
+                    <div className="wd-contact-name__container">
+                        <span className="wd-contact-name__header">CONTACT NAME:
+                            <p className="wd-contact-name__style">{warehouse.contact.name}</p>
+                            <p className="wd-contact-position__style">{warehouse.contact.position}</p>
+                        </span>
                     </div>
                     <div>
-                        <p className="contact-phone__style">CONTACT INFORMATION:{warehouse.contact.phone}</p>
-                        <p className="contact-email__style">{warehouse.contact.email}</p>
+                        <span className="wd-contact-phone__header">CONTACT INFORMATION: 
+                            <p className="wd-contact-phone__style">{warehouse.contact.phone}</p>
+                            <p className="wd-contact-email__style">{warehouse.contact.email}</p>
+                        </span>
                     </div>
+                    </main>
                 </div>
         </>
            

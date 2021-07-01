@@ -6,7 +6,7 @@ import backArrow from "../../assets/Icons/arrow_back-24px.svg"
 function MainHeader({ warehouse }) {
     return (
         <div className="main-header">
-            <Link to="/warehouses">
+            <Link to="/">
                 <img
                     className="main-header__img"
                     src={backArrow}

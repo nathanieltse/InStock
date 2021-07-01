@@ -3,6 +3,7 @@ import React, {Component} from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom"
 import WarehousePage from "./pages/WarehousePage/WarehousePage";
 import InventoryPage from './pages/InventoryPage/InventoryPage'
+import WarehouseDetails from './components/WarehouseDetails/WarehouseDetails';
 
 
 

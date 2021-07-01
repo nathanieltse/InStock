@@ -7,6 +7,8 @@ import Footer from '../../components/PageFooter/PageFooter'
 import AddWarehouse from "../../components/AddWarehouse/AddWarehouse"
 import EditWarehouseForm from '../../components/EditWarehouseForm/EditWarehouseForm'
 import "./WarehousePage.scss"
+import axios from "axios"
+import WarehouseDetails from '../../components/WarehouseDetails/WarehouseDetails.jsx';
 
 
 
@@ -42,6 +44,7 @@ class WarehouseMainDisplay extends Component {
                         }}/>
                         <Route path="/warehouses/add" component={AddWarehouse} />
                         <Route path="/warehouses/:warehousesId/edit" component={EditWarehouseForm}/>
+                        <Route path="/warehouses/:warehouseId" component={WarehouseDetails}/>
                         {/* <WarehouseList warehouseList={this.state.warehouseList} /> */}
                         
                     </section>
