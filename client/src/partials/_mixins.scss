@@ -195,7 +195,9 @@
 
 @mixin tag-in-stock{
     height:1.5rem;
-    padding:0 0.5rem;
+    padding:0.1rem 0.5rem;
+    text-align: center;
+    width: 4.5rem;
     border-radius: 1.25rem;
     color:$support-color-green;
     background-color: $support-color-background-green;
@@ -205,6 +207,7 @@
 
     @include tablet{
         height:1.625rem;
+        width: 5rem;
         font-size: $normal-label-btn-link-font;
         line-height: $normal-label-btn-link-line-height;
     }
@@ -212,7 +215,9 @@
 
 @mixin tag-stock-out{
     height:1.5rem;
-    padding:0 0.5rem;
+    padding:0.1rem 0.5rem;
+    text-align: center;
+    width: 6.5rem;
     border-radius: 1.25rem;
     color:$support-color-red;
     background-color: $support-color-background-red;
@@ -222,6 +227,7 @@
 
     @include tablet{
         height:1.625rem;
+        width: 7rem;
         font-size: $normal-label-btn-link-font;
         line-height: $normal-label-btn-link-line-height;
     }

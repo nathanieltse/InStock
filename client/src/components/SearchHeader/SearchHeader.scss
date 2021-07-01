@@ -37,7 +37,7 @@
                 right: 1rem;
                 background-image: url("../../assets/Icons/search-24px.svg");
                 @include tablet{
-                    right: 13rem;
+                    right: 12.5rem;
                     top: 0.5rem;
                 }
             }
@@ -56,7 +56,7 @@
             @include tablet{
                 width: 50%;
                 margin:0 $regular-space 0 auto;
-                padding-right:15rem;
+                padding-right:3rem;
                 height: 2.375rem;
             }
             @include desktop{

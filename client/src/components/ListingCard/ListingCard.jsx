@@ -37,7 +37,7 @@ function ListingCard({ data, pagePath }) {
         :
         <>
             <article className="listingcard">
-                <section className="listingcard__item listingcard__item--head">
+                <section className="listingcard__item listingcard__item--priority">
                     <h4 className="listingcard__title">INVENTORY ITEM</h4>
                         <Link className="listingcard__link" to={`/inventory/${data.id}`} >
                             <h3 className="listingcard__main-text">{data.itemName}</h3>
@@ -46,9 +46,9 @@ function ListingCard({ data, pagePath }) {
                 </section>
                 <section className="listingcard__item">
                     <h4 className="listingcard__title">STATUS</h4>
-                    <p className="listingcard__text">{data.status}</p>
+                    <p className={data.status === "In Stock" ? "listingcard__status--active" : "listingcard__status--inactive"}>{data.status.toUpperCase()}</p>
                 </section>
-                <section className="listingcard__item listingcard__item--priority">
+                <section className="listingcard__item listingcard__item--secondary">
                     <h4 className="listingcard__title">CATEGORY</h4>
                     <p className="listingcard__text">{data.category}</p>
                 </section>
@@ -56,7 +56,7 @@ function ListingCard({ data, pagePath }) {
                     <h4 className="listingcard__title">QTY</h4>
                     <p className="listingcard__text">{data.quantity}</p>
                 </section>
-                <section className="listingcard__item">
+                <section className="listingcard__item listingcard__item-warehouse">
                     <h4 className="listingcard__title">WAREHOUSE</h4>
                     <p className="listingcard__text">{data.warehouseName}</p>
                 </section>
