@@ -5,20 +5,18 @@ import SearchHeader from "../SearchHeader/SearchHeader"
 
 import "./Listing.scss";
 
-function Listing({warehouseList}) {
+function Listing({dataList, path, listingColumn}) {
     return (
         <section className="listing">
-            <SearchHeader/>
+            <SearchHeader path="/warehouses/add" value="+ Add New Warehouse"/>
             <section className="listing__labels-container">
-                <Labels  name="WAREHOUSE" />
-                <Labels  name="ADDRESS" />
-                <Labels  name="CONTACT NAME" />
-                <Labels  name="CONTACT INFORMATION" />
-                <Labels  name="ACTIONS" />
+                {listingColumn.map(column => {
+                    return <Labels name={column} />
+                })}
             </section>
-            {warehouseList.map(item => {
+            {dataList.map(item => {
                 return (
-                        <ListingCard data={item} />
+                        <ListingCard data={item} path={path} />
                 )
             })}
         </section>

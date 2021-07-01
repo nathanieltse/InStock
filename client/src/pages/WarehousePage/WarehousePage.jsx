@@ -21,14 +21,12 @@ class WarehouseMainDisplay extends Component {
         axios.get(`/api/warehouses`)
         .then(res => res.data)
         .then(data => {
-          
           this.setState({
             warehouseList: data,
           });
-  
         })
         .catch(error=>{console.log(error)})
-        }
+    }
 
     render(){
         return (
@@ -39,7 +37,8 @@ class WarehouseMainDisplay extends Component {
                     
                     <section className="warehouse-wrapper">
                         <Route exact path="/" render={routeProps => {
-                            return <Listing warehouseList={this.state.warehouseList} {...routeProps}/>
+                            return <Listing dataList={this.state.warehouseList} path="warehouse" listingColumn={["WAREHOUSE", "ADDRESS", "CONTACT NAME", "CONTACT INFORMATION", "ACTIONS" ]} 
+                            {...routeProps}/>
                         }}/>
                         <Route path="/warehouses/add" component={WarehouseForm} />
                         <Route path="/warehouses/:warehouseId/detail" component={WarehouseDetails}/>

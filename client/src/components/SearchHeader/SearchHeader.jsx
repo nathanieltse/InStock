@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom'
 import './SearchHeader.scss'
 
-const SearchHeader = () =>{
+const SearchHeader = ({path, value}) =>{
     return (
         <section className="search-header">
                 <h1 className="search-header__title">Warehouses</h1>
@@ -12,12 +12,12 @@ const SearchHeader = () =>{
                         name="search"
                         placeholder="Search..."
                     />
-                    <Link className="search-header__form-link" to="/warehouses/add">
+                    <Link className="search-header__form-link" to={path}>
                         <input
                             className="search-header__form-submit"
                             type="submit"
                             name="addWarehouse"
-                            value="+ Add New Warehouse"
+                            value={value}
                             />
                     </Link>
                 </form>
