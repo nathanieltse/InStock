@@ -1,9 +1,8 @@
-import "./WarehouseList.scss";
-import WarehouseListCard from "../WarehouseListCard/WarehouseListCard"
+import WarehouseListCard from "../ListingCard/ListingCard"
 import Labels from "../Labels/Labels"
 import { Link } from "react-router-dom"
 
-import React from 'react'
+import "./Listing.scss";
 
 function WarehouseList({warehouseList}) {
     return (

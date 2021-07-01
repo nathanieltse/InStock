@@ -93,11 +93,10 @@
         }
     }
     &__labels{
-        background-color: $secondary-color-cloud;
+        background-color: $background-color-grey;
         @include tablet{
             @include flex-row;
             justify-content: space-around;
-            //width: 94%;
         } 
     }
 }

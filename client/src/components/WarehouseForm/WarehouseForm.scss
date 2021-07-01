@@ -4,7 +4,7 @@
 @use '../../partials/spacings' as *;
 @use '../../partials/mixins' as *;
 
-.editwarehouseform{
+.warehouseform{
     @include element-body;
 
     &__wrapper{

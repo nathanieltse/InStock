@@ -1,7 +1,7 @@
 import React from 'react'
 import Actions from "../Actions/Actions"
 import chevron from "../../assets/Icons/chevron_right-24px.svg"
-import "./WarehouseListCard.scss"
+import "./ListingCard.scss"
 import { Link } from "react-router-dom";
 
 function WarehouseListCard({ warehouse }) {

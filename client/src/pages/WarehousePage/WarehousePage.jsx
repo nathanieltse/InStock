@@ -1,13 +1,13 @@
 import { Component } from 'react';
 import {BrowserRouter, Route, Switch} from "react-router-dom"
 import { getWarehouses } from "../../utils/api.js"
+import axios from "axios"
 import PageHeader from '../../components/PageHeader/PageHeader'
-import WarehouseList from "../../components/WarehouseList/WarehouseList"
+import Listing from "../../components/Listing/Listing"
 import Footer from '../../components/PageFooter/PageFooter'
 import WarehouseForm from '../../components/WarehouseForm/WarehouseForm'
-import "./WarehousePage.scss"
-import axios from "axios"
 import WarehouseDetails from '../../components/WarehouseDetails/WarehouseDetails.jsx';
+import "./WarehousePage.scss"
 
 
 
@@ -39,7 +39,7 @@ class WarehouseMainDisplay extends Component {
                     
                     <section className="warehouse-wrapper">
                         <Route exact path="/" render={routeProps => {
-                            return <WarehouseList warehouseList={this.state.warehouseList} {...routeProps}/>
+                            return <Listing warehouseList={this.state.warehouseList} {...routeProps}/>
                         }}/>
                         <Route path="/warehouses/add" component={WarehouseForm} />
                         <Route path="/warehouses/:warehouseId/detail" component={WarehouseDetails}/>
