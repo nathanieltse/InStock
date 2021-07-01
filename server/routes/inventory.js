@@ -6,7 +6,7 @@ const fs= require("fs")
 const { v4: uuidv4 } = require('uuid');
 
 
-router.get('/inventories', ((_req, res) => {
+router.get('/inventory', ((_req, res) => {
     res.status(200).json(inventories)
 }))
 
