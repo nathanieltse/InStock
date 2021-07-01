@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom'
 import './SearchHeader.scss'
 
-const SearchHeader = ({path, value}) =>{
+const SearchHeader = ({addItemPath, value}) =>{
     return (
         <section className="search-header">
                 <h1 className="search-header__title">Warehouses</h1>
@@ -12,7 +12,7 @@ const SearchHeader = ({path, value}) =>{
                         name="search"
                         placeholder="Search..."
                     />
-                    <Link className="search-header__form-link" to={path}>
+                    <Link className="search-header__form-link" to={addItemPath}>
                         <input
                             className="search-header__form-submit"
                             type="submit"

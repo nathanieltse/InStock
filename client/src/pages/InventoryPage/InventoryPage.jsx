@@ -26,8 +26,13 @@ class InventoryPage extends Component {
                     <Switch>
                         <section className="inventory-wrapper">
                                 <Route exact path="/inventory" render={routeProps => {
-                                    return <Listing dataList={this.state.inventoryList} path="inventory" listingColumn={["INVENTORY", "CATEGORY", "STATUS", "QTY", "ACTIONS"]}
-                                    {...routeProps}/>
+                                    return <Listing 
+                                                dataList={this.state.inventoryList} 
+                                                path="inventory" 
+                                                addItemPath="/inventory/add"
+                                                addItemValue="+ Add New Warehouse"
+                                                listingColumn={["INVENTORY", "CATEGORY", "STATUS", "QTY", "WAREHOUSE" , "ACTIONS"]}
+                                                {...routeProps}/>
                                 }}/>
                         </section>
                     </Switch>

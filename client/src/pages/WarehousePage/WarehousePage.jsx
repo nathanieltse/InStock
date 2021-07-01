@@ -37,8 +37,13 @@ class WarehouseMainDisplay extends Component {
                     
                     <section className="warehouse-wrapper">
                         <Route exact path="/" render={routeProps => {
-                            return <Listing dataList={this.state.warehouseList} path="warehouse" listingColumn={["WAREHOUSE", "ADDRESS", "CONTACT NAME", "CONTACT INFORMATION", "ACTIONS" ]} 
-                            {...routeProps}/>
+                            return <Listing 
+                                        dataList={this.state.warehouseList} 
+                                        pagePath="warehouse" 
+                                        addItemPath="/warehouses/add"
+                                        addItemValue="+ Add New Warehouse"
+                                        listingColumn={["WAREHOUSE", "ADDRESS", "CONTACT NAME", "CONTACT INFORMATION", "ACTIONS" ]} 
+                                        {...routeProps}/>
                         }}/>
                         <Route path="/warehouses/add" component={WarehouseForm} />
                         <Route path="/warehouses/:warehouseId/detail" component={WarehouseDetails}/>

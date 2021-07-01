@@ -16,7 +16,7 @@
         @include tablet{
             @include flex-row;
             justify-content:space-between;
-            padding: 0 $medium-space;
+            padding: $regular-space $medium-space;
 
         } 
     }

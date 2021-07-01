@@ -5,18 +5,18 @@ import SearchHeader from "../SearchHeader/SearchHeader"
 
 import "./Listing.scss";
 
-function Listing({dataList, path, listingColumn}) {
+function Listing({dataList, pagePath, addItemPath, addItemValue, listingColumn}) {
     return (
         <section className="listing">
-            <SearchHeader path="/warehouses/add" value="+ Add New Warehouse"/>
+            <SearchHeader addItemPath={addItemPath} value={addItemValue}/>
             <section className="listing__labels-container">
-                {listingColumn.map(column => {
-                    return <Labels name={column} />
+                {listingColumn.map((column, index) => {
+                    return <Labels key={index} name={column} />
                 })}
             </section>
             {dataList.map(item => {
                 return (
-                        <ListingCard data={item} path={path} />
+                        <ListingCard key={item.id} data={item} pagePath={pagePath} />
                 )
             })}
         </section>
