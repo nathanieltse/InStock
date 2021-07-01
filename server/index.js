@@ -8,7 +8,7 @@ const inventoryRoutes = require('./routes/inventory')
 
 //env variables 
 require("dotenv").config();
-const port = process.env.PORT || 8000
+const port = process.env.PORT || 8080
 
 //middleware
 app.use(express.json());

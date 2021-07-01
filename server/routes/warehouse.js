@@ -53,10 +53,6 @@ router.put('/warehouses/:warehouseId',((req,res)=>{
     })
 }))
 
-router.get('/inventories', ((_req, res) => {
-    res.status(200).json(inventories)
-}))
-
 router.get('/inventories/:warehouseId', ((req, res) => {
     let { warehouseId } = req.params;
     const info = inventories.filter(inventory => inventory.warehouseID === warehouseId)

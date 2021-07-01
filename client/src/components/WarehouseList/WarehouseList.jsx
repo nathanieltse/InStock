@@ -36,7 +36,7 @@ function WarehouseList({warehouseList}) {
             </section>
             {warehouseList.map(item => {
                 return (
-                    <WarehouseListCard warehouse={item} />
+                        <WarehouseListCard warehouse={item} />
                 )
             })}
         </section>

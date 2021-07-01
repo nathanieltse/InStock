@@ -10,6 +10,21 @@ router.get('/inventories', ((_req, res) => {
     res.status(200).json(inventories)
 }))
 
+//get songle inventory info
+router.get('/inventory/:inventoryId', ((req, res) => {
+
+    const id = req.params.inventoryId
+    const selectedInventory = inventories.filter(inventory => inventory.id === id)
+
+    if (selectedInventory) {
+        res.status(200).send(selectedInventory)
+    }
+    else {
+        res.status(400).json(`Inventory with id: ${id} does not exist`)
+    }
+
+}))
+
 router.post('/inventories', ((req, res) => {
     const { warehouseID, warehouseName, itemName, description, category, status, quantity } = req.body;
 
@@ -41,6 +56,7 @@ router.post('/inventories', ((req, res) => {
         }
     })
 }));
+
 
 
 // router to update inventory item
