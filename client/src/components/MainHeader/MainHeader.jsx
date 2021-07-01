@@ -2,7 +2,7 @@ import React from 'react'
 import "./MainHeader.scss"
 import backArrow from "../../assets/Icons/arrow_back-24px.svg"
 
-function MainHeader({navigate, headerName}) {
+function MainHeader({navigate, headerName }) {
 
     const navigateBack = (e) => {
         navigate.history.goBack()
