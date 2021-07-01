@@ -4,7 +4,7 @@
 @use './partials/spacings' as *;
 @use './partials/mixins' as *;
 
-body {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
