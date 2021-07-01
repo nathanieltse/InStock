@@ -2,7 +2,7 @@ import './App.scss';
 import React, {Component} from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom"
 import WarehousePage from "./pages/WarehousePage/WarehousePage";
-import InventoryPage from './pages/InventoryPage/InventoryPage'
+import InventoryPage from './pages/InventoryPage/InventoryPage';
 
 
 
