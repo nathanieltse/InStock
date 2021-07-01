@@ -5,7 +5,7 @@ const inventories = require('../data/inventories.json')
 const fs= require("fs")
 const { v4: uuidv4 } = require('uuid');
 
-
+//get all inventory
 router.get('/inventory', ((_req, res) => {
     res.status(200).json(inventories)
 }))
