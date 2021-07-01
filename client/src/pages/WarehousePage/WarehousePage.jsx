@@ -4,8 +4,7 @@ import { getWarehouses } from "../../utils/api.js"
 import PageHeader from '../../components/PageHeader/PageHeader'
 import WarehouseList from "../../components/WarehouseList/WarehouseList"
 import Footer from '../../components/PageFooter/PageFooter'
-import AddWarehouse from "../../components/AddWarehouse/AddWarehouse"
-import EditWarehouseForm from '../../components/EditWarehouseForm/EditWarehouseForm'
+import WarehouseForm from '../../components/WarehouseForm/WarehouseForm'
 import "./WarehousePage.scss"
 import axios from "axios"
 import WarehouseDetails from '../../components/WarehouseDetails/WarehouseDetails.jsx';
@@ -42,10 +41,9 @@ class WarehouseMainDisplay extends Component {
                         <Route exact path="/" render={routeProps => {
                             return <WarehouseList warehouseList={this.state.warehouseList} {...routeProps}/>
                         }}/>
-                        <Route path="/warehouses/add" component={AddWarehouse} />
-                        <Route path="/warehouses/:warehousesId/edit" component={EditWarehouseForm}/>
-                        <Route path="/warehouses/:warehouseId" component={WarehouseDetails}/>
-                        {/* <WarehouseList warehouseList={this.state.warehouseList} /> */}
+                        <Route path="/warehouses/add" component={WarehouseForm} />
+                        <Route path="/warehouses/:warehouseId/detail" component={WarehouseDetails}/>
+                        <Route path="/warehouses/:warehousesId/edit" component={WarehouseForm}/>
                         
                     </section>
 

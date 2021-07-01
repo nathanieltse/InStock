@@ -138,13 +138,13 @@
     }
 
     &:active {
-        outline:none;
         border:1px solid $primary-color-indigo;
     }
 
-    &:hover {
-        border: 1px solid $secondary-color-cloud;
+    &:focus{
+        outline:none;
     }
+
     
     @include tablet {
         font-size: $normal-m-body-font;

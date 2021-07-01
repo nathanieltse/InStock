@@ -11,7 +11,7 @@ function WarehouseListCard({ warehouse }) {
                 <section className="card__listItem">
                     <h4 className="card__listItem-title">WAREHOUSE</h4>
                     <h3 className="card__listItem-text warehouse__listItem-text--name">{warehouse.name}
-                        <Link to={`/warehouses/${warehouse.id}`} >
+                        <Link to={`/warehouses/${warehouse.id}/detail`} >
                             <img className="warehouse__listItem-text--img" src={chevron} alt="expand warehouse detail"/>
                         </Link>
                     </h3>

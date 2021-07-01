@@ -3,7 +3,6 @@ import React, {Component} from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom"
 import WarehousePage from "./pages/WarehousePage/WarehousePage";
 import InventoryPage from './pages/InventoryPage/InventoryPage'
-import WarehouseDetails from './components/WarehouseDetails/WarehouseDetails';
 
 
 
@@ -14,13 +13,12 @@ class App extends Component{
   return (
     <div className="app__body">
       <BrowserRouter>
-        <Switch>
+      <Switch>
           
-          <Route path="/" component={WarehousePage}/>
           <Route path="/inventory" component={InventoryPage}/>
-          <Route path="/warehouses/:warehouseId" component={WarehouseDetails}/>
+          <Route path="/" component={WarehousePage}/>
 
-        </Switch>
+      </Switch>
       </BrowserRouter>
     
     </div>
