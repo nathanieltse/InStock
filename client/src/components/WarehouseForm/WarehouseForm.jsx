@@ -2,7 +2,7 @@ import { Component } from 'react'
 import axios from 'axios'
 import MainHeader from '../MainHeader/MainHeader'
 import errorIcon from '../../assets/Icons/error-24px.svg'
-import './EditWarehouseForm.scss'
+import './WarehouseForm.scss'
 
 class EditWarehouseForm extends Component {
     state={
