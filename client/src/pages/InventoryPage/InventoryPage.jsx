@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import {BrowserRouter, Route, Switch} from "react-router-dom"
 import PageHeader from '../../components/PageHeader/PageHeader'
 import './InventoryPage.scss'
 
