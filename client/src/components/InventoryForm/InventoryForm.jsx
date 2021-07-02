@@ -16,15 +16,7 @@ let categories = [];
 
 class InventoryForm extends Component {
     state = {
-        data: {},
-        form: {
-            category: false,
-            description: false,
-            id: false,
-            itemName: false,
-            quantity: false,
-            warehouseName: false,
-        }
+        data: {}
     }
 
     componentDidMount() {
@@ -49,70 +41,52 @@ class InventoryForm extends Component {
                 .get(`/api/inventory/d0b01bdb-fbde-40c2-90ea-10750db5e442`)
                 .then(res => {
                     console.log(res)
+                    const { category, description, itemName, status,id,  quantity, warehouseName } = res.data[0]
                     this.setState({
                         data: {
-                            category: res.data.category,
-                            description: res.data.description,
-                            id: res.data.id,
-                            itemName: res.data.itemName,
-                            quantity: res.data.quantity,
-                            status: res.data.status,
-                            warehouseId: res.data.warehouseId,
-                            warehouseName: res.data.warehouseName,
+                            
+                            category,
+                            description,
+                            id,
+                            itemName,
+                            quantity,
+                            status,
+                            warehouseName,
                         }
                     })
-                    this.setState({
-                        form: {
-                            category: true,
-                            description: true,
-                            itemName: true,
-                            quantity: true,
-                            status: true,
-                            warehouseName: true,
-                        }
-                    })
+                    console.log(this.state.data)
                 })
                 .catch(err => console.log(err))
         }
-
     }
 
     handleChange = (e) => {
         this.setState({
             data: {
-                ...this.state.data, [e.target.name]: e.target.value
+                ...this.state.data, [e.target.name]: e.target.value 
             }
         })
-        if (e.target.value === "") {
-            this.setState({
-                form: { ...this.state.form, [e.target.name]: false }
-            })
-        } else {
-            this.setState({
-                form: { ...this.state.form, [e.target.name]: true }
-            })
-        }
     }
 
     handleAdd = (e) => {
         e.preventDefault()
-        console.log(category)
-        //add warehouse
-        const { category, description, itemName, quantity, status, warehouseName } = this.state.form
+        const { category, description, itemName,status, quantity, warehouseName } = this.state.data
         let warehouseId = warehouseData.find(warehouse => warehouse.name === warehouseName)
-        if (category && description && itemName && quantity && status && warehouseName) {
+
+        if (category && description && itemName && quantity && warehouseName) {
             const data = {
-                "category": this.state.data.category,
-                "description": this.state.data.description,
-                "itemName": this.state.data.itemName,
-                "quantity": this.state.data.quantity,
-                "status": this.state.data.status,
-                "warehouseId": warehouseId,
-                "warehouseName": this.state.data.warehouseName
+                "category": category,
+                "description": description,
+                "itemName": itemName,
+                "quantity": quantity,
+                "status": status,
+                "warehouseID": warehouseId.id,
+                "warehouseName": warehouseName
             }
+            
             addInventory(data)
                 .then((res => {
-                    console.log(res)
+                    console.log("posted")
                 })).catch(err => {
                     console.log(err)
                 })
@@ -123,21 +97,21 @@ class InventoryForm extends Component {
 
     handleSave = (e) => {
         e.preventDefault()
-        console.log(category)
-        const { category, description, itemName, quantity, status, warehouseName} = this.state.form
-        if (category && description && itemName && quantity && status && warehouseName) {
+        const { category, description, itemName, status, quantity, warehouseName } = this.state.data
+
+        if (category && description && itemName && quantity && warehouseName) {
             let warehouseId = warehouseData.find(warehouse => warehouse.name === warehouseName)
-    
+
             axios
-                .put(`/api/inventory/d0b01bdb-fbde-40c2-90ea-10750db5e442`,
+                .put(`/api/inventory/d0b01bdb-fbde-40c2-90ea-10750db5e442/edit`,
                         {
-                        "category": this.state.data.category,
-                        "description": this.state.data.description,
-                        "itemName": this.state.data.itemName,
-                        "quantity": this.state.data.quantity,
-                        "status": this.state.data.status,
-                        "warehouseId": warehouseId,
-                        "warehouseName": this.state.data.warehouseName
+                            "category": category,
+                            "description": description,
+                            "itemName": itemName,
+                            "quantity": quantity,
+                            "status": status,
+                            "warehouseID": warehouseId.id,
+                            "warehouseName": warehouseName
                         }
                 )
                 .then(res => alert("Inventory Edited edited!"))
@@ -157,64 +131,54 @@ class InventoryForm extends Component {
 
         return (
             (edit && this.state.data=== 0) ?
-                 <p> Loading ... </p>
-                    :
+                <p> Loading ... </p>
+                
+            :
         
             <form className="inventoryForm" onSubmit={edit ? this.handleSave : this.handleAdd}>
                 <MainHeader navigate={this.props} headerName={edit ? "Edit Inventory Item" : "Add New Inventory Item"} />
                 <div className="inventoryForm__wrapper">
                     <div className="inventoryForm__left">
                         <h2 className="inventoryForm__title">Item Details</h2>
-                        <label htmlFor="name" className="inventoryForm__label">Item Name</label>
+                        <label htmlFor="itemName" className="inventoryForm__label">Item Name</label>
                         <input
                             placeholder="Item Name"
-                            name="name"
+                            name="itemName"
                             className="inventoryForm__input"
-                            value={edit ? this.state.data.itemName : ""}
+                            value={this.state.data ? this.state.data.itemName : ""}
                             onChange={this.handleChange} />
 
                         <label htmlFor="description" className="inventoryForm__label">Description</label>
-                        <input
+                        <textarea
                             placeholder="Please enter a brief item description"
                             name="description"
                             className="inventoryForm__input"
                             value={this.state.data ? this.state.data.description : ""}
-                            onChange={this.handleChange} />
+                            onChange={this.handleChange} ></textarea>
 
                         <label htmlFor="category" className="inventoryForm__label">Category</label>
-                        {/* <input
-                            placeholder="Please Select"
-                            name="category"
-                            className="inventoryForm__input"
-                            value={this.state.data ? this.state.data.city : ""}
-                            onChange={this.handleChange} /> */}
-                            <select name="category" className="inventoryForm__input" >
-                            {edit ?
-                                <>
-                                    <option value={this.state.data ? this.state.data.category : ""} >{this.state.data.category}</option>
+
+                            <select name="category" className="inventoryForm__input inventoryForm__input--select" onChange={this.handleChange}>
+                                    <option value={this.state.data ? this.state.data.category : "Please Select"} >{this.state.data ? this.state.data.category : "Please Select"}</option>
                                     {uniqueCategories.map(item => {
-                                        return (<option key={item.id} value={`${item}`} onChange={this.handleChange}>{`${item} `} </option>)
+                                        return (<option key={item.id} value={`${item}`}  >{`${item} `} </option>)
                                     })}
-                                </>
-                                :
-                                <>
-                                    <option value="Please Select" selected>Please Select</option>
-                                    {uniqueCategories.map(item => {
-                                        return (<option key={item.id} value={`${item}`} onChange={this.handleChange}>{`${item} `} </option>)
-                                    })}
-                                </>
-                            }
                         </select>
 
                     </div>
                     <div className="inventoryForm__right">
                         <h2 className="inventoryForm__title">Item Availability</h2>
                         <label htmlFor="status" className="inventoryForm__label">Status</label>
-                        <div>
-                            <input type="radio" id="instock" name="instock" value="In Stock"  />
-                            <label htmlFor="instock"> In Stock</label>
-                            <input type="radio" id="outofstock" name="outofstock" value="outofstock" />
-                            <label htmlFor="instock">Out of Stock</label>
+                            <div className="inventoryForm__status">
+                                <div>
+                                    <input type="radio" id="status" name="status" value="In Stock" onChange={this.handleChange} />
+                                    <label htmlFor="status" className="inventoryForm__status-label">In Stock</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="status" name="status" value="Out Of stock" onChange={this.handleChange} />
+                                    <label htmlFor="status" className="inventoryForm__status-label">Out of Stock</label>
+                                </div>
+
                         </div>
 
                         <label htmlFor="quantity" className="inventoryForm__label">Quantity</label>
@@ -225,26 +189,14 @@ class InventoryForm extends Component {
                             value={this.state.data ? this.state.data.quantity : ""}
                             onChange={this.handleChange} />
 
-                        <label htmlFor="warehouse" className="inventoryForm__label">Warehouse</label>
+                        <label htmlFor="warehouseName" className="inventoryForm__label">Warehouse</label>
 
-                        <select name="warehouse" className="inventoryForm__input">
-                            {edit ?
-                                <>
-                                    <option value="Please Select" selected>Please Select</option>
+                            <select name="warehouseName" className="inventoryForm__input inventoryForm__input--select" onChange={this.handleChange}>
+                                <option value={this.state.data ? this.state.data.warehouseName : "Please Select"} selected>{this.state.data ? this.state.data.warehouseName : "Please Select"}</option>
                                     {warehouseData.map(item => {
                                         return (
-                                            <option key={item.id} value={`${item.name}`} onChange={this.handleChange} >{`${item.name} `}  </option>)
+                                            <option key={item.id} value={`${item.name}`}  >{`${item.name} `}  </option>)
                                     })}
-                                </>
-                                :
-                                <>
-                                    <option value="Please Select" selected>Please Select</option>
-                                    {warehouseData.map(item => {
-                                        return (
-                                            <option key={item.id} value={`${item}`} onChange={this.handleChange} >{`${item} `}</option>)
-                                    })}
-                                </>
-                            }
                         </select>
                     </div>
                 </div>

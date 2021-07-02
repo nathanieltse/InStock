@@ -26,12 +26,12 @@ export const addWarehouse = (data) => {
 
 export const addInventory = (data) => {
     return new Promise((resolve, reject) => {
-        axios.post(`${URL}/inventories`, data)
+        axios.post(`${URL}/inventory/add`, data)
             .then(res => {
                 resolve(res)
             })
             .catch(err => {
-            reject(err)
+            reject(`${err}, Something Wrong`)
         })
     })
 }
