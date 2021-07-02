@@ -9,7 +9,6 @@ class WarehouseDetails extends Component{
     state={
         warehouse: null,
         inventoryList:null,
-        listingColumn:["INVENTORY", "CATEGORY", "STATUS", "QTY", "ACTIONS"]
     }
         
     
