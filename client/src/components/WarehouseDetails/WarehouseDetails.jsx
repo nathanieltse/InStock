@@ -1,8 +1,7 @@
 import { Component } from 'react';
-import { Link } from "react-router-dom"
 import axios from 'axios';
 import Labels from '../Labels/Labels';
-import ListingCard from "../../components/Listing/Listing"
+import ListingCard from "../../components/ListingCard/ListingCard"
 import MainHeader from '../MainHeader/MainHeader'
 import "../WarehouseDetails/WarehouseDetails.scss"
 
@@ -14,22 +13,20 @@ class WarehouseDetails extends Component{
     }
         
     
-    async componentDidMount() {
+        componentDidMount() {
         const { warehouseId } = this.props.match.params
-            await axios
+            axios
                 .get(`/api/warehouses/${warehouseId}`)
-                .then(res => this.setState({warehouse:res.data}))
-                .catch(error=> console.log(error))
-            await axios
-                .get(`/api/warehouses/${warehouseId}/inventory`)
+                .then(res =>{
+                    this.setState({warehouse:res.data})
+                    return axios.get(`/api/warehouses/${warehouseId}/inventory`)
+                })
                 .then(res => this.setState({inventoryList:res.data}))
                 .catch(error=> console.log(error))
-            
     }
 
     render(){
-        const { warehouse, inventoryList, listingColumn } = this.state
-        console.log(this.state.inventoryList)
+        const { warehouse, inventoryList } = this.state
         return (
             this.state.warehouse && this.state.inventoryList?
             <section className="warehouse-detail">
@@ -59,11 +56,11 @@ class WarehouseDetails extends Component{
                     })}
                 </section>
 
-                {/* {inventoryList.map(item => {
+                {inventoryList.map(item => {
                     return (
-                        <ListingCard key={item.id} data={item} pagePath="inventory" />
+                        <ListingCard key={item.id} data={item} pagePath="warehouse/inventory" />
                     )
-                })} */}
+                })}
             </section>
             :
             <p>Please wait...</p>

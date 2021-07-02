@@ -56,10 +56,14 @@ function ListingCard({ data, pagePath }) {
                     <h4 className="listingcard__title">QTY</h4>
                     <p className="listingcard__text">{data.quantity}</p>
                 </section>
-                <section className="listingcard__item listingcard__item-warehouse">
-                    <h4 className="listingcard__title">WAREHOUSE</h4>
-                    <p className="listingcard__text">{data.warehouseName}</p>
-                </section>
+                { pagePath ==="warehouse/inventory" ?
+                    <></>
+                    :
+                    <section className="listingcard__item listingcard__item-warehouse">
+                        <h4 className="listingcard__title">WAREHOUSE</h4>
+                        <p className="listingcard__text">{data.warehouseName}</p>
+                    </section>
+                }
                 <section className="listingcard__item">
                     <Actions  path={data.id}/>
                 </section>

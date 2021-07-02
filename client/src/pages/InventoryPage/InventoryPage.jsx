@@ -19,7 +19,6 @@ class InventoryPage extends Component {
     }
 
     render () {
-        console.log(this.state)
         return (
             <>
                 <PageHeader path={this.props.match.url}/> 
@@ -34,7 +33,7 @@ class InventoryPage extends Component {
                                                 addItemValue="+ Add New Inventory"
                                                 listingColumn={["INVENTORY", "CATEGORY", "STATUS", "QTY", "WAREHOUSE" , "ACTIONS"]}
                                                 {...routeProps}/>
-                            }} />
+                                }} />
                             <Route path="/inventory/add" component={InventoryForm} />
                             <Route path="/inventory/:inventoryId/edit" component={InventoryForm} />
                         </section>
