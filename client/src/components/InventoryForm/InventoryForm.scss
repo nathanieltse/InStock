@@ -37,6 +37,9 @@
     
     &__label{
         margin:$normal-space 0 $min-space;
+        &-hide{
+            display: none;
+        }
     }
 
     &__input{
@@ -48,6 +51,10 @@
             -webkit-appearance: none;
             background-position: 97%;
         }
+        &--textarea{
+            height: 7rem;
+            resize: none;
+        }
     }
     &__status{
         @include flex-row{
@@ -57,6 +64,9 @@
         &-label{
             width: 50%;
             padding:0 2rem 0 .5rem;
+        }
+        &-slate{
+            opacity: 0.5;
         }
     }
 
@@ -107,4 +117,5 @@
     &__submit{
         @include button-cta;
     }
+
 }

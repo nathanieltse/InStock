@@ -38,9 +38,8 @@ class InventoryForm extends Component {
         if (edit) {
             axios
                 // .get(`/api/inventory/${this.props.match.params.inventoryId}`)
-                .get(`/api/inventory/d0b01bdb-fbde-40c2-90ea-10750db5e442`)
+                .get(`/api/inventory/9b4f79ea-0e6c-4e59-8e05-afd933d0b3d3`)
                 .then(res => {
-                    console.log(res)
                     const { category, description, itemName, status,id,  quantity, warehouseName } = res.data[0]
                     this.setState({
                         data: {
@@ -54,7 +53,6 @@ class InventoryForm extends Component {
                             warehouseName,
                         }
                     })
-                    console.log(this.state.data)
                 })
                 .catch(err => console.log(err))
         }
@@ -101,9 +99,9 @@ class InventoryForm extends Component {
 
         if (category && description && itemName && quantity && warehouseName) {
             let warehouseId = warehouseData.find(warehouse => warehouse.name === warehouseName)
-
+            console.log("put req")
             axios
-                .put(`/api/inventory/d0b01bdb-fbde-40c2-90ea-10750db5e442/edit`,
+                .put(`/api/inventory/9b4f79ea-0e6c-4e59-8e05-afd933d0b3d3/edit`,
                         {
                             "category": category,
                             "description": description,
@@ -152,14 +150,14 @@ class InventoryForm extends Component {
                         <textarea
                             placeholder="Please enter a brief item description"
                             name="description"
-                            className="inventoryForm__input"
+                            className="inventoryForm__input inventoryForm__input--textarea"
                             value={this.state.data ? this.state.data.description : ""}
                             onChange={this.handleChange} ></textarea>
 
                         <label htmlFor="category" className="inventoryForm__label">Category</label>
 
                             <select name="category" className="inventoryForm__input inventoryForm__input--select" onChange={this.handleChange}>
-                                    <option value={this.state.data ? this.state.data.category : "Please Select"} >{this.state.data ? this.state.data.category : "Please Select"}</option>
+                                    <option value={this.state.data ? this.state.data.category : "Please Select"} >{edit ? this.state.data.category : "Please Select"}</option>
                                     {uniqueCategories.map(item => {
                                         return (<option key={item.id} value={`${item}`}  >{`${item} `} </option>)
                                     })}
@@ -170,25 +168,24 @@ class InventoryForm extends Component {
                         <h2 className="inventoryForm__title">Item Availability</h2>
                         <label htmlFor="status" className="inventoryForm__label">Status</label>
                             <div className="inventoryForm__status">
-                                <div>
+                                <div className={this.state.data.status === "Out Of stock" ? "inventoryForm__status-slate" : ""}>
                                     <input type="radio" id="status" name="status" value="In Stock" onChange={this.handleChange} />
                                     <label htmlFor="status" className="inventoryForm__status-label">In Stock</label>
                                 </div>
-                                <div>
+                                <div className={this.state.data.status === "In Stock"? "inventoryForm__status-slate": "" }>
                                     <input type="radio" id="status" name="status" value="Out Of stock" onChange={this.handleChange} />
                                     <label htmlFor="status" className="inventoryForm__status-label">Out of Stock</label>
                                 </div>
 
-                        </div>
-
-                        <label htmlFor="quantity" className="inventoryForm__label">Quantity</label>
-                        <input
-                            placeholder="0"
-                            name="quantity"
-                            className="inventoryForm__input"
-                            value={this.state.data ? this.state.data.quantity : ""}
-                            onChange={this.handleChange} />
-
+                            </div>
+                            <label htmlFor="quantity" className={this.state.data.status === "In Stock" ? "inventoryForm__label" : "inventoryForm__label-hide"}>Quantity</label>
+                            <input
+                                placeholder="0"
+                                name="quantity"
+                                className={this.state.data.status === "In Stock" ? "inventoryForm__input" : "inventoryForm__label-hide"}
+                                value={this.state.data ? this.state.data.quantity : ""}
+                                onChange={this.handleChange} />
+                        
                         <label htmlFor="warehouseName" className="inventoryForm__label">Warehouse</label>
 
                             <select name="warehouseName" className="inventoryForm__input inventoryForm__input--select" onChange={this.handleChange}>
