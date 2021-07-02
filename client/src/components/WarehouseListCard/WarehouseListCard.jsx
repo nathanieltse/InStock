@@ -3,7 +3,6 @@ import Actions from "../Actions/Actions"
 import chevron from "../../assets/Icons/chevron_right-24px.svg"
 import "./WarehouseListCard.scss"
 import { Link } from "react-router-dom";
-import Modal from "../Modal/Modal"
 
 function WarehouseListCard({ warehouse, showDeleteModal, display, hide }) {
 

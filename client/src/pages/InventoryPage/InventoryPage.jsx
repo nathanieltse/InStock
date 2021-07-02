@@ -15,7 +15,7 @@ class InventoryPage extends Component {
         currentInventory: null,
     }
 
-    showDeleteModal = (inventory) => {
+    showInventoryModal = (inventory) => {
         this.setState
         ({ displayModal: true,
             currentInventory: inventory
@@ -33,20 +33,21 @@ class InventoryPage extends Component {
     }
 
     render () {
+       
         return (
             <>
                 <PageHeader path={this.props.match.url}/> 
-                <Modal display={this.state.displayModal} hide={this.hideModal}
-                showDeleteModal={this.showDeleteModal} currentInventory={this.state.currentInventory}>
+                <Modal displayModal={this.state.displayModal} hideModal={this.hideModal}
+                showInventoryModal={this.showInventoryModal} currentInventory={this.state.currentInventory}>
                 </Modal>
                 <BrowserRouter>
                     <Switch>
                         <section className="inventory-wrapper">
                                 <Route exact path="/inventory" render={routeProps => {
                                     return <Listing 
-                                                showDeleteModal={this.showDeleteModal}
+                                                displayModal={this.state.displayModal} hideModal={this.hideModal}
+                                                showInventoryModal={this.showInventoryModal} 
                                                 route="inventory"
-                                                display={this.state.displayModal} hide={this.hideModal}
                                                 dataList={this.state.inventoryList} 
                                                 path="inventory" 
                                                 addItemPath="/inventory/add"

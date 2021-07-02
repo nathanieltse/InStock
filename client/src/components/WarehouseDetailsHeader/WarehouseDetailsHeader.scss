@@ -8,6 +8,9 @@
         padding-top: 2rem;
         justify-content: flex-start;
         margin-left: 1rem;
+        display:flex;
+        align-items: center;
+       
     }
     @include desktop{
         margin-left: 1.75rem;
@@ -15,6 +18,7 @@
     &__img{
         margin-left:2.5rem;
         padding-right: .25rem;
+        
     }
 }
 

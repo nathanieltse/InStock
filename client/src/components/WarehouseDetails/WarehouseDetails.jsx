@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom"
-import { getWarehouses } from "../../utils/api.js"
-import PageHeader from '../../components/PageHeader/PageHeader'
 import "../../App.scss"
-import Listing from "../../components/Listing/Listing"
 import axios from 'axios';
 import WarehouseDetailsHeader from '../../components/WarehouseDetailsHeader/WarehouseDetailsHeader'
 import editIcon from "../../assets/Icons/edit-24px.svg"
@@ -49,8 +46,13 @@ class WarehouseDetails extends Component{
                     <WarehouseDetailsHeader warehouse={warehouse} />
                 </div>
                     <Link to={`/warehouses/${warehouse.id}/edit`}>
+                        <button className="pseudo-wd-button__style"><img className="wd-edit-icon__style" src={editIcon} alt="edit icon"/></button>
+                    </Link>
+
+                    <Link to={`/warehouses/${warehouse.id}/edit`}>
                         <button className="wd-button__style"><img className="wd-edit-icon__style" src={editIcon} alt="edit icon"/>Edit</button>
                     </Link>
+                  
                 </div>
                 <div className="wd__container">
                     <main className="wd-address__container">

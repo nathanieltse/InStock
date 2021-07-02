@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import { BrowserRouter, Route, Switch } from "react-router-dom"
-import { getWarehouses } from "../../utils/api.js"
 import axios from "axios"
 import PageHeader from '../../components/PageHeader/PageHeader'
 import Listing from "../../components/Listing/Listing"
@@ -44,6 +43,7 @@ class WarehouseMainDisplay extends Component {
     }
 
     render() {
+      
         return (
             <>
                 <PageHeader path={this.props.match.url}/> 

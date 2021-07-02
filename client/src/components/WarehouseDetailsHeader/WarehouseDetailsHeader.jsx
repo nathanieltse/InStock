@@ -1,5 +1,5 @@
 import React from 'react'
-// import "./WarehouseDetailsHeader.scss"
+import "./WarehouseDetailsHeader.scss"
 import { Link } from 'react-router-dom'
 import backArrow from "../../assets/Icons/arrow_back-24px.svg"
 
