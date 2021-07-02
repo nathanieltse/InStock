@@ -5,7 +5,7 @@ import SearchHeader from "../SearchHeader/SearchHeader"
 
 import "./Listing.scss";
 
-function Listing({dataList, pagePath, addItemPath, addItemValue, listingColumn}) {
+function Listing({dataList, pagePath, addItemPath, addItemValue, listingColumn, showDeleteModal, display, hide, route}) {
     return (
         <section className="listing">
             <SearchHeader addItemPath={addItemPath} value={addItemValue}/>
@@ -16,7 +16,7 @@ function Listing({dataList, pagePath, addItemPath, addItemValue, listingColumn})
             </section>
             {dataList.map(item => {
                 return (
-                        <ListingCard key={item.id} data={item} pagePath={pagePath} />
+                        <ListingCard key={item.id} data={item} pagePath={pagePath} showDeleteModal={showDeleteModal} hide={hide} display={display} route="inventory"/>
                 )
             })}
         </section>

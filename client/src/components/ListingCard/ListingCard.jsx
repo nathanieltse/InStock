@@ -4,7 +4,7 @@ import chevron from "../../assets/Icons/chevron_right-24px.svg"
 import "./ListingCard.scss"
 import { Link } from "react-router-dom";
 
-function ListingCard({ data, pagePath }) {
+function ListingCard({ data, pagePath, showDeleteModal, display, hide, route }) {
     return (
         pagePath === "warehouse" ?
         <>
@@ -30,7 +30,7 @@ function ListingCard({ data, pagePath }) {
                     <p className="listingcard__text">{data.contact.email}</p>
                 </section>
                 <section className="listingcard__item">
-                    <Actions  path={data.id}/>
+                    <Actions path={data.id} warehouse={data} showDeleteModal={showDeleteModal} hide={hide} display={display}/>
                 </section>
             </article>
         </>
@@ -61,7 +61,7 @@ function ListingCard({ data, pagePath }) {
                     <p className="listingcard__text">{data.warehouseName}</p>
                 </section>
                 <section className="listingcard__item">
-                    <Actions  path={data.id}/>
+                    <Actions  path={data.id} route="inventory" inventory={data} showDeleteModal={showDeleteModal} hide={hide} display={display}/>
                 </section>
             </article>
         </>

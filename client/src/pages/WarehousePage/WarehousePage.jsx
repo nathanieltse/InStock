@@ -8,6 +8,7 @@ import Footer from '../../components/PageFooter/PageFooter'
 import WarehouseForm from '../../components/WarehouseForm/WarehouseForm'
 import WarehouseDetails from '../../components/WarehouseDetails/WarehouseDetails.jsx';
 import "./WarehousePage.scss"
+import Modal from "../../components/Modal/Modal"
 
 
 
@@ -20,7 +21,6 @@ class WarehouseMainDisplay extends Component {
     }
     
     showDeleteModal = (warehouse) => {
-        console.log(warehouse)
         this.setState
         ({ displayModal: true,
             currentWarehouse: warehouse
@@ -55,6 +55,8 @@ class WarehouseMainDisplay extends Component {
                     <section className="warehouse-wrapper">
                         <Route exact path="/" render={routeProps => {
                             return <Listing 
+                                        showDeleteModal={this.showDeleteModal}
+                                        display={this.state.displayModal} hide={this.hideModal}
                                         dataList={this.state.warehouseList} 
                                         pagePath="warehouse" 
                                         addItemPath="/warehouses/add"
