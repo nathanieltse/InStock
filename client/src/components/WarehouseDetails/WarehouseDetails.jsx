@@ -30,8 +30,7 @@ class WarehouseDetails extends Component{
     
         componentDidMount() {
             const { warehouseId } = this.props.match.params;
-            console.log(this.props.match.params)
-    
+            console.log(this.props)
             this.getWarehouse(warehouseId)
         }
 
@@ -41,10 +40,10 @@ class WarehouseDetails extends Component{
             }
     
             const { warehouse } = this.state
-            console.log(warehouse)
           
         return (
             <>
+            <article className="wd-container">
                 <div className="wd-wrapper__style">
                 <div wd-header__style>
                     <WarehouseDetailsHeader warehouse={warehouse} />
@@ -75,6 +74,7 @@ class WarehouseDetails extends Component{
                     </div>
                     </main>
                 </div>
+                </article>
         </>
            
     )       

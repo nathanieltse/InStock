@@ -89,6 +89,19 @@ router.post('/warehouses/add', ((req, res) => {
     })
 }))
 
+//delete warehouse info
+router.delete('/warehouses/:warehouseId', ((req, res) => {
+
+    const id = req.params.warehouseId
+
+    const selectedWarehouse = warehouses.findIndex(warehouse => warehouse.id === id)
+
+    const warehouse = warehouse[selectedWarehouse];
+    warehouses.splice(selectedWarehouse, 1)
+    res.status(200).json(warehouse)
+
+}))
+
 
 
 module.exports = router;

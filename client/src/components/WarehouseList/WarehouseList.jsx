@@ -2,10 +2,11 @@ import "./WarehouseList.scss";
 import WarehouseListCard from "../WarehouseListCard/WarehouseListCard"
 import Labels from "../Labels/Labels"
 import { Link } from "react-router-dom"
+import Modal from "../Modal/Modal"
 
 import React from 'react'
 
-function WarehouseList({warehouseList}) {
+function WarehouseList({warehouseList, display, hide, showDeleteModal}) {
     return (
         <section className="warehouse">
             <section className="warehouse__header">
@@ -32,11 +33,13 @@ function WarehouseList({warehouseList}) {
                 <Labels className="warehouse__labels-item warehouse__labels-item--address" name="ADDRESS" />
                 <Labels className="warehouse__labels-item" name="CONTACT NAME" />
                 <Labels className="warehouse__labels-item" name="CONTACT INFORMATION" />
-                <Labels className="warehouse__labels-item" name="ACTIONS" />
+                <Labels className="warehouse__labels-item" name="ACTIONS" /> 
             </section>
             {warehouseList.map(item => {
                 return (
-                        <WarehouseListCard warehouse={item} />
+                    <>
+                        <WarehouseListCard warehouse={item} showDeleteModal={showDeleteModal} display={display} hide={hide}/>
+                    </>
                 )
             })}
         </section>

@@ -4,17 +4,27 @@
 @use "../../partials/spacings" as *;
 
 .wd__container{
-    margin-left:5rem;
+    margin-left:0rem;
     @include tablet{
     display: flex;
     justify-content: space-around;
-    margin-left: 5;
+    margin-left: 0rem;
     width:44rem;
     @include desktop{
     width: 63rem;
     margin-left:0;
     }
     }
+}
+
+.wd-wrapper__style{
+    @include element-body;
+}
+
+.wd__container{
+    margin-top: -0.5rem;
+    @include element-body;
+    width: 100%;
 }
 
 .wd-address__header, .wd-contact-name__header, .wd-contact-phone__header{
@@ -29,9 +39,22 @@
         margin-top: 0;
     }
 }
+.wd-address__container{
+    margin-left: 4rem;
+    @include tablet{
+        width:100%;
+        margin-left: 4rem;
+    }
+    @include desktop{
+        width: 100%;
+        margin-left:5rem;
+    }
+}
 .wd-address__style, .wd-contact-name__style, .wd-contact-phone__style{
     line-height: $normal-s-body-line-height;
     width:13rem;
+    font-weight:$weight-regular;
+    font-family: "Titillium Web";
 }
 .wd-address__style{
     width: 16rem;
@@ -40,6 +63,7 @@
 }}
 .wd-contact-name__container{
     border-left: none;
+    margin-left: 4rem;
     @include tablet{
     border-left: 2px solid $secondary-color-slate;
     padding-left:3rem;

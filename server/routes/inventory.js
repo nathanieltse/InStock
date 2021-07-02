@@ -5,7 +5,7 @@ const inventories = require('../data/inventories.json')
 const fs= require("fs")
 const { v4: uuidv4 } = require('uuid');
 
-
+//get all inventories
 router.get('/inventories', ((_req, res) => {
     res.status(200).json(inventories)
 }))
@@ -25,15 +25,15 @@ router.get('/inventory/:inventoryId', ((req, res) => {
 
 }))
 
+//add inventory info
 router.post('/inventories', ((req, res) => {
-    const { warehouseID, warehouseName, itemName, description, category, status, quantity } = req.body;
+    const { warehouseName, itemName, description, category, status, quantity } = req.body;
 
     if (warehouseID &&  warehouseName && itemName && description && category && status && quantity)
     {
      inventories.push({
 
       id: uuidv4(),
-      warehouseID,
       warehouseName,
       itemName,
       description,
@@ -52,10 +52,23 @@ router.post('/inventories', ((req, res) => {
         if(err){
             console.log(err)
         } else {
-            res.status(200).json("Inventory info updated")
+            res.status(200).json("Inventory Added")
         }
     })
 }));
+
+//delete inventory info
+router.delete('/inventory/:inventoryId', ((req, res) => {
+
+    const id = req.params.inventoryId
+
+    const selectedInventory = inventories.findIndex(inventory => inventory.id === id)
+
+    const inventory = inventories[selectedInventory];
+    inventories.splice(selectedInventory, 1)
+    res.status(200).json(inventory)
+
+}))
 
 
 

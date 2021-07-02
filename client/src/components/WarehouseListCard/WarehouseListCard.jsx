@@ -3,9 +3,12 @@ import Actions from "../Actions/Actions"
 import chevron from "../../assets/Icons/chevron_right-24px.svg"
 import "./WarehouseListCard.scss"
 import { Link } from "react-router-dom";
+import Modal from "../Modal/Modal"
 
-function WarehouseListCard({ warehouse }) {
+function WarehouseListCard({ warehouse, showDeleteModal, display, hide }) {
+
     return (
+       
         <>
             <div className="card__list" key={warehouse.id}>
                 <section className="card__listItem">
@@ -31,7 +34,7 @@ function WarehouseListCard({ warehouse }) {
                     <p className="card__listItem-text">{warehouse.contact.email}</p>
                 </section>
             </div>
-            <Actions path={warehouse.id}/>
+            <Actions path={warehouse.id} warehouse={warehouse} showDeleteModal={showDeleteModal} display={display} hide={hide}/>
         </>
     )
 }
