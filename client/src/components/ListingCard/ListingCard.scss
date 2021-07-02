@@ -29,6 +29,10 @@
 
         &-warehouse{
             margin-left: auto;
+
+            @include tablet{
+                margin: 0;
+            }
         }
 
         &:last-child{

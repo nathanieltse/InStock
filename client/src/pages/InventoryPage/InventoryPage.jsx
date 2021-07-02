@@ -33,7 +33,6 @@ class InventoryPage extends Component {
     }
 
     render () {
-       
         return (
             <>
                 <PageHeader path={this.props.match.url}/> 
@@ -49,12 +48,12 @@ class InventoryPage extends Component {
                                                 showInventoryModal={this.showInventoryModal} 
                                                 route="inventory"
                                                 dataList={this.state.inventoryList} 
-                                                path="inventory" 
+                                                pagePath="inventory" 
                                                 addItemPath="/inventory/add"
                                                 addItemValue="+ Add New Inventory"
                                                 listingColumn={["INVENTORY", "CATEGORY", "STATUS", "QTY", "WAREHOUSE" , "ACTIONS"]}
                                                 {...routeProps}/>
-                            }} />
+                                }} />
                             <Route path="/inventory/add" component={InventoryForm} />
                             <Route path="/inventory/:inventoryId/edit" component={InventoryForm} />
                         </section>

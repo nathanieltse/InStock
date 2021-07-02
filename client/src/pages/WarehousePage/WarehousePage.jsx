@@ -52,25 +52,27 @@ class WarehouseMainDisplay extends Component {
                 </Modal>
                 <BrowserRouter>
                     <Switch>
-                    
-                    <section className="warehouse-wrapper">
-                        <Route exact path="/" render={routeProps => {
-                            return <Listing 
-                                        showDeleteModal={this.showDeleteModal}
-                                        display={this.state.displayModal} hide={this.hideModal}
-                                        dataList={this.state.warehouseList} 
-                                        pagePath="warehouse" 
-                                        addItemPath="/warehouses/add"
-                                        addItemValue="+ Add New Warehouse"
-                                        listingColumn={["WAREHOUSE", "ADDRESS", "CONTACT NAME", "CONTACT INFORMATION", "ACTIONS" ]} 
-                                        {...routeProps}/>
-                        }}/>
-                        <Route path="/warehouses/add" component={WarehouseForm} />
-                        <Route path="/warehouses/:warehouseId/detail" component={WarehouseDetails}/>
-                        <Route path="/warehouses/:warehousesId/edit" component={WarehouseForm}/>
-                        
-                    </section>
-                
+
+                        <section className="warehouse-wrapper">
+                            <Route exact path="/" render={routeProps => {
+                                return <Listing
+                                    dataList={this.state.warehouseList}
+                                    pagePath="warehouse"
+                                    addItemPath="/warehouses/add"
+                                    addItemValue="+ Add New Warehouse"
+                                    listingColumn={["WAREHOUSE", "ADDRESS", "CONTACT NAME", "CONTACT INFORMATION", "ACTIONS"]}
+                                    {...routeProps} />
+                            }} />
+                            <Route path="/warehouses/add" component={WarehouseForm} />
+                            <Route path="/warehouses/:warehouseId/detail" render={routeProps => {
+                                return <WarehouseDetails 
+                                            listingColumn={["INVENTORY", "CATEGORY", "STATUS", "QTY", "ACTIONS"]}
+                                            {...routeProps}/>
+                            }} />
+                            <Route path="/warehouses/:warehousesId/edit" component={WarehouseForm} />
+
+                        </section>
+
                     </Switch>
                 </BrowserRouter>
                 <Footer />
