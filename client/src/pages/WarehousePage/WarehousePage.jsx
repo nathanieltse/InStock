@@ -47,7 +47,11 @@ class WarehouseMainDisplay extends Component {
                                     {...routeProps} />
                             }} />
                             <Route path="/warehouses/add" component={WarehouseForm} />
-                            <Route path="/warehouses/:warehouseId/detail" component={WarehouseDetails} />
+                            <Route path="/warehouses/:warehouseId/detail" render={routeProps => {
+                                return <WarehouseDetails 
+                                            listingColumn={["INVENTORY", "CATEGORY", "STATUS", "QTY", "ACTIONS"]}
+                                            {...routeProps}/>
+                            }} />
                             <Route path="/warehouses/:warehousesId/edit" component={WarehouseForm} />
 
                         </section>

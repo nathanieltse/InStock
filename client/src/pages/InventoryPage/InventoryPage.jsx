@@ -29,7 +29,7 @@ class InventoryPage extends Component {
                                 <Route exact path="/inventory" render={routeProps => {
                                     return <Listing 
                                                 dataList={this.state.inventoryList} 
-                                                path="inventory" 
+                                                pagePath="inventory" 
                                                 addItemPath="/inventory/add"
                                                 addItemValue="+ Add New Inventory"
                                                 listingColumn={["INVENTORY", "CATEGORY", "STATUS", "QTY", "WAREHOUSE" , "ACTIONS"]}

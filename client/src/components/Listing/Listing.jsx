@@ -5,10 +5,10 @@ import SearchHeader from "../SearchHeader/SearchHeader"
 
 import "./Listing.scss";
 
-function Listing({dataList, pagePath, addItemPath, addItemValue, listingColumn}) {
+const Listing = ({dataList, pagePath, addItemPath, addItemValue, listingColumn}) => {
     return (
         <section className="listing">
-            <SearchHeader addItemPath={addItemPath} value={addItemValue}/>
+            <SearchHeader addItemPath={addItemPath} value={addItemValue} pagePath={pagePath}/>
             <section className="listing__labels-container">
                 {listingColumn.map((column, index) => {
                     return <Labels key={index} name={column} />

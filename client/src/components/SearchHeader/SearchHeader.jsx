@@ -1,10 +1,10 @@
 import {Link} from 'react-router-dom'
 import './SearchHeader.scss'
 
-const SearchHeader = ({addItemPath, value}) =>{
+const SearchHeader = ({addItemPath, value, pagePath}) =>{
     return (
         <section className="search-header">
-                <h1 className="search-header__title">Warehouses</h1>
+                <h1 className="search-header__title">{pagePath === "warehouse" ? "Warehouses" : "Inventory"}</h1>
                 <form className="search-header__form">
                     <input
                         className="search-header__form-input"

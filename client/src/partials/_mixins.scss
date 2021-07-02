@@ -152,11 +152,6 @@
     }
 }
 
-@mixin formfield-error {
-    outline:none;
-    border-color: $support-color-red;
-}
-
 @mixin element-body {
     position: relative;
     top:-4rem;
