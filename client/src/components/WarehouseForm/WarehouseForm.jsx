@@ -4,7 +4,7 @@ import MainHeader from '../MainHeader/MainHeader'
 import errorIcon from '../../assets/Icons/error-24px.svg'
 import './WarehouseForm.scss'
 
-class EditWarehouseForm extends Component {
+class WarehouseForm extends Component {
     state={
         data:null,
         form:{
@@ -107,107 +107,107 @@ class EditWarehouseForm extends Component {
 
     render(){
         return (
-                <form className="editwarehouseform" onSubmit={this.props.match.params.warehousesId ? this.handleSave : this.handleAdd}>
+                <form className="warehouseform" onSubmit={this.props.match.params.warehousesId ? this.handleSave : this.handleAdd}>
                     <MainHeader navigate={this.props} headerName={this.props.match.params.warehousesId ? "Edit Form" : "Add Warehouse"}/>
-                    <div className="editwarehouseform__wrapper">
-                        <div className="editwarehouseform__left">
-                            <h2 className="editwarehouseform__title">Warehouse Details</h2>
-                            <label htmlFor="name" className="editwarehouseform__label">WarehouseName</label>
+                    <div className="warehouseform__wrapper">
+                        <div className="warehouseform__left">
+                            <h2 className="warehouseform__title">Warehouse Details</h2>
+                            <label htmlFor="name" className="warehouseform__label">WarehouseName</label>
                             <input 
                                 placeholder="Warehouse Name" 
                                 name="name" 
-                                className="editwarehouseform__input"
+                                className="warehouseform__input"
                                 value={this.state.data? this.state.data.name : ""}
                                 onChange={this.handleChange}/>
-                            <div className={this.state.form.name ? "editwarehouseform__warning--valid" : "editwarehouseform__warning"}>
-                                <img className="editwarehouseform__warning-icon" src={errorIcon} alt="error icon"/>
-                                <p className="editwarehouseform__warning-text">This field is required</p>
+                            <div className={this.state.form.name ? "warehouseform__warning--valid" : "warehouseform__warning"}>
+                                <img className="warehouseform__warning-icon" src={errorIcon} alt="error icon"/>
+                                <p className="warehouseform__warning-text">This field is required</p>
                             </div>
-                            <label htmlFor="address" className="editwarehouseform__label">Street Address</label>
+                            <label htmlFor="address" className="warehouseform__label">Street Address</label>
                             <input 
                                 placeholder="Street Address" 
                                 name="address" 
-                                className="editwarehouseform__input"
+                                className="warehouseform__input"
                                 value={this.state.data? this.state.data.address : ""}
                                 onChange={this.handleChange}/>
-                            <div className={this.state.form.address ? "editwarehouseform__warning--valid" : "editwarehouseform__warning"}>
-                                <img className="editwarehouseform__warning-icon" src={errorIcon} alt="error icon"/>
-                                <p className="editwarehouseform__warning-text">This field is required</p>
+                            <div className={this.state.form.address ? "warehouseform__warning--valid" : "warehouseform__warning"}>
+                                <img className="warehouseform__warning-icon" src={errorIcon} alt="error icon"/>
+                                <p className="warehouseform__warning-text">This field is required</p>
                             </div>
-                            <label htmlFor="city" className="editwarehouseform__label">City</label>
+                            <label htmlFor="city" className="warehouseform__label">City</label>
                             <input 
                                 placeholder="City" 
                                 name="city" 
-                                className="editwarehouseform__input"
+                                className="warehouseform__input"
                                 value={this.state.data? this.state.data.city : ""}
                                 onChange={this.handleChange}/>
-                            <div className={this.state.form.city ? "editwarehouseform__warning--valid" : "editwarehouseform__warning"}>
-                                <img className="editwarehouseform__warning-icon" src={errorIcon} alt="error icon"/>
-                                <p className="editwarehouseform__warning-text">This field is required</p>
+                            <div className={this.state.form.city ? "warehouseform__warning--valid" : "warehouseform__warning"}>
+                                <img className="warehouseform__warning-icon" src={errorIcon} alt="error icon"/>
+                                <p className="warehouseform__warning-text">This field is required</p>
                             </div>
-                            <label htmlFor="country" className="editwarehouseform__label">Country</label>
+                            <label htmlFor="country" className="warehouseform__label">Country</label>
                             <input 
                                 placeholder="Country" 
                                 name="country" 
-                                className="editwarehouseform__input"
+                                className="warehouseform__input"
                                 value={this.state.data? this.state.data.country : ""}
                                 onChange={this.handleChange}/>
-                            <div className={this.state.form.country ? "editwarehouseform__warning--valid" : "editwarehouseform__warning"}>
-                                <img className="editwarehouseform__warning-icon" src={errorIcon} alt="error icon"/>
-                                <p className="editwarehouseform__warning-text">This field is required</p>
+                            <div className={this.state.form.country ? "warehouseform__warning--valid" : "warehouseform__warning"}>
+                                <img className="warehouseform__warning-icon" src={errorIcon} alt="error icon"/>
+                                <p className="warehouseform__warning-text">This field is required</p>
                             </div>
                         </div>
-                        <div className="editwarehouseform__right">
-                            <h2 className="editwarehouseform__title">Contact Details</h2>
-                            <label htmlFor="contactName" className="editwarehouseform__label">Contact Name</label>
+                        <div className="warehouseform__right">
+                            <h2 className="warehouseform__title">Contact Details</h2>
+                            <label htmlFor="contactName" className="warehouseform__label">Contact Name</label>
                             <input 
                                 placeholder="Contact Name" 
                                 name="contactName" 
-                                className="editwarehouseform__input"
+                                className="warehouseform__input"
                                 value={this.state.data? this.state.data.contactName : ""}
                                 onChange={this.handleChange}/>
-                            <div className={this.state.form.contactName ? "editwarehouseform__warning--valid" : "editwarehouseform__warning"}>
-                                <img className="editwarehouseform__warning-icon" src={errorIcon} alt="error icon"/>
-                                <p className="editwarehouseform__warning-text">This field is required</p>
+                            <div className={this.state.form.contactName ? "warehouseform__warning--valid" : "warehouseform__warning"}>
+                                <img className="warehouseform__warning-icon" src={errorIcon} alt="error icon"/>
+                                <p className="warehouseform__warning-text">This field is required</p>
                             </div>
-                            <label htmlFor="position" className="editwarehouseform__label">Position</label>
+                            <label htmlFor="position" className="warehouseform__label">Position</label>
                             <input 
                                 placeholder="Position" 
                                 name="position" 
-                                className="editwarehouseform__input"
+                                className="warehouseform__input"
                                 value={this.state.data? this.state.data.position : ""}
                                 onChange={this.handleChange}/>
-                            <div className={this.state.form.position ? "editwarehouseform__warning--valid" : "editwarehouseform__warning"}>
-                                <img className="editwarehouseform__warning-icon" src={errorIcon} alt="error icon"/>
-                                <p className="editwarehouseform__warning-text">This field is required</p>
+                            <div className={this.state.form.position ? "warehouseform__warning--valid" : "warehouseform__warning"}>
+                                <img className="warehouseform__warning-icon" src={errorIcon} alt="error icon"/>
+                                <p className="warehouseform__warning-text">This field is required</p>
                             </div>
-                            <label htmlFor="number" className="editwarehouseform__label">Phone Number</label>
+                            <label htmlFor="number" className="warehouseform__label">Phone Number</label>
                             <input 
                                 placeholder="Phone Number" 
                                 name="phone" 
-                                className="editwarehouseform__input"
+                                className="warehouseform__input"
                                 value={this.state.data? this.state.data.phone : ""}
                                 onChange={this.handleChange}/>
-                            <div className={this.state.form.phone ? "editwarehouseform__warning--valid" : "editwarehouseform__warning"}>
-                                <img className="editwarehouseform__warning-icon" src={errorIcon} alt="error icon"/>
-                                <p className="editwarehouseform__warning-text">This field is required</p>
+                            <div className={this.state.form.phone ? "warehouseform__warning--valid" : "warehouseform__warning"}>
+                                <img className="warehouseform__warning-icon" src={errorIcon} alt="error icon"/>
+                                <p className="warehouseform__warning-text">This field is required</p>
                             </div>
-                            <label htmlFor="email" className="editwarehouseform__label">Email</label>
+                            <label htmlFor="email" className="warehouseform__label">Email</label>
                             <input 
                                 placeholder="Email" 
                                 name="email" 
-                                className="editwarehouseform__input"
+                                className="warehouseform__input"
                                 value={this.state.data? this.state.data.email : ""}
                                 onChange={this.handleChange}/>
-                            <div className={this.state.form.email ? "editwarehouseform__warning--valid" : "editwarehouseform__warning"}>
-                                <img className="editwarehouseform__warning-icon" src={errorIcon} alt="error icon"/>
-                                <p className="editwarehouseform__warning-text">This field is required</p>
+                            <div className={this.state.form.email ? "warehouseform__warning--valid" : "warehouseform__warning"}>
+                                <img className="warehouseform__warning-icon" src={errorIcon} alt="error icon"/>
+                                <p className="warehouseform__warning-text">This field is required</p>
                             </div>
                         </div>
                     </div>
-                    <div className="editwarehouseform__action">
-                        <button className="editwarehouseform__cancel" onClick={this.handleCancel}>Cancel</button>
-                        <button type="submit" className="editwarehouseform__submit">{this.props.match.params.warehousesId ? "Save" : "+ Add Warehouse"}</button>
+                    <div className="warehouseform__action">
+                        <button className="warehouseform__cancel" onClick={this.handleCancel}>Cancel</button>
+                        <button type="submit" className="warehouseform__submit">{this.props.match.params.warehousesId ? "Save" : "+ Add Warehouse"}</button>
                     </div>
                 </form>
                 
@@ -215,4 +215,4 @@ class EditWarehouseForm extends Component {
     }
 }
 
-export default EditWarehouseForm
+export default WarehouseForm

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { getWarehouses } from "../../utils/api.js"
 import PageHeader from '../../components/PageHeader/PageHeader'
 import "../../App.scss"
-import WarehouseList from "../../components/WarehouseList/WarehouseList"
+import Listing from "../../components/Listing/Listing"
 import axios from 'axios';
 import WarehouseDetailsHeader from '../../components/WarehouseDetailsHeader/WarehouseDetailsHeader'
 import editIcon from "../../assets/Icons/edit-24px.svg"
