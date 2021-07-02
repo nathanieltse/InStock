@@ -3,35 +3,64 @@
 @use "../../partials/mixins" as *;
 @use "../../partials/spacings" as *;
 
+.wd {
+    &__container{
+    margin-left:0rem;
+
+        @include tablet{
+        display: flex;
+        justify-content: space-around;
+        margin-left: 0rem;
+        width:44rem;
+        }
+
+        @include desktop{
+        width: 63rem;
+        margin-left:0;
+        }
+    }
+    &-contact-info__wrapper{
+        margin-top:2rem;
+        display:flex;
+        justify-content: space-between;
+        @include tablet{
+            margin-top: 0;
+        }
+    }
+    &-address__container{
+        margin-left: 4rem;
+        @include tablet{
+            width:100%;
+            margin-left: 4rem;
+        }
+        @include desktop{
+            width: 100%;
+            margin-left:5rem;
+        }
+    }
+}
+
+.wd-wrapper__style{
+    @include element-body;
+    padding-bottom:1.5rem;
+}
+
 .wd__container{
-    margin-left:5rem;
-    @include tablet{
-    display: flex;
-    justify-content: space-around;
-    margin-left: 5;
-    width:44rem;
-    @include desktop{
-    width: 63rem;
-    margin-left:0;
-    }
-    }
+    margin-top: -0.5rem;
+    @include element-body;
+    width: 100%;
 }
 
 .wd-address__header, .wd-contact-name__header, .wd-contact-phone__header{
     width: 7.8rem;
     font-size:$normal-s-body-font;
 }
-.wd-contact-info__wrapper{
-    margin-top:2rem;
-    display:flex;
-    justify-content: space-between;
-    @include tablet{
-        margin-top: 0;
-    }
-}
+
 .wd-address__style, .wd-contact-name__style, .wd-contact-phone__style{
     line-height: $normal-s-body-line-height;
     width:13rem;
+    font-weight:$weight-regular;
+    font-family: "Titillium Web";
 }
 .wd-address__style{
     width: 16rem;
@@ -40,6 +69,7 @@
 }}
 .wd-contact-name__container{
     border-left: none;
+    margin-left: 4rem;
     @include tablet{
     border-left: 2px solid $secondary-color-slate;
     padding-left:3rem;
@@ -47,9 +77,24 @@
 }
 
 .wd-button__style{
+    display:none;
+    @include tablet{
+    display:contents;
+    display: initial;
+    margin-right:4rem;
     @include button;
     color:$white;
     @include button-cta;
+    }
+}
+
+.pseudo-wd-button__style{
+    @include button;
+    color:$primary-color-indigo;
+    @include button-cta;
+    @include tablet{
+        display:none;
+    }
 }
 
 .wd-edit-icon__style{
