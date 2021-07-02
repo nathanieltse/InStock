@@ -32,7 +32,6 @@ router.post('/inventory/add', ((req, res) => {
      inventories.push({
 
       id: uuidv4(),
-      warehouseID,
       warehouseName,
       itemName,
       description,
@@ -51,10 +50,23 @@ router.post('/inventory/add', ((req, res) => {
         if(err){
             console.log(err)
         } else {
-            res.status(200).json("Inventory info updated")
+            res.status(200).json("Inventory Added")
         }
     })
 }));
+
+//delete inventory info
+router.delete('/inventory/:inventoryId', ((req, res) => {
+
+    const id = req.params.inventoryId
+
+    const selectedInventory = inventories.findIndex(inventory => inventory.id === id)
+
+    const inventory = inventories[selectedInventory];
+    inventories.splice(selectedInventory, 1)
+    res.status(200).json(inventory)
+
+}))
 
 
 
