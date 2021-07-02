@@ -10,7 +10,7 @@ router.get('/inventory', ((_req, res) => {
     res.status(200).json(inventories)
 }))
 
-//get songle inventory info
+//get single inventory info
 router.get('/inventory/:inventoryId', ((req, res) => {
 
     const id = req.params.inventoryId
@@ -22,12 +22,10 @@ router.get('/inventory/:inventoryId', ((req, res) => {
     else {
         res.status(400).json(`Inventory with id: ${id} does not exist`)
     }
-
 }))
 
-//add inventory info
-router.post('/inventories', ((req, res) => {
-    const { warehouseName, itemName, description, category, status, quantity } = req.body;
+router.post('/inventory/add', ((req, res) => {
+    const { warehouseID, warehouseName, itemName, description, category, status, quantity } = req.body;
 
     if (warehouseID &&  warehouseName && itemName && description && category && status && quantity)
     {
@@ -48,7 +46,7 @@ router.post('/inventories', ((req, res) => {
         res.status(400).send('Incomplete Application');
     }
     
-    fs.writeFile("../data/inventories.json", JSON.stringify(inventories, null, 2), (err)=> {
+    fs.writeFile(__dirname + '/../data/inventories.json', JSON.stringify(inventories, null, 2), (err)=> {
         if(err){
             console.log(err)
         } else {
@@ -73,7 +71,7 @@ router.delete('/inventory/:inventoryId', ((req, res) => {
 
 
 // router to update inventory item
-router.put('/inventory/:inventoryId', ((req, res) => {
+router.put('/inventory/:inventoryId/edit', ((req, res) => {
     let inventoryId = req.params.inventoryId;
     
     //remember to send warehouseId from front-end

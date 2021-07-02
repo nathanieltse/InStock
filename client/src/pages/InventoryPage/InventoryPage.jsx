@@ -6,6 +6,7 @@ import Listing from "../../components/Listing/Listing"
 import Footer from '../../components/PageFooter/PageFooter'
 import './InventoryPage.scss'
 import Modal from "../../components/Modal/Modal"
+import InventoryForm from "../../components/InventoryForm/InventoryForm"
 
 class InventoryPage extends Component {
     state={
@@ -49,10 +50,12 @@ class InventoryPage extends Component {
                                                 dataList={this.state.inventoryList} 
                                                 path="inventory" 
                                                 addItemPath="/inventory/add"
-                                                addItemValue="+ Add New Warehouse"
+                                                addItemValue="+ Add New Inventory"
                                                 listingColumn={["INVENTORY", "CATEGORY", "STATUS", "QTY", "WAREHOUSE" , "ACTIONS"]}
                                                 {...routeProps}/>
-                                }}/>
+                            }} />
+                            <Route path="/inventory/add" component={InventoryForm} />
+                            <Route path="/inventory/:inventoryId/edit" component={InventoryForm} />
                         </section>
                     </Switch>
                 </BrowserRouter>

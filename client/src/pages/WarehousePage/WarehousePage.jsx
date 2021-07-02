@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import {BrowserRouter, Route, Switch} from "react-router-dom"
+import { BrowserRouter, Route, Switch } from "react-router-dom"
 import { getWarehouses } from "../../utils/api.js"
 import axios from "axios"
 import PageHeader from '../../components/PageHeader/PageHeader'
@@ -10,7 +10,8 @@ import WarehouseDetails from '../../components/WarehouseDetails/WarehouseDetails
 import "./WarehousePage.scss"
 import Modal from "../../components/Modal/Modal"
 
-
+//testing  
+import InventoryForm from "../../components/InventoryForm/InventoryForm"
 
 class WarehouseMainDisplay extends Component {
 
@@ -31,18 +32,18 @@ class WarehouseMainDisplay extends Component {
         this.setState({ displayModal: false })
     }
 
-    componentDidMount(){
+    componentDidMount() {
         axios.get(`/api/warehouses`)
-        .then(res => res.data)
-        .then(data => {
-          this.setState({
-            warehouseList: data,
-          });
-        })
-        .catch(error=>{console.log(error)})
+            .then(res => res.data)
+            .then(data => {
+                this.setState({
+                    warehouseList: data,
+                });
+            })
+            .catch(error => { console.log(error) })
     }
 
-    render(){
+    render() {
         return (
             <>
                 <PageHeader path={this.props.match.url}/> 
@@ -69,11 +70,10 @@ class WarehouseMainDisplay extends Component {
                         <Route path="/warehouses/:warehousesId/edit" component={WarehouseForm}/>
                         
                     </section>
-
+                
                     </Switch>
                 </BrowserRouter>
                 <Footer />
-                
             </>
         )
     }

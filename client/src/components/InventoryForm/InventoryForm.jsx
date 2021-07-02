@@ -2,91 +2,127 @@ import { Component } from 'react'
 import axios from 'axios'
 import MainHeader from '../MainHeader/MainHeader'
 import errorIcon from '../../assets/Icons/error-24px.svg'
+//import { addWarehouse } from "../../utils/api"
+import { getWarehouses, addInventory } from "../../utils/api"
+
 import './InventoryForm.scss'
 
-class EditWarehouseForm extends Component {
-    state={
-        data:null,
-        form:{
-            warehouseName: false,
-            itemName: false,
-            description: false,
+const edit = false
+
+let warehouseData = [];
+let categories = [];
+
+
+
+class InventoryForm extends Component {
+    state = {
+        data: {},
+        form: {
             category: false,
-            status: true,
-            quantity: false,
-        }   
+            description: false,
+            itemName: false,
+            quantity:false,
+            status:false,
+            warehouseName:false,
+        }
     }
 
-    componentDidMount(){
-        if (this.props.match.params.inventoryId){
+    componentDidMount() {
+        getWarehouses()
+            .then(res => {
+                warehouseData = res.data.map(warehouse => {
+                    return { "name": warehouse.name, "id": warehouse.id }
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        axios.get(`/api/inventory`)
+            .then(res => {
+                res.data.map(item => {
+                    categories.push(item.category)
+                })
+        })
+        if (edit) {
             axios
-                .post(`/api/inventories/${this.props.match.params.inventoryId}`)
+                // .get(`/api/inventory/${this.props.match.params.inventoryId}`)
+                .get(`/api/inventory/9b4f79ea-0e6c-4e59-8e05-afd933d0b3d3`)
                 .then(res => {
-                    this.setState({data:{
-                        itemName:res.data.itemName,
-                        description: res.data.description,
-                        quantity: res.data.quantity,
-                        status: res.data.quantity,
-                        warehouseName: res.data.warehouseName,
-                        category: res.data.category,
-                    }})
-                    this.setState({form:{
-                        itemName:true,
-                        description:true,
-                        quantity:true,
-                        status: true,
-                        warehouseName: true,
-                        category: true,
-                    }})
+                    const { category, description, itemName, status,id,  quantity, warehouseName } = res.data[0]
+                    this.setState({
+                        data: {
+                            category,
+                            description,
+                            id,
+                            itemName,
+                            quantity,
+                            status,
+                            warehouseName,
+                        }
+                    })
                 })
                 .catch(err => console.log(err))
         }
-
     }
 
     handleChange = (e) => {
-        this.setState({data:{
-            ...this.state.data, [e.target.itemName]:e.target.value
-        }})
-        if(e.target.value === ""){
-            this.setState({
-                form:{...this.state.form, [e.target.itemName]: false}
-            })
-        } else {
-            this.setState({
-                form:{...this.state.form, [e.target.itemName]: true}
-            })
-        }
+        this.setState({
+            data: {
+                ...this.state.data, [e.target.name]: e.target.value 
+            }
+        })
     }
 
     handleAdd = (e) => {
         e.preventDefault()
-        //add warehouse
-        const {itemName, description, quantity, status, warehouseName, category} = this.state.form
-        if (itemName, description, quantity, status, warehouseName, category){
-            console.log("form submitted")
+        const { category, description, itemName,status, quantity, warehouseName } = this.state.data
+        let warehouseId = warehouseData.find(warehouse => warehouse.name === warehouseName)
+
+        if (category && description && itemName && quantity && warehouseName) {
+            const data = {
+                "category": category,
+                "description": description,
+                "itemName": itemName,
+                "quantity": quantity,
+                "status": status,
+                "warehouseID": warehouseId.id,
+                "warehouseName": warehouseName
+            }
+            
+            addInventory(data)
+                .then((res => {
+                    console.log("posted")
+                })).catch(err => {
+                    console.log(err)
+                })
         } else {
-            alert("field should not be empty!")
+            alert("field can't be empty!")
         }
     }
 
-    handleSave = (e) =>{
+    handleSave = (e) => {
         e.preventDefault()
-        const {itemName, description, quantity, status, warehouseName, category} = this.state.form
-        if (itemName && description && quantity && status && warehouseName && category){
+        const { category, description, itemName, status, quantity, warehouseName } = this.state.data
+
+        if (category && description && itemName && quantity && warehouseName) {
+            let warehouseId = warehouseData.find(warehouse => warehouse.name === warehouseName)
+            console.log("put req")
             axios
-                .post(`/api/inventories/${this.props.match.params.inventoryId}`,{
-                    "itemName":this.state.data.itemName,
-                    "description":this.state.data.description,
-                    "quantity":this.state.data.quantity,
-                    "status":this.state.data.status,
-                    "warehouseName":this.state.data.warehouseName,
-                    "category":this.state.data.category,
-                })
-                .then(res => alert("Inventory Edited!"))
+                .put(`/api/inventory/9b4f79ea-0e6c-4e59-8e05-afd933d0b3d3/edit`,
+                        {
+                            "category": category,
+                            "description": description,
+                            "itemName": itemName,
+                            "quantity": quantity,
+                            "status": status,
+                            "warehouseID": warehouseId.id,
+                            "warehouseName": warehouseName
+                        }
+                )
+                .then(res => alert("Inventory Edited edited!"))
                 .catch(err => console.log(err))
         } else {
-            alert("field should not be empty!")
+            alert("field can't be empty!")
         }
     }
 
@@ -95,114 +131,113 @@ class EditWarehouseForm extends Component {
         this.props.history.push("/")
     }
 
-    render(){
+    render() {
+        let uniqueCategories = categories.filter((category, index, array) => array.indexOf(category) === index);
+
         return (
-                <form className="editwarehouseform" onSubmit={this.props.match.params.inventoryId ? this.handleSave : this.handleAdd}>
-                    <MainHeader navigate={this.props} headerName={this.props.match.params.inventoryId ? "Edit Inventory" : "Add Inventory"}/>
-                    <div className="editinventoryform__wrapper">
-                        <div className="editinventoryform__left">
-                            <h2 className="editinventoryform__title">Warehouse Details</h2>
-                            <label htmlFor="name" className="editinventoryform__label">Item Name</label>
-                            <input 
-                                placeholder="Item Name" 
-                                name="name" 
-                                className="editinventoryform__input"
-                                value={this.state.data? this.state.data.itemName : ""}
-                                onChange={this.handleChange}/>
-                            <div className={this.state.form.itemName ? "editinventoryform__warning--valid" : "editinventoryform__warning"}>
-                                <img className="editwarehouseform__warning-icon" src={errorIcon} alt="error icon"/>
-                                <p className="editwarehouseform__warning-text">This field is required</p>
+            (edit && this.state.data=== 0) ?
+                <p> Loading ... </p>  
+            :
+            <form className="inventoryForm" onSubmit={edit ? this.handleSave : this.handleAdd}>
+                <MainHeader navigate={this.props} headerName={edit ? "Edit Inventory Item" : "Add New Inventory Item"} />
+                <div className="inventoryForm__wrapper">
+                    <div className="inventoryForm__left">
+                        <h2 className="inventoryForm__title">Item Details</h2>
+                        <label htmlFor="itemName" className="inventoryForm__label">Item Name</label>
+                        <input
+                            placeholder="Item Name"
+                            name="itemName"
+                            className="inventoryForm__input"
+                            value={this.state.data ? this.state.data.itemName : ""}
+                            onChange={this.handleChange} />
+
+                            <div className={this.state.data.itemName ? "inventoryForm__warning--valid" : "inventoryForm__warning"}>
+                                <img className="inventoryForm__warning-icon" src={errorIcon} alt="error icon" />
+                                <p className="inventoryForm__warning-text">This field is required</p>
                             </div>
-                            <label htmlFor="address" className="editwarehouseform__label">Street Address</label>
-                            <input 
-                                placeholder="Street Address" 
-                                name="address" 
-                                className="editwarehouseform__input"
-                                value={this.state.data? this.state.data.address : ""}
-                                onChange={this.handleChange}/>
-                            <div className={this.state.form.address ? "editwarehouseform__warning--valid" : "editwarehouseform__warning"}>
-                                <img className="editwarehouseform__warning-icon" src={errorIcon} alt="error icon"/>
-                                <p className="editwarehouseform__warning-text">This field is required</p>
+
+                        <label htmlFor="description" className="inventoryForm__label">Description</label>
+                        <textarea
+                            placeholder="Please enter a brief item description"
+                            name="description"
+                            className="inventoryForm__input inventoryForm__input--textarea"
+                            value={this.state.data ? this.state.data.description : ""}
+                            onChange={this.handleChange} >   
+                            </textarea>
+
+                            <div className={this.state.data.description ? "inventoryForm__warning--valid" : "inventoryForm__warning"}>
+                                <img className="inventoryForm__warning-icon" src={errorIcon} alt="error icon" />
+                                <p className="inventoryForm__warning-text">This field is required</p>
                             </div>
-                            <label htmlFor="city" className="editwarehouseform__label">City</label>
-                            <input 
-                                placeholder="City" 
-                                name="city" 
-                                className="editwarehouseform__input"
-                                value={this.state.data? this.state.data.city : ""}
-                                onChange={this.handleChange}/>
-                            <div className={this.state.form.city ? "editwarehouseform__warning--valid" : "editwarehouseform__warning"}>
-                                <img className="editwarehouseform__warning-icon" src={errorIcon} alt="error icon"/>
-                                <p className="editwarehouseform__warning-text">This field is required</p>
+
+                        <label htmlFor="category" className="inventoryForm__label">Category</label>
+                            <select name="category" className="inventoryForm__input inventoryForm__input--select" onChange={this.handleChange}>
+                                    <option value={this.state.data ? this.state.data.category : "Please Select"} >{edit ? this.state.data.category : "Please Select"}</option>
+                                    {uniqueCategories.map(item => {
+                                        return (<option key={item.id} value={`${item}`}  >{`${item} `} </option>)
+                                    })}
+                            </select>
+
+                            <div className={(this.state.data.category === "Please select" || !this.state.data.category) ? "inventoryForm__warning--valid" : "inventoryForm__warning"}>
+                                <img className="inventoryForm__warning-icon" src={errorIcon} alt="error icon" />
+                                <p className="inventoryForm__warning-text">This field is required</p>
                             </div>
-                            <label htmlFor="country" className="editwarehouseform__label">Country</label>
-                            <input 
-                                placeholder="Country" 
-                                name="country" 
-                                className="editwarehouseform__input"
-                                value={this.state.data? this.state.data.country : ""}
-                                onChange={this.handleChange}/>
-                            <div className={this.state.form.country ? "editwarehouseform__warning--valid" : "editwarehouseform__warning"}>
-                                <img className="editwarehouseform__warning-icon" src={errorIcon} alt="error icon"/>
-                                <p className="editwarehouseform__warning-text">This field is required</p>
-                            </div>
-                        </div>
-                        <div className="editwarehouseform__right">
-                            <h2 className="editwarehouseform__title">Contact Details</h2>
-                            <label htmlFor="contactName" className="editwarehouseform__label">Contact Name</label>
-                            <input 
-                                placeholder="Contact Name" 
-                                name="contactName" 
-                                className="editwarehouseform__input"
-                                value={this.state.data? this.state.data.contactName : ""}
-                                onChange={this.handleChange}/>
-                            <div className={this.state.form.contactName ? "editwarehouseform__warning--valid" : "editwarehouseform__warning"}>
-                                <img className="editwarehouseform__warning-icon" src={errorIcon} alt="error icon"/>
-                                <p className="editwarehouseform__warning-text">This field is required</p>
-                            </div>
-                            <label htmlFor="position" className="editwarehouseform__label">Position</label>
-                            <input 
-                                placeholder="Position" 
-                                name="position" 
-                                className="editwarehouseform__input"
-                                value={this.state.data? this.state.data.position : ""}
-                                onChange={this.handleChange}/>
-                            <div className={this.state.form.position ? "editwarehouseform__warning--valid" : "editwarehouseform__warning"}>
-                                <img className="editwarehouseform__warning-icon" src={errorIcon} alt="error icon"/>
-                                <p className="editwarehouseform__warning-text">This field is required</p>
-                            </div>
-                            <label htmlFor="number" className="editwarehouseform__label">Phone Number</label>
-                            <input 
-                                placeholder="Phone Number" 
-                                name="phone" 
-                                className="editwarehouseform__input"
-                                value={this.state.data? this.state.data.phone : ""}
-                                onChange={this.handleChange}/>
-                            <div className={this.state.form.phone ? "editwarehouseform__warning--valid" : "editwarehouseform__warning"}>
-                                <img className="editwarehouseform__warning-icon" src={errorIcon} alt="error icon"/>
-                                <p className="editwarehouseform__warning-text">This field is required</p>
-                            </div>
-                            <label htmlFor="email" className="editwarehouseform__label">Email</label>
-                            <input 
-                                placeholder="Email" 
-                                name="email" 
-                                className="editwarehouseform__input"
-                                value={this.state.data? this.state.data.email : ""}
-                                onChange={this.handleChange}/>
-                            <div className={this.state.form.email ? "editwarehouseform__warning--valid" : "editwarehouseform__warning"}>
-                                <img className="editwarehouseform__warning-icon" src={errorIcon} alt="error icon"/>
-                                <p className="editwarehouseform__warning-text">This field is required</p>
-                            </div>
-                        </div>
+
                     </div>
-                    <div className="editwarehouseform__action">
-                        <button className="editwarehouseform__cancel" onClick={this.handleCancel}>Cancel</button>
-                        <button type="submit" className="editwarehouseform__submit">{this.props.match.params.warehousesId ? "Save" : "+ Add Warehouse"}</button>
+                    <div className="inventoryForm__right">
+                        <h2 className="inventoryForm__title">Item Availability</h2>
+                        <label htmlFor="status" className="inventoryForm__label">Status</label>
+                            <div className="inventoryForm__status">
+                                <div className={this.state.data.status === "Out Of stock" ? "inventoryForm__status-slate" : ""}>
+                                    <input type="radio" id="status" name="status" value="In Stock" onChange={this.handleChange} />
+                                    <label htmlFor="status" className="inventoryForm__status-label">In Stock</label>
+                                </div>
+                                <div className={this.state.data.status === "In Stock"? "inventoryForm__status-slate": "" }>
+                                    <input type="radio" id="status" name="status" value="Out Of stock" onChange={this.handleChange} />
+                                    <label htmlFor="status" className="inventoryForm__status-label">Out of Stock</label>
+                                </div>
+                            </div>
+
+                            <label htmlFor="quantity" className={this.state.data.status === "In Stock"   ? "inventoryForm__label" : "inventoryForm__label-hide"}>Quantity</label>
+                            <input
+                                placeholder="0"
+                                name="quantity"
+                                className={this.state.data.status === "In Stock"  ? "inventoryForm__input" : "inventoryForm__label-hide"}
+                                value={this.state.data ? this.state.data.quantity : ""}
+                                onChange={this.handleChange} />
+
+                            <div className={this.state.data.status ? "inventoryForm__warning--valid" : "inventoryForm__warning"}>
+                                <img className="inventoryForm__warning-icon" src={errorIcon} alt="error icon" />
+                                <p className="inventoryForm__warning-text">This field is required</p>
+                            </div>
+
+                        
+                        <label htmlFor="warehouseName" className="inventoryForm__label">Warehouse</label>
+
+                            <select name="warehouseName" className="inventoryForm__input inventoryForm__input--select" onChange={this.handleChange}>
+                                <option value={this.state.data ? this.state.data.warehouseName : "Please Select"} selected>{edit ? this.state.data.warehouseName : "Please Select"}</option>
+                                    {warehouseData.map(item => {
+                                        return (
+                                            <option key={item.id} value={`${item.name}`}  >{`${item.name} `}  </option>
+                                        )
+                                    })}
+                                
+                                <div className={(this.state.data.warehouseName === "Please select" || !this.state.data.warehouseName) ? "inventoryForm__warning--valid" : "inventoryForm__warning"}>
+                                    <img className="inventoryForm__warning-icon" src={errorIcon} alt="error icon" />
+                                    <p className="inventoryForm__warning-text">This field is required</p>
+                                </div>
+
+                        </select>
                     </div>
-                </form>
-                
+                </div>
+                <div className="inventoryForm__action">
+                    <button className="inventoryForm__cancel" onClick={this.handleCancel}>Cancel</button>
+                    <button type="submit" className="inventoryForm__submit">{edit ? "Save" : "+ Add Item"}</button>
+                </div>
+            </form>
+
         )
     }
 }
 
-export default EditWarehouseForm
+export default InventoryForm
