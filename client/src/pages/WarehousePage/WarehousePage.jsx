@@ -8,6 +8,7 @@ import WarehouseForm from '../../components/WarehouseForm/WarehouseForm'
 import WarehouseDetails from '../../components/WarehouseDetails/WarehouseDetails.jsx';
 import "./WarehousePage.scss"
 import Modal from "../../components/Modal/Modal"
+import { getWarehouses } from '../../utils/api';
 
 //testing  
 import InventoryForm from "../../components/InventoryForm/InventoryForm"
@@ -19,7 +20,22 @@ class WarehouseMainDisplay extends Component {
         displayModal: false,
         currentWarehouse: null,
     }
-    
+
+    deleteWarehouse = (id) => {
+        console.log(id);
+        axios.delete(`${URL}/warehouses/${id}`)
+        .then(res => {
+            console.log(res)
+            getWarehouses()
+            .then(res=> {
+                this.setState({
+                    warehouseList: res.data
+                })
+            }
+                )
+        })
+    }
+        
     showDeleteModal = (warehouse) => {
         this.setState
         ({ displayModal: true,
@@ -48,7 +64,7 @@ class WarehouseMainDisplay extends Component {
             <>
                 <PageHeader path={this.props.match.url}/> 
                 <Modal display={this.state.displayModal} hide={this.hideModal}
-                showDeleteModal={this.showDeleteModal} currentWarehouse={this.state.currentWarehouse}>
+                showDeleteModal={this.showDeleteModal} currentWarehouse={this.state.currentWarehouse} deleteWarehouse={this.deleteWarehouse}>
                 </Modal>
                 <BrowserRouter>
                     <Switch>
@@ -56,6 +72,8 @@ class WarehouseMainDisplay extends Component {
                         <section className="warehouse-wrapper">
                             <Route exact path="/" render={routeProps => {
                                 return <Listing
+                                    display={this.state.displayModal} hide={this.hideModal}
+                                    showDeleteModal={this.showDeleteModal} 
                                     dataList={this.state.warehouseList}
                                     pagePath="warehouse"
                                     addItemPath="/warehouses/add"
@@ -65,7 +83,9 @@ class WarehouseMainDisplay extends Component {
                             }} />
                             <Route path="/warehouses/add" component={WarehouseForm} />
                             <Route path="/warehouses/:warehouseId/detail" render={routeProps => {
-                                return <WarehouseDetails 
+                                return <WarehouseDetails
+                                            display={this.state.displayModal} hide={this.hideModal}
+                                            showDeleteModal={this.showDeleteModal}  
                                             listingColumn={["INVENTORY", "CATEGORY", "STATUS", "QTY", "ACTIONS"]}
                                             {...routeProps}/>
                             }} />

@@ -15,6 +15,21 @@ class InventoryPage extends Component {
         currentInventory: null,
     }
 
+    deleteInventory = (id) => {
+        console.log(id);
+        axios.delete(`/api/inventory/${id}`)
+        .then(res => {
+            console.log(res)
+        axios.get(`/api/inventory`)
+            .then(res=> {
+                this.setState({
+                    inventoryList: res.data
+                })
+            }
+                )
+        })
+    }
+
     showInventoryModal = (inventory) => {
         this.setState
         ({ displayModal: true,
@@ -23,7 +38,7 @@ class InventoryPage extends Component {
     }
 
     hideModal = () =>{
-        this.setState({ displayModal: false })
+        this.setState({ displayModal: false, currentInventory: null })
     }
 
     componentDidMount(){
@@ -37,7 +52,7 @@ class InventoryPage extends Component {
             <>
                 <PageHeader path={this.props.match.url}/> 
                 <Modal displayModal={this.state.displayModal} hideModal={this.hideModal}
-                showInventoryModal={this.showInventoryModal} currentInventory={this.state.currentInventory}>
+                showInventoryModal={this.showInventoryModal} currentInventory={this.state.currentInventory} deleteInventory={this.deleteInventory}>
                 </Modal>
                 <BrowserRouter>
                     <Switch>
@@ -54,6 +69,7 @@ class InventoryPage extends Component {
                                                 listingColumn={["INVENTORY", "CATEGORY", "STATUS", "QTY", "WAREHOUSE" , "ACTIONS"]}
                                                 {...routeProps}/>
                                 }} />
+                                
                             <Route path="/inventory/add" component={InventoryForm} />
                             <Route path="/inventory/:inventoryId/edit" component={InventoryForm} />
                         </section>

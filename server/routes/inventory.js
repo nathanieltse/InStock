@@ -56,16 +56,17 @@ router.post('/inventory/add', ((req, res) => {
 }));
 
 //delete inventory info
+
 router.delete('/inventory/:inventoryId', ((req, res) => {
-
-    const id = req.params.inventoryId
-
-    const selectedInventory = inventories.findIndex(inventory => inventory.id === id)
-
+    const { inventoryId } = req.params
+    const selectedInventory = inventories.findIndex(inventory => inventory.id === inventoryId)
     const inventory = inventories[selectedInventory];
     inventories.splice(selectedInventory, 1)
+    const dataObject = JSON.stringify(inventories, null, 2);
+    fs.writeFile('../data/inventories.json', dataObject, (err) => {
+        console.log(err)
+    })
     res.status(200).json(inventory)
-
 }))
 
 
