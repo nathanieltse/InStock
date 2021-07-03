@@ -4,6 +4,7 @@ import Labels from '../Labels/Labels';
 import ListingCard from "../../components/ListingCard/ListingCard"
 import MainHeader from '../MainHeader/MainHeader'
 import "../WarehouseDetails/WarehouseDetails.scss"
+import Modal from "../Modal/Modal"
 
 
 
@@ -11,8 +12,35 @@ class WarehouseDetails extends Component{
     state={
         warehouse: null,
         inventoryList:null,
+        displayModal: false,
+        currentInventory: null,
     }
-        
+
+    deleteInventory = (id) => {
+        console.log(id);
+        axios.delete(`/api/inventory/${id}`)
+        .then(res => {
+            console.log(res)
+        axios.get(`/api/inventory`)
+            .then(res=> {
+                this.setState({
+                    inventoryList: res.data
+                })
+            }
+                )
+        })
+    }
+    
+    showInventoryModal = (inventory) => {
+        this.setState
+        ({ displayModal: true,
+            currentInventory: inventory
+         })
+    }
+
+    hideModal = () =>{
+        this.setState({ displayModal: false, currentInventory: null })
+    }
     
     componentDidMount() {
     const { warehouseId } = this.props.match.params
@@ -22,11 +50,12 @@ class WarehouseDetails extends Component{
                 this.setState({warehouse:res.data})
                 return axios.get(`/api/warehouses/${warehouseId}/inventory`)
             })
-            .then(res => this.setState({inventoryList:res.data}))
+            .then(res => this.setState({inventoryList :res.data}))
             .catch(error=> console.log(error))
     }
 
     render(){
+
         const { warehouse, inventoryList } = this.state
         
         return (
@@ -60,10 +89,13 @@ class WarehouseDetails extends Component{
 
                 {inventoryList.map(item => {
                     return (
-                        <ListingCard key={item.id} data={item} pagePath="warehouse/inventory" />
+                        <ListingCard key={item.id} data={item} pagePath="warehouse/inventory" showInventoryModal={this.showInventoryModal}/>
                     )
                 })}
+                 <Modal displayModal={this.state.displayModal} hideModal={this.hideModal}
+                showInventoryModal={this.showInventoryModal} currentInventory={this.state.currentInventory} deleteInventory={this.deleteInventory}></Modal>
             </section>
+            
             :
             <p>Please wait...</p>
             

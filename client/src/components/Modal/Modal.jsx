@@ -2,13 +2,14 @@ import React from 'react';
 import "../Modal/Modal.scss";
 import closeIcon from "../../assets/Icons/close-24px.svg";
 
-const Modal = ({ hide, display, currentWarehouse, currentInventory, route, hideModal, displayModal }) => {
-    
+const Modal = ({ hide, display, currentWarehouse, currentInventory, hideModal, displayModal, deleteWarehouse, deleteInventory }) => {
+  
+
     if (currentWarehouse===null || !display && !displayModal ) {
         return null;
     } 
     
-
+    
     return (
         currentWarehouse ? 
         <>
@@ -19,7 +20,7 @@ const Modal = ({ hide, display, currentWarehouse, currentInventory, route, hideM
                     <h1 className="modal-title__style">Delete {currentWarehouse.name} warehouse?</h1>
                     <p className="modal-body__style">Please confirm that you'd like to delete the {currentWarehouse.name} from the list of warehouses. You won't be able to undo this action.</p>
                     <div className="modal-button__container">                        
-                        <button className="delete-button__style">
+                        <button className="delete-button__style" onClick={()=>deleteWarehouse(currentWarehouse.id)}>
                             Delete
                         </button>
                         <button className="cancel-button__style" onClick={hide}>
@@ -41,7 +42,7 @@ const Modal = ({ hide, display, currentWarehouse, currentInventory, route, hideM
                     <h1 className="modal-title__style">Delete {currentInventory.itemName} inventory item?</h1>
                     <p className="modal-body__style">Please confirm that you'd like to delete the {currentInventory.itemName} from the inventory list. You won't be able to undo this action.</p>
                     <div className="modal-button__container">                        
-                        <button className="delete-button__style">
+                        <button className="delete-button__style" onClick={()=>deleteInventory(currentInventory.id)}>
                             Delete
                         </button>
                         <button className="cancel-button__style" onClick={hideModal}>

@@ -95,16 +95,17 @@ router.post('/warehouses/add', ((req, res) => {
 }))
 
 //delete warehouse info
-router.delete('/warehouses/:warehouseId', ((req, res) => {
 
-    const id = req.params.warehouseId
-
-    const selectedWarehouse = warehouses.findIndex(warehouse => warehouse.id === id)
-
-    const warehouse = warehouse[selectedWarehouse];
+router.delete(`/warehouses/:warehouseId`, ((req, res) => {
+    const { warehouseId } = req.params
+    const selectedWarehouse = warehouses.findIndex(warehouse => warehouse.id === warehouseId)
+    const warehouse = warehouses[selectedWarehouse];
     warehouses.splice(selectedWarehouse, 1)
+    const dataObject = JSON.stringify(warehouses, null, 2);
+    fs.writeFile('../data/warehouses.json', dataObject, (err) => {
+        console.log(err)
+    })
     res.status(200).json(warehouse)
-
 }))
 
 
