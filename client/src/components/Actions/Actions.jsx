@@ -4,20 +4,18 @@ import editIcon from "../../assets/Icons/edit-24px.svg"
 import {Link} from "react-router-dom"
 import "./Actions.scss"
 
-function DeleteEdit({ path, showDeleteModal, warehouse, inventory, route, showInventoryModal }) {
- console.log(route)
+function Actions({ editPath, showDeleteModal }) {
+    
     return (
-        route !== "inventory" ?
-        <>
         <section className="actions" >
             <Link className="actions__link">
                 <img
                     className="actions__delete"
                     src={deleteIcon}
-                    alt="Delete Icon" onClick={()=>showDeleteModal(warehouse)}
+                    alt="Delete Icon" onClick={showDeleteModal}
                 />
             </Link> 
-            <Link className="actions__link" to={`/warehouses/${path}/edit`}>
+            <Link className="actions__link" to={editPath}>
                 <img
                     className="actions__edit"
                     src={editIcon}
@@ -26,30 +24,7 @@ function DeleteEdit({ path, showDeleteModal, warehouse, inventory, route, showIn
             </Link>
             
         </section>
-        </>
-
-        :
-
-        <>
-        <section className="actions" >
-            <Link className="actions__link">
-                <img
-                    className="actions__delete"
-                    src={deleteIcon}
-                    alt="Delete Icon" onClick={()=>showInventoryModal(inventory)}
-                />
-            </Link> 
-            <Link className="actions__link" to={`/inventory/${path}/edit`}>
-                <img
-                    className="actions__edit"
-                    src={editIcon}
-                    alt="Edit Icon"
-                />
-            </Link>
-            
-        </section>
-        </>
     )
 }
 
-export default DeleteEdit
+export default Actions
