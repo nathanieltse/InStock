@@ -20,6 +20,7 @@ class InventoryPage extends Component {
         axios.delete(`/api/inventory/${id}`)
         .then(res => {
             console.log(res)
+            this.hideModal()
         axios.get(`/api/inventory`)
             .then(res=> {
                 this.setState({

@@ -16,9 +16,12 @@ const Modal = ({ hide, display, currentWarehouse, currentInventory, hideModal, d
         <div className="modal display-block">
             <section className='modal-main'>
                 <img className="modal-image__style" src={closeIcon} alt="cancel" onClick={hide}/>
-                <div className="modal-container__style">
-                    <h1 className="modal-title__style">Delete {currentWarehouse.name} warehouse?</h1>
-                    <p className="modal-body__style">Please confirm that you'd like to delete the {currentWarehouse.name} from the list of warehouses. You won't be able to undo this action.</p>
+                    <div className="modal-container__style">
+                        <div className="modal-container__text">
+                            <h1 className="modal-title__style">Delete {currentWarehouse.name} warehouse?</h1>
+                            <p className="modal-body__style">Please confirm that you'd like to delete the {currentWarehouse.name} from the list of warehouses. You won't be able to undo this action.</p>
+                        </div>
+
                     <div className="modal-button__container">                        
                         <button className="delete-button__style" onClick={()=>deleteWarehouse(currentWarehouse.id)}>
                             Delete

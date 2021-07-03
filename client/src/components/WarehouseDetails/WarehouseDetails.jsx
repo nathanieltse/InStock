@@ -18,16 +18,19 @@ class WarehouseDetails extends Component{
 
     deleteInventory = (id) => {
         console.log(id);
+        const warehouseId = this.props.match.params.warehouseId
         axios.delete(`/api/inventory/${id}`)
         .then(res => {
             console.log(res)
-        axios.get(`/api/inventory`)
-            .then(res=> {
+            this.hideModal()
+            axios.get(`/api/warehouses/${warehouseId}/inventory`)
+                .then(res => {
+                console.log(res)
                 this.setState({
-                    inventoryList: res.data
-                })
-            }
-                )
+                    inventoryList: res.data,
+                }) 
+                }
+            )
         })
     }
     

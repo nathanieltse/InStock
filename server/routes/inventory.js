@@ -64,7 +64,7 @@ router.delete('/inventory/:inventoryId', ((req, res) => {
     const inventory = inventories[selectedInventory];
     inventories.splice(selectedInventory, 1)
     const dataObject = JSON.stringify(inventories, null, 2);
-    fs.writeFile('../data/inventories.json', dataObject, (err) => {
+    fs.writeFile(__dirname + '/../data/inventories.json', dataObject, (err) => {
         console.log(err)
     })
     res.status(200).json(inventory)
@@ -81,7 +81,7 @@ router.put('/inventory/:inventoryId/edit', ((req, res) => {
 
      if (warehouseId, warehouseName && itemName && description && category && status && quantity) {
         const newInventoryInfo = {
-            id: inventoryId,
+            "id": inventoryId,
             warehouseId,
             warehouseName,
             itemName,

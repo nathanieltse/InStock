@@ -1,12 +1,23 @@
 [
   {
-    "id": "83433026-ca32-4c6d-bd86-a39ee8b7303e",
+    "id": "9b4f79ea-0e6c-4e59-8e05-afd933d0b3d3",
+    "warehouseID": "2922c286-16cd-4d43-ab98-c79f698aeab0",
     "warehouseName": "Manhattan",
-    "itemName": "Gym Bag New",
-    "description": "Made out of military-grade synthetic materials, this g",
+    "itemName": "Television",
+    "description": "This 50\", 4K LED TV provides a crystal-clear picture and vivid colors.",
+    "category": "Electronics",
+    "status": "In Stock",
+    "quantity": 500
+  },
+  {
+    "id": "83433026-ca32-4c6d-bd86-a39ee8b7303e",
+    "warehouseID": "2922c286-16cd-4d43-ab98-c79f698aeab0",
+    "warehouseName": "Manhattan",
+    "itemName": "Gym Bag",
+    "description": "Made out of military-grade synthetic materials, this gym bag is highly durable, water resistant, and easy to clean.",
     "category": "Gear",
     "status": "Out of Stock",
-    "quantity": 9
+    "quantity": 0
   },
   {
     "id": "8f16bd30-bab5-40af-aca2-b63d5fdd1acc",
@@ -17,16 +28,6 @@
     "category": "Accessories",
     "status": "In Stock",
     "quantity": 2000
-  },
-  {
-    "id": "bdc6bb69-e09c-498d-8abd-be2792504d00",
-    "warehouseID": "2922c286-16cd-4d43-ab98-c79f698aeab0",
-    "warehouseName": "Manhattan",
-    "itemName": "Shampoo",
-    "description": "Natural shampoo made from 99% biodegradable ingredients.",
-    "category": "Health",
-    "status": "In Stock",
-    "quantity": 4350
   },
   {
     "id": "3ce124a4-78b0-4d80-91b9-11f9ced631a7",
@@ -40,17 +41,19 @@
   },
   {
     "id": "4dd464d6-90b8-4330-91e0-bd1217811bd9",
+    "warehouseID": "2922c286-16cd-4d43-ab98-c79f698aeab0",
     "warehouseName": "Manhattan",
-    "itemName": "Tentgfdrg",
+    "itemName": "Tent",
     "description": "Perfect for spring or summer camping, this 1-person tent is easy to pack and has the option to become modular when used with other products.",
     "category": "Gear",
-    "status": "Out of Stock",
-    "quantity": 0
+    "status": "In Stock",
+    "quantity": 800
   },
   {
     "id": "c0ba64a8-0ecb-4a7d-ab7f-2dbbd1d437b1",
+    "warehouseID": "2922c286-16cd-4d43-ab98-c79f698aeab0",
     "warehouseName": "Manhattan",
-    "itemName": "Winter ",
+    "itemName": "Winter Jacket",
     "description": "Made with a durable 100% waterproof shell, and breathable layers without a ton of vents and perforations. breathable layers without a ton of vents and perforations.",
     "category": "Apparel",
     "status": "Out of Stock",
@@ -458,6 +461,7 @@
   },
   {
     "id": "d0b01bdb-fbde-40c2-90ea-10750db5e442",
+    "warehouseID": "89898957-04ba-4bd0-9f5c-a7aea7447963",
     "warehouseName": "Santa Monica",
     "itemName": "Watch",
     "description": "Crafted from premium materials including a full-grain leather strap and a stainless steel case, this watch features swiss movement and is waterproof up to 5 ATM.",
@@ -672,26 +676,6 @@
     "itemName": "Soap",
     "description": "Organic and hypoallergenic, this soap is safe to use for all skin types.",
     "category": "Health",
-    "status": "Out of Stock",
-    "quantity": 0
-  },
-  {
-    "id": "ecf2c35e-1a29-4531-82ab-3cf98dc472d9",
-    "warehouseName": "Manhattan",
-    "itemName": "svae",
-    "description": "fdwr",
-    "warehouseID": "2922c286-16cd-4d43-ab98-c79f698aeab0",
-    "category": "Gear",
-    "status": "In Stock",
-    "quantity": 5
-  },
-  {
-    "id": "bbc36446-1fbf-4066-b50a-2b207f6dc539",
-    "warehouseName": "Manhattan",
-    "itemName": "new",
-    "description": "new",
-    "warehouseID": "2922c286-16cd-4d43-ab98-c79f698aeab0",
-    "category": "Gear",
     "status": "Out of Stock",
     "quantity": 0
   }
