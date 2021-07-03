@@ -100,14 +100,13 @@ class InventoryForm extends Component {
     }
 
     handleSave = (e) => {
-
         e.preventDefault()
         const { category, description, itemName, status,quantity,  warehouseName } = this.state.data
         const id = this.props.match.params.inventoryId
         
         if (category && description && itemName && warehouseName) {
             let warehouseId = warehouseData.find(warehouse => warehouse.name === warehouseName)
-            console.log(category, description, itemName, status, typeof quantity, warehouseName, warehouseId.id, id)
+
             axios
                 .put(`${URL}/inventory/${id}/edit`,
                         {   "id": id,
@@ -129,13 +128,13 @@ class InventoryForm extends Component {
 
     handleCancel = (e) => {
         e.preventDefault()
-        this.props.history.push("/")
+        this.props.history.push("/inventory")
     }
 
     render() {
         let uniqueCategories = categories.filter((category, index, array) => array.indexOf(category) === index);
         const {category, quantity, status} = this.state.data
-        //console.log(uniqueCategories)
+
         return (
             (this.props.match.params.inventoryId && this.state.data=== 0) ?
                 <p> Loading ... </p>  
@@ -209,7 +208,6 @@ class InventoryForm extends Component {
                                 onChange={this.handleChange} />
 
                             <div className={!this.state.data.quantity || Number(this.state.data.quantity) === 0  ? "inventoryForm__warning" : "inventoryForm__warning--valid"}
-                                // className={this.state.data.quantity === 0 ? "hide" : "show"}
                             >
                                 <img className={this.state.data.status === "Out of Stock" ? "hide" : "inventoryForm__warning-icon"} src={errorIcon} alt="error icon" />
                                 <p className={this.state.data.status === "Out of Stock" ? "hide" : "inventoryForm__warning-text"}>This field is required</p>
@@ -217,7 +215,7 @@ class InventoryForm extends Component {
                         <label htmlFor="warehouseName" className="inventoryForm__label">Warehouse</label>
 
                             <select name="warehouseName" className="inventoryForm__input inventoryForm__input--select" onChange={this.handleChange}>
-                                <option value={this.state.data ? this.state.data.warehouseName : "Please Select"} selected>{this.props.match.params.inventoryId ? this.state.data.warehouseName : "Please Select"}</option>
+                                <option value={this.state.data ? this.state.data.warehouseName : "Please Select"} value="Please Select">{this.props.match.params.inventoryId ? this.state.data.warehouseName : "Please Select"}</option>
                                     {warehouseData.map(item => {
                                         return (
                                             <option key={item.id} value={`${item.name}`} >{`${item.name} `}</option>
@@ -228,13 +226,12 @@ class InventoryForm extends Component {
                                     <img className="inventoryForm__warning-icon" src={errorIcon} alt="error icon" />
                                     <p className="inventoryForm__warning-text">This field is required</p>
                                 </div>
-
                         </select>
                     </div>
                 </div>
                 <div className="inventoryForm__action">
                     <button className="inventoryForm__cancel" onClick={this.handleCancel}>Cancel</button>
-                        <button type="submit" className="inventoryForm__submit">{this.props.match.params.inventoryId ? "Save" : "+ Add Item"}</button>
+                    <button type="submit" className="inventoryForm__submit">{this.props.match.params.inventoryId ? "Save" : "+ Add Item"}</button>
                 </div>
             </form>
 

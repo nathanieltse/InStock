@@ -4,25 +4,72 @@
 @use "../../partials/spacings" as *;
 @use "../../partials/variables" as *;
 
+
 .main-header{
-    @include flex-row{
-        justify-content: flex-start;
-        
-    }
-    padding:1.5rem 0;
+    @include wrapper-sidespace;
     border-bottom: $divider;
+    @include flex-row{
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__left{
+        @include flex-row{
+            justify-content: flex-start;
+            
+        }
+        padding:1.5rem 0;
 
-    &__img{
-        padding-right: .25rem;
-        margin-left: 1rem;
-        cursor: pointer;
+        &__img{
+            padding-right: .25rem;
+            margin-left: 1rem;
+            cursor: pointer;
 
-        @include desktop{
-            margin-left: 1.75rem;
+            @include desktop{
+                margin-left: 1.75rem;
+            }
+        }
+
+            &__title{
+                margin: 0;
+            }
+        }
+    &__right{
+        &-button{
+            @include button-cta;
+            @include button;
+            @include flex-row{
+                align-items: center;
+                justify-content: space-evenly;
+            }
+            color: $white;
+        }
+        &-text{
+            display: none;
+            @include tablet{
+                display: block;
+            }
         }
     }
-
-    &__title{
-        margin: 0;
-    }
 }
+
+
+
+    // &__header{
+    //     border-bottom: $divider;
+    //     @include tablet{
+    //         @include flex-row{
+    //             justify-content: space-between;
+    //             align-items: center;
+    //         }
+    //     }
+    //     &-button{
+
+
+    //         &img{
+    //             color: $white;
+    //             @include tablet{
+    //                 margin-right: $small-space;
+    //             }
+    //         }
+    //     }
+    // }
