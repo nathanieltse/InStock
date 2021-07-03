@@ -4,10 +4,15 @@
 @use "../../partials/spacings" as *;
 @use "../../partials/variables" as *;
 
+.inventory-detail{
+    @include element-body;
+}
+
 .inventoryDetail{
-    @include wrapper-sidespace;
+    margin-top: $medium-space;
         @include tablet{
             @include flex-row;
+            margin-top: $small-space;
         }
     &__left{
         padding:0 $normal-space ;
@@ -18,7 +23,7 @@
                 margin: $medium-space 0;
             }
         &-title{
-            margin-bottom: 0rem;
+            margin-bottom: $small-space;
             color: $secondary-color-slate;
         }
     }
@@ -40,6 +45,8 @@
         } 
     }
     &__text{
+        margin-bottom: $medium-space;
+        //@include medium-body-text;
 
         &--stock{
             color: $support-color-green;
@@ -50,9 +57,9 @@
             background-color:$support-color-background-red;
         }
         &--status{
-            padding: $small-space/2 $small-space;
+            //padding: $small-space/2 $small-space;
             border-radius: 20px;
-            width: 4rem;
+            width: 7rem;
             text-align: center;
         }
     }

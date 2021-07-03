@@ -7,6 +7,7 @@ import Footer from '../../components/PageFooter/PageFooter'
 import './InventoryPage.scss'
 import Modal from "../../components/Modal/Modal"
 import InventoryForm from "../../components/InventoryForm/InventoryForm"
+import InventoryDetail from "../../components/InventoryDetail/InventoryDetail"
 
 class InventoryPage extends Component {
     state={
@@ -53,7 +54,8 @@ class InventoryPage extends Component {
                                                 addItemValue="+ Add New Inventory"
                                                 listingColumn={["INVENTORY", "CATEGORY", "STATUS", "QTY", "WAREHOUSE" , "ACTIONS"]}
                                                 {...routeProps}/>
-                                }} />
+                            }} />
+                            <Route path="/inventory/:inventoryId/detail" component={InventoryDetail}/>
                             <Route path="/inventory/add" component={InventoryForm} />
                             <Route path="/inventory/:inventoryId/edit" component={InventoryForm} />
                         </section>
