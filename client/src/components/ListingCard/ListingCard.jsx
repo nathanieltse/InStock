@@ -46,12 +46,12 @@ function ListingCard({ data, pagePath, showDeleteModal, showInventoryModal }) {
                     <h4 className="listingcard__title">INVENTORY ITEM</h4>
                         <Link className="listingcard__link" to={`/inventory/${data.id}`} >
                             <h3 className="listingcard__main-text">{data.itemName}</h3>
-                            <img className="listingcard__arrow-icon" src={chevron} alt="expand warehouse detail"/>
+                           <Link to={`inventory/${data.id}/detail`}> <img className="listingcard__arrow-icon" src={chevron} alt="expand inventory detail"/></Link>
                         </Link>
                 </section>
                 <section className="listingcard__item">
                     <h4 className="listingcard__title">STATUS</h4>
-                    <p className={data.status === "In Stock" ? "listingcard__status--active" : "listingcard__status--inactive"}>{data.status.toUpperCase()}</p>
+                    <p className={data.status === "In Stock" ? "listingcard__status--active" : "listingcard__status--inactive"}>{data.status? data.status.toUpperCase(): "loading ..."}</p>
                 </section>
                 <section className="listingcard__item listingcard__item--secondary">
                     <h4 className="listingcard__title">CATEGORY</h4>

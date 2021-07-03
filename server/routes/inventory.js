@@ -25,9 +25,10 @@ router.get('/inventory/:inventoryId', ((req, res) => {
 }))
 
 router.post('/inventory/add', ((req, res) => {
-    const { warehouseID, warehouseName, itemName, description, category, status, quantity } = req.body;
+    const { warehouseID, warehouseName, itemName, description, category, quantity } = req.body;
+    let status;
 
-    if (warehouseID &&  warehouseName && itemName && description && category && status && quantity)
+    if (warehouseID &&  warehouseName && itemName && description && category  && quantity)
     {
      inventories.push({
 
@@ -35,6 +36,7 @@ router.post('/inventory/add', ((req, res) => {
       warehouseName,
       itemName,
       description,
+      warehouseID,
       category,
       status,
       quantity
@@ -104,7 +106,7 @@ router.put('/inventory/:inventoryId/edit', ((req, res) => {
                  res.status(200).json("Inventory info updated")
              }
          })
-         res.status(200).json(newInventoryData)
+         res.status(200).json("Item Added")
     }
 }))
 

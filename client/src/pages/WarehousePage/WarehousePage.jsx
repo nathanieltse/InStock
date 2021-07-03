@@ -10,8 +10,6 @@ import "./WarehousePage.scss"
 import Modal from "../../components/Modal/Modal"
 import { getWarehouses } from '../../utils/api';
 
-//testing  
-import InventoryForm from "../../components/InventoryForm/InventoryForm"
 
 class WarehouseMainDisplay extends Component {
 
