@@ -21,7 +21,7 @@ class WarehouseMainDisplay extends Component {
 
     deleteWarehouse = (id) => {
         console.log(id);
-        axios.delete(`${URL}/warehouses/${id}`)
+        axios.delete(`/api/warehouses/${id}`)
         .then(res => {
             console.log(res)
             getWarehouses()
