@@ -4,7 +4,7 @@ import Labels from '../Labels/Labels';
 import ListingCard from "../../components/ListingCard/ListingCard"
 import MainHeader from '../MainHeader/MainHeader'
 import "../WarehouseDetails/WarehouseDetails.scss"
-import edit from "../../assets/Icons/edit-24px.svg"
+
 
 
 class WarehouseDetails extends Component{

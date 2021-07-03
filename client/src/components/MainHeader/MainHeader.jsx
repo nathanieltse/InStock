@@ -23,7 +23,7 @@ function MainHeader({navigate, headerName , editInventoryId, editWarehouseId}) {
                 <h1 className="main-header__title">{headerName}</h1>
             </div>
             <div className={editInventoryId || editWarehouseId ? "main-header__right" : "hide"}>
-                <Link >
+                <Link to={editInventoryId ? `/inventory/${editInventoryId}/edit` : ``} >
                     <button className="main-header__right-button"><img className="main-header__right-img" src={edit} alt="Edit Icon" /><span className="main-header__right-text">EDIT</span></button>
                 </Link>
             </div>

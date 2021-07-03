@@ -9,8 +9,6 @@ import WarehouseDetails from '../../components/WarehouseDetails/WarehouseDetails
 import "./WarehousePage.scss"
 import Modal from "../../components/Modal/Modal"
 
-//testing  
-import InventoryForm from "../../components/InventoryForm/InventoryForm"
 
 class WarehouseMainDisplay extends Component {
 
