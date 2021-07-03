@@ -45,22 +45,14 @@
         } 
     }
     &__text{
+        @include medium-body-text;
         margin-bottom: $medium-space;
-        //@include medium-body-text;
-
+       
         &--stock{
-            color: $support-color-green;
-            background-color:$support-color-background-green;
+            @include tag-in-stock;
         }
         &--nostock{
-            color: $support-color-red;
-            background-color:$support-color-background-red;
-        }
-        &--status{
-            //padding: $small-space/2 $small-space;
-            border-radius: 20px;
-            width: 7rem;
-            text-align: center;
+            @include tag-stock-out;
         }
     }
 }

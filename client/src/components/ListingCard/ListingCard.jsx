@@ -40,9 +40,9 @@ function ListingCard({ data, pagePath, showDeleteModal, display, hide, route , d
             <article className="listingcard">
                 <section className="listingcard__item listingcard__item--priority">
                     <h4 className="listingcard__title">INVENTORY ITEM</h4>
-                        <Link className="listingcard__link" to={`/inventory/${data.id}`} >
+                        <Link className="listingcard__link" to={ `/inventory/${data.id}/detail`} >
                             <h3 className="listingcard__main-text">{data.itemName}</h3>
-                           <Link to={`inventory/${data.id}/detail`}> <img className="listingcard__arrow-icon" src={chevron} alt="expand inventory detail"/></Link>
+                            <img className="listingcard__arrow-icon" src={chevron} alt="expand inventory detail"/>
                         </Link>
                 </section>
                 <section className="listingcard__item">

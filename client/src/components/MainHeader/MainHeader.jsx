@@ -1,7 +1,7 @@
 import React from 'react'
 import "./MainHeader.scss"
 import backArrow from "../../assets/Icons/arrow_back-24px.svg"
-import edit from "../../assets/Icons/edit-24px.svg"
+import edit from "../../assets/Icons/edit-white.svg"
 import {Link} from "react-router-dom"
 
 function MainHeader({navigate, headerName , editInventoryId, editWarehouseId}) {

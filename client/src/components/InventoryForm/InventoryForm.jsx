@@ -19,7 +19,6 @@ class InventoryForm extends Component {
             description: false,
             itemName: false,
             quantity:false,
-            status:false,
             warehouseName:false,
         }
     }
@@ -71,9 +70,8 @@ class InventoryForm extends Component {
 
     handleAdd = (e) => {
         e.preventDefault()
-        const { category, description, itemName, quantity, warehouseName } = this.state.data
+        const { category, description, itemName, quantity, warehouseName, status } = this.state.data
         let warehouseId = warehouseData.find(warehouse => warehouse.name === warehouseName)
-
 
         if (category && description && itemName && quantity && warehouseName) {
 
@@ -81,8 +79,8 @@ class InventoryForm extends Component {
                 category,
                 description,
                 itemName,
-                quantity,
-                status: "In Stock",
+                "quantity": status === "Out of Stock" ? "0" : quantity,
+                status,
                 "warehouseID": warehouseId.id,
                 warehouseName
             }
@@ -90,7 +88,8 @@ class InventoryForm extends Component {
             
             addInventory(data)
                 .then((res => {
-                    console.log("posted")
+                    alert("Inventory Item Added")
+                    this.props.history.push("/inventory")
                 })).catch(err => {
                     console.log(err)
                 })
@@ -101,9 +100,9 @@ class InventoryForm extends Component {
 
     handleSave = (e) => {
         e.preventDefault()
-        const { category, description, itemName, status,quantity,  warehouseName } = this.state.data
+        const { category, description, itemName, status, quantity,  warehouseName } = this.state.data
         const id = this.props.match.params.inventoryId
-        
+        console.log(status)
         if (category && description && itemName && warehouseName) {
             let warehouseId = warehouseData.find(warehouse => warehouse.name === warehouseName)
 
@@ -113,28 +112,34 @@ class InventoryForm extends Component {
                             "category": category,
                             "description": description,
                             "itemName": itemName,
-                            "quantity": quantity.toString(),
+                            "quantity": status === "Out of Stock" ? "0" : quantity,
                             "status": status,
                             "warehouseID": warehouseId.id,
                             "warehouseName": warehouseName
                         }
                 )
-                .then(res => console.log("Inventory Edited edited!"))
+                .then(res => {
+                    alert("Inventory Item Edited")
+                    this.props.history.push("/inventory")
+                })
                 .catch(err => console.log(err))
         } else {
             alert("field can't be empty!")
         }
     }
+    
 
     handleCancel = (e) => {
         e.preventDefault()
         this.props.history.push("/inventory")
     }
 
+
+
     render() {
         let uniqueCategories = categories.filter((category, index, array) => array.indexOf(category) === index);
-        const {category, quantity, status} = this.state.data
-
+        const { category, quantity, status } = this.state.data
+        console.log(status,quantity)
         return (
             (this.props.match.params.inventoryId && this.state.data=== 0) ?
                 <p> Loading ... </p>  
@@ -189,25 +194,37 @@ class InventoryForm extends Component {
                         <h2 className="inventoryForm__title">Item Availability</h2>
                         <label htmlFor="status" className="inventoryForm__label">Status</label>
                             <div className="inventoryForm__status">
-                                <div className={this.state.data.quantity !== 0 ? "" : "inventoryForm__status-slate"}>
-                                    <input type="radio" id="status" checked = {this.state.data.category !== 0 ? "checked" : ""} name="status" value="In Stock" onChange={this.handleChange} />
+                                <div className={this.state.data.status === "In Stock" ? "" : "inventoryForm__status-slate"}>
+                                    <input
+                                        type="radio"
+                                        id="status"
+                                        name="status"
+                                        checked={this.state.data && this.state.data.status === "In Stock"? "checked": "" }
+                                        value="In Stock"
+                                        onChange={this.handleChange} />
                                     <label htmlFor="status" className="inventoryForm__status-label">In Stock</label>
                                 </div>
-                                <div className={this.state.data.quantity !== 0 ? "inventoryForm__status-slate" : "" }>
-                                    <input type="radio" id="status" checked={this.state.data.quantity === 0 ? "checked" : ""} name="status" value="Out Of stock" onChange={this.handleChange} />
+                                <div className={this.state.data.status === "Out of Stock" ? "" : "inventoryForm__status-slate" }>
+                                    <input
+                                        type="radio"
+                                        id="status"
+                                        name="status"
+                                        checked={this.state.data && this.state.data.status === "Out of Stock" ? "checked" : ""}
+                                        value="Out of Stock"
+                                        onChange={this.handleChange} />
                                     <label htmlFor="status" className="inventoryForm__status-label">Out of Stock</label>
                                 </div>
                             </div>
 
-                            <label htmlFor="quantity" className={this.state.data.quantity === 0 ? "inventoryForm__label-hide" : "inventoryForm__label"}>Quantity</label>
+                            <label htmlFor="quantity" className={this.state.data.status === "Out of Stock" ? "inventoryForm__label-hide" : "inventoryForm__label"}>Quantity</label>
                             <input
                                 placeholder="0"
                                 name="quantity"
-                                className={this.state.data.quantity === 0 ? "inventoryForm__label-hide" : "inventoryForm__input"}
-                                value={this.state.data ? this.state.data.quantity : ""}
+                                className={this.state.data.status === "Out of Stock" ? "inventoryForm__label-hide" : "inventoryForm__input"}
+                                value={this.state.data.status === "Out of stock" ? "0" : this.state.data.quantity}
                                 onChange={this.handleChange} />
 
-                            <div className={!this.state.data.quantity || Number(this.state.data.quantity) === 0  ? "inventoryForm__warning" : "inventoryForm__warning--valid"}
+                            <div className={this.state.data.status !== "In Stock" ? "inventoryForm__warning" : "inventoryForm__warning--valid"}
                             >
                                 <img className={this.state.data.status === "Out of Stock" ? "hide" : "inventoryForm__warning-icon"} src={errorIcon} alt="error icon" />
                                 <p className={this.state.data.status === "Out of Stock" ? "hide" : "inventoryForm__warning-text"}>This field is required</p>

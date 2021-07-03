@@ -6,8 +6,8 @@
 
 
 .main-header{
-    @include wrapper-sidespace;
     border-bottom: $divider;
+    padding: 0 1.5rem ;
     @include flex-row{
         justify-content: space-between;
         align-items: center;
@@ -51,25 +51,3 @@
         }
     }
 }
-
-
-
-    // &__header{
-    //     border-bottom: $divider;
-    //     @include tablet{
-    //         @include flex-row{
-    //             justify-content: space-between;
-    //             align-items: center;
-    //         }
-    //     }
-    //     &-button{
-
-
-    //         &img{
-    //             color: $white;
-    //             @include tablet{
-    //                 margin-right: $small-space;
-    //             }
-    //         }
-    //     }
-    // }

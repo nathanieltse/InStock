@@ -8,6 +8,7 @@ import WarehouseForm from '../../components/WarehouseForm/WarehouseForm'
 import WarehouseDetails from '../../components/WarehouseDetails/WarehouseDetails.jsx';
 import "./WarehousePage.scss"
 import Modal from "../../components/Modal/Modal"
+import InventoryDetail from "../../components/InventoryDetail/InventoryDetail"
 
 
 class WarehouseMainDisplay extends Component {
@@ -68,6 +69,7 @@ class WarehouseMainDisplay extends Component {
                                             {...routeProps}/>
                             }} />
                             <Route path="/warehouses/:warehousesId/edit" component={WarehouseForm} />
+                            <Route path="/inventory/:inventoryId/detail" component={InventoryDetail} />
 
                         </section>
 

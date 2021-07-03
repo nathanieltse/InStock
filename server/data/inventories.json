@@ -2,11 +2,11 @@
   {
     "id": "83433026-ca32-4c6d-bd86-a39ee8b7303e",
     "warehouseName": "Manhattan",
-    "itemName": "Gym Bag",
-    "description": "Made out of military-grade synthetic materials, this gym bag is highly durable, water resistant, and easy to clean.",
+    "itemName": "Gym Bag New",
+    "description": "Made out of military-grade synthetic materials, this g",
     "category": "Gear",
     "status": "Out of Stock",
-    "quantity": "0"
+    "quantity": 9
   },
   {
     "id": "8f16bd30-bab5-40af-aca2-b63d5fdd1acc",
@@ -40,19 +40,17 @@
   },
   {
     "id": "4dd464d6-90b8-4330-91e0-bd1217811bd9",
-    "warehouseID": "2922c286-16cd-4d43-ab98-c79f698aeab0",
     "warehouseName": "Manhattan",
-    "itemName": "Tent",
+    "itemName": "Tentgfdrg",
     "description": "Perfect for spring or summer camping, this 1-person tent is easy to pack and has the option to become modular when used with other products.",
     "category": "Gear",
-    "status": "In Stock",
-    "quantity": 800
+    "status": "Out of Stock",
+    "quantity": 0
   },
   {
     "id": "c0ba64a8-0ecb-4a7d-ab7f-2dbbd1d437b1",
-    "warehouseID": "2922c286-16cd-4d43-ab98-c79f698aeab0",
     "warehouseName": "Manhattan",
-    "itemName": "Winter Jacket",
+    "itemName": "Winter ",
     "description": "Made with a durable 100% waterproof shell, and breathable layers without a ton of vents and perforations. breathable layers without a ton of vents and perforations.",
     "category": "Apparel",
     "status": "Out of Stock",
@@ -678,21 +676,23 @@
     "quantity": 0
   },
   {
-    "id": "b2fb9986-5fa2-4eed-bb1c-2845feaa628b",
+    "id": "ecf2c35e-1a29-4531-82ab-3cf98dc472d9",
     "warehouseName": "Manhattan",
-    "itemName": "a",
-    "description": "a",
+    "itemName": "svae",
+    "description": "fdwr",
     "warehouseID": "2922c286-16cd-4d43-ab98-c79f698aeab0",
     "category": "Gear",
-    "quantity": "4"
+    "status": "In Stock",
+    "quantity": 5
   },
   {
-    "id": "10e777d5-94b3-487b-842f-fd133e4a5677",
-    "warehouseName": "Santa Monica",
-    "itemName": "ads",
-    "description": "nas",
-    "warehouseID": "89898957-04ba-4bd0-9f5c-a7aea7447963",
-    "category": "Accessories",
-    "quantity": "5"
+    "id": "bbc36446-1fbf-4066-b50a-2b207f6dc539",
+    "warehouseName": "Manhattan",
+    "itemName": "new",
+    "description": "new",
+    "warehouseID": "2922c286-16cd-4d43-ab98-c79f698aeab0",
+    "category": "Gear",
+    "status": "Out of Stock",
+    "quantity": 0
   }
 ]
