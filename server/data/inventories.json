@@ -1,23 +1,12 @@
 [
   {
     "id": "83433026-ca32-4c6d-bd86-a39ee8b7303e",
-    "warehouseID": "2922c286-16cd-4d43-ab98-c79f698aeab0",
     "warehouseName": "Manhattan",
     "itemName": "Gym Bag",
     "description": "Made out of military-grade synthetic materials, this gym bag is highly durable, water resistant, and easy to clean.",
     "category": "Gear",
     "status": "Out of Stock",
-    "quantity": 0
-  },
-  {
-    "id": "a193a6a7-42ab-4182-97dc-555ee85e7486",
-    "warehouseID": "2922c286-16cd-4d43-ab98-c79f698aeab0",
-    "warehouseName": "Manhattan",
-    "itemName": "Hoodie",
-    "description": "A simple 100% cotton hoodie, this is an essential piece for any wardrobe.",
-    "category": "Apparel",
-    "status": "Out of Stock",
-    "quantity": 0
+    "quantity": "0"
   },
   {
     "id": "8f16bd30-bab5-40af-aca2-b63d5fdd1acc",
@@ -687,5 +676,23 @@
     "category": "Health",
     "status": "Out of Stock",
     "quantity": 0
+  },
+  {
+    "id": "b2fb9986-5fa2-4eed-bb1c-2845feaa628b",
+    "warehouseName": "Manhattan",
+    "itemName": "a",
+    "description": "a",
+    "warehouseID": "2922c286-16cd-4d43-ab98-c79f698aeab0",
+    "category": "Gear",
+    "quantity": "4"
+  },
+  {
+    "id": "10e777d5-94b3-487b-842f-fd133e4a5677",
+    "warehouseName": "Santa Monica",
+    "itemName": "ads",
+    "description": "nas",
+    "warehouseID": "89898957-04ba-4bd0-9f5c-a7aea7447963",
+    "category": "Accessories",
+    "quantity": "5"
   }
 ]
