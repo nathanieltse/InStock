@@ -31,7 +31,7 @@ const Modal = ({ currentWarehouse, currentInventory, hideModal, displayModal, de
                     </div>
                 </div>
             </section>
-      </div>
+        </div>
       </>
 
       :
@@ -53,7 +53,7 @@ const Modal = ({ currentWarehouse, currentInventory, hideModal, displayModal, de
                     </div>
                 </div>
             </section>
-      </div>
+        </div>
       </>
     )
 }

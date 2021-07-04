@@ -68,11 +68,10 @@ class WarehouseForm extends Component {
 
     handleAdd = (e) => {
         e.preventDefault()
-        //add warehouse
         const {name, address, city, country, contactName, position, phone, email} = this.state.form
-        if (this.ifEmailValid(this.state.data.email)){
-            if (this.ifNumbervalid(this.state.data.phone)){
-                if (name, address, city, country, contactName, position, phone, email) {
+        if (email && this.ifEmailValid(this.state.data.email)){
+            if (phone && this.ifNumbervalid(this.state.data.phone)){
+                if (name && address && city && country && contactName && position && phone && email) {
                     const data = {
                         "name": this.state.data.name,
                         "address": this.state.data.address,
@@ -94,16 +93,15 @@ class WarehouseForm extends Component {
                 } else {
                     alert("field can't be empty!")
                 }
-            }
-            
-        }
+            }    
+        } 
     }
 
     handleEdit = (e) =>{
         e.preventDefault()
         const {name, address, city, country, contactName, position, phone, email} = this.state.form
-        if (this.ifEmailValid(this.state.data.email)){
-            if (this.ifNumbervalid(this.state.data.phone)){
+        if (email && this.ifEmailValid(this.state.data.email)){
+            if (phone && this.ifNumbervalid(this.state.data.phone)){
                 if (name && address && city && country && contactName && position && phone && email){
                     
                     axios
@@ -145,7 +143,7 @@ class WarehouseForm extends Component {
     }
 
     ifNumbervalid = (phone) => {
-        let format = new RegExp (/^[\+]?[1]?[\ ]?[(]?[0-9]{3}[)]?[\ ]?([0-9]{3})[-]?([0-9]{4})$/)
+        let format = new RegExp (/^[+]?[1]?[ ]?[(]?[0-9]{3}[)]?[ ]?([0-9]{3})[- ]?([0-9]{4})$/)
         if(phone.match(format)){
             return true
         } else {
@@ -155,8 +153,12 @@ class WarehouseForm extends Component {
 
     render(){
         return (
-                <form className="warehouseform" onSubmit={this.props.match.params.warehousesId ? this.handleEdit : this.handleAdd}>
-                    <MainHeader navigate={this.props} headerName={this.props.match.params.warehousesId ? "Edit Form" : "Add Warehouse"}/>
+                <form 
+                    className="warehouseform" 
+                    onSubmit={this.props.match.params.warehousesId ? this.handleEdit : this.handleAdd}>
+                    <MainHeader 
+                        navigate={this.props} 
+                        headerName={this.props.match.params.warehousesId ? "Edit Form" : "Add Warehouse"}/>
                     <div className="warehouseform__wrapper">
                         <div className="warehouseform__left">
                             <h2 className="warehouseform__title">Warehouse Details</h2>
@@ -255,7 +257,9 @@ class WarehouseForm extends Component {
                     </div>
                     <div className="warehouseform__action">
                         <button className="warehouseform__cancel" onClick={this.handleCancel}>Cancel</button>
-                        <button type="submit" className="warehouseform__submit">{this.props.match.params.warehousesId ? "Save" : "+ Add Warehouse"}</button>
+                        <button type="submit" className="warehouseform__submit">
+                            {this.props.match.params.warehousesId ? "Save" : "+ Add Warehouse"}
+                        </button>
                     </div>
                 </form>
                 

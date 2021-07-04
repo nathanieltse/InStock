@@ -51,7 +51,9 @@ function ListingCard({ data, pagePath, showWarehouseModal, showInventoryModal })
                 </section>
                 <section className="listingcard__item">
                     <h4 className="listingcard__title">STATUS</h4>
-                    <h4 className={data.status === "In Stock" ? "listingcard__status--active" : "listingcard__status--inactive"}>{data.status? data.status.toUpperCase(): "loading ..."}</h4>
+                    <h4 className={data.status === "In Stock" ? "listingcard__status--active" : "listingcard__status--inactive"}>
+                        {data.status? data.status.toUpperCase(): "loading ..."}
+                    </h4>
                 </section>
                 <section className="listingcard__item listingcard__item--secondary">
                     <h4 className="listingcard__title">CATEGORY</h4>

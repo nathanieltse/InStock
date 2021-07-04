@@ -10,15 +10,13 @@ const SearchHeader = ({addItemPath, value, pagePath}) =>{
                         className="search-header__form-input"
                         type="text"
                         name="search"
-                        placeholder="Search..."
-                    />
+                        placeholder="Search..."/>
                     <Link className="search-header__form-link" to={addItemPath}>
                         <input
                             className="search-header__form-submit"
                             type="submit"
                             name="addWarehouse"
-                            value={value}
-                            />
+                            value={value}/>
                     </Link>
                 </form>
             </section>

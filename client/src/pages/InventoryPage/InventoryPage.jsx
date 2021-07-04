@@ -17,29 +17,32 @@ class InventoryPage extends Component {
     }
 
     deleteInventory = (id) => {
-        axios.delete(`/api/inventory/${id}`)
-        .then(res => {
-            console.log(res)
-            this.hideModal()
-        axios.get(`/api/inventory`)
-            .then(res=> {
-                this.setState({
-                    inventoryList: res.data
-                })
-            }
-                )
-        })
+        axios
+            .delete(`/api/inventory/${id}`)
+            .then(res => {
+                this.hideModal()
+                axios
+                    .get(`/api/inventory`)
+                    .then(res=> {
+                        this.setState({
+                            inventoryList: res.data
+                        })
+                    })
+            })
     }
 
     showInventoryModal = (inventory) => {
-        this.setState
-        ({ displayModal: true,
+        this.setState({ 
+            displayModal: true,
             currentInventory: inventory
-         })
+        })
     }
 
     hideModal = () =>{
-        this.setState({ displayModal: false, currentInventory: null })
+        this.setState({ 
+            displayModal: false, 
+            currentInventory: null 
+        })
     }
 
     componentDidMount(){
@@ -60,23 +63,23 @@ class InventoryPage extends Component {
                     deleteInventory={this.deleteInventory}>
                 </Modal>
                 <BrowserRouter>
-                    <Switch>
-                        <section className="inventory-wrapper">
-                                <Route exact path="/inventory" render={routeProps => {
-                                    return <Listing 
-                                                showInventoryModal={this.showInventoryModal} 
-                                                dataList={this.state.inventoryList} 
-                                                pagePath="inventory" 
-                                                addItemPath="/inventory/add"
-                                                addItemValue="+ Add New Inventory"
-                                                listingColumn={["INVENTORY", "CATEGORY", "STATUS", "QTY", "WAREHOUSE" , "ACTIONS"]}
-                                                {...routeProps}/>
-                            }} />
-                            <Route path="/inventory/:inventoryId/detail" component={InventoryDetail}/>
-                            <Route path="/inventory/add" component={InventoryForm} />
-                            <Route path="/inventory/:inventoryId/edit" component={InventoryForm} />
-                        </section>
-                    </Switch>
+                    <section className="inventory-wrapper">
+                        <Switch>
+                                    <Route exact path="/inventory" render={routeProps => {
+                                        return <Listing 
+                                                    showInventoryModal={this.showInventoryModal} 
+                                                    dataList={this.state.inventoryList} 
+                                                    pagePath="inventory" 
+                                                    addItemPath="/inventory/add"
+                                                    addItemValue="+ Add New Inventory"
+                                                    listingColumn={["INVENTORY", "CATEGORY", "STATUS", "QTY", "WAREHOUSE" , "ACTIONS"]}
+                                                    {...routeProps}/>
+                                }} />
+                                <Route path="/inventory/:inventoryId/detail" component={InventoryDetail}/>
+                                <Route path="/inventory/add" component={InventoryForm} />
+                                <Route path="/inventory/:inventoryId/edit" component={InventoryForm} />
+                        </Switch>
+                    </section>
                 </BrowserRouter>
                 <Footer />
             </>

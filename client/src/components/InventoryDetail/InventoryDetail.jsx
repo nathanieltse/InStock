@@ -4,24 +4,17 @@ import "./InventoryDetail.scss"
 import { URL } from "../../utils/api"
 import MainHeader from '../MainHeader/MainHeader'
 
-const status = false;
-
 class InventoryDetail extends Component {
     state = {
         inventoryItem: null
     }
     componentDidMount = () => {
-        axios.get(`${URL}/inventory/${this.props.match.params.inventoryId}`)
-            .then(res => {
-                this.setState({
-                    inventoryItem: res.data[0]
-                })
-                console.log(this.state.inventoryItem)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        axios
+            .get(`${URL}/inventory/${this.props.match.params.inventoryId}`)
+            .then(res => this.setState({inventoryItem: res.data[0]}))
+            .catch(err => console.log(err))
     }
+    
     render() {
 
         return (
