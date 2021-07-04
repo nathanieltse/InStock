@@ -106,7 +106,7 @@
 
 }
 
-@mixin  button-warning {
+@mixin button-warning {
     background-color: $support-color-red;
     color:$white
 }
@@ -137,12 +137,9 @@
         color:$secondary-color-slate
     }
 
-    &:active {
-        border:1px solid $primary-color-indigo;
-    }
-
     &:focus{
         outline:none;
+        border:1px solid $primary-color-indigo;
     }
 
     
@@ -150,6 +147,10 @@
         font-size: $normal-m-body-font;
         line-height: $normal-m-body-line-height;
     }
+}
+
+@mixin formfield-error {
+    border:1px solid $support-color-red;
 }
 
 @mixin element-body {
@@ -161,30 +162,6 @@
 
     @include tablet{
         top:-5.5rem;
-    }
-}
-
-@mixin radio-btn-text-inactive{
-    margin-left: 0.5rem;
-    color:$secondary-color-slate;
-    font-size: $mobile-m-body-font;
-    line-height: $mobile-m-body-line-height;
-
-    @include tablet {
-        font-size: $normal-m-body-font;
-        line-height: $normal-m-body-line-height;
-    }
-}
-
-@mixin radio-btn-text-active{
-    margin-left: 0.5rem;
-    color:$primary-color-black;
-    font-size: $mobile-m-body-font;
-    line-height: $mobile-m-body-line-height;
-
-    @include tablet {
-        font-size: $normal-m-body-font;
-        line-height: $normal-m-body-line-height;
     }
 }
 

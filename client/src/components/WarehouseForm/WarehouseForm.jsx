@@ -140,7 +140,7 @@ class WarehouseForm extends Component {
     }
 
     ifNumbervalid = (phone) => {
-        // let format = new RegExp (/^[\+1]?[(]?[0-9]{3})[)]?[-]?([0-9]{3})[-]?([0-9]{4})$/)
+        let format = new RegExp (/^[\+1]?[(]?[0-9]{3})[)]?[-]?([0-9]{3})[-]?([0-9]{4})$/)
         if(phone){
             return true
         } else {
@@ -159,7 +159,7 @@ class WarehouseForm extends Component {
                             <input 
                                 placeholder="Warehouse Name" 
                                 name="name" 
-                                className="warehouseform__input"
+                                className={this.state.form.name ? "warehouseform__input" : "warehouseform__input warehouseform__input--error"}
                                 value={this.state.data? this.state.data.name : ""}
                                 onChange={this.handleChange}/>
                             <div className={this.state.form.name ? "warehouseform__warning--valid" : "warehouseform__warning"}>
@@ -170,7 +170,7 @@ class WarehouseForm extends Component {
                             <input 
                                 placeholder="Street Address" 
                                 name="address" 
-                                className="warehouseform__input"
+                                className={this.state.form.address ? "warehouseform__input" : "warehouseform__input warehouseform__input--error"}
                                 value={this.state.data? this.state.data.address : ""}
                                 onChange={this.handleChange}/>
                             <div className={this.state.form.address ? "warehouseform__warning--valid" : "warehouseform__warning"}>
@@ -181,7 +181,7 @@ class WarehouseForm extends Component {
                             <input 
                                 placeholder="City" 
                                 name="city" 
-                                className="warehouseform__input"
+                                className={this.state.form.city ? "warehouseform__input" : "warehouseform__input warehouseform__input--error"}
                                 value={this.state.data? this.state.data.city : ""}
                                 onChange={this.handleChange}/>
                             <div className={this.state.form.city ? "warehouseform__warning--valid" : "warehouseform__warning"}>
@@ -192,7 +192,7 @@ class WarehouseForm extends Component {
                             <input 
                                 placeholder="Country" 
                                 name="country" 
-                                className="warehouseform__input"
+                                className={this.state.form.country ? "warehouseform__input" : "warehouseform__input warehouseform__input--error"}
                                 value={this.state.data? this.state.data.country : ""}
                                 onChange={this.handleChange}/>
                             <div className={this.state.form.country ? "warehouseform__warning--valid" : "warehouseform__warning"}>
@@ -206,7 +206,7 @@ class WarehouseForm extends Component {
                             <input 
                                 placeholder="Contact Name" 
                                 name="contactName" 
-                                className="warehouseform__input"
+                                className={this.state.form.contactName ? "warehouseform__input" : "warehouseform__input warehouseform__input--error"}
                                 value={this.state.data? this.state.data.contactName : ""}
                                 onChange={this.handleChange}/>
                             <div className={this.state.form.contactName ? "warehouseform__warning--valid" : "warehouseform__warning"}>
@@ -217,7 +217,7 @@ class WarehouseForm extends Component {
                             <input 
                                 placeholder="Position" 
                                 name="position" 
-                                className="warehouseform__input"
+                                className={this.state.form.position ? "warehouseform__input" : "warehouseform__input warehouseform__input--error"}
                                 value={this.state.data? this.state.data.position : ""}
                                 onChange={this.handleChange}/>
                             <div className={this.state.form.position ? "warehouseform__warning--valid" : "warehouseform__warning"}>
@@ -228,7 +228,7 @@ class WarehouseForm extends Component {
                             <input 
                                 placeholder="Phone Number" 
                                 name="phone" 
-                                className="warehouseform__input"
+                                className={this.state.form.phone ? "warehouseform__input" : "warehouseform__input warehouseform__input--error"}
                                 value={this.state.data? this.state.data.phone : ""}
                                 onChange={this.handleChange}/>
                             <div className={this.state.form.phone ? "warehouseform__warning--valid" : "warehouseform__warning"}>
@@ -239,7 +239,7 @@ class WarehouseForm extends Component {
                             <input 
                                 placeholder="Email" 
                                 name="email" 
-                                className="warehouseform__input"
+                                className={this.state.form.email ? "warehouseform__input" : "warehouseform__input warehouseform__input--error"}
                                 value={this.state.data? this.state.data.email : ""}
                                 onChange={this.handleChange}/>
                             <div className={this.state.form.email ? "warehouseform__warning--valid" : "warehouseform__warning"}>

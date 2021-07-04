@@ -43,7 +43,7 @@ class InventoryDetail extends Component {
                         <div className="inventoryDetail__right">
                             <section className="inventoryDetail__right-section">
                                 <h4 className="inventoryDetail__right-title">STATUS</h4>
-                                <p className={`inventoryDetail__text--status inventoryDetail__text ${this.state.inventoryItem.status === "In Stock" ? "inventoryDetail__text--stock" : "inventoryDetail__text--nostock"}`}>{this.state.inventoryItem.status}</p>
+                                <h4 className={`inventoryDetail__text--status inventoryDetail__text ${this.state.inventoryItem.status === "In Stock" ? "inventoryDetail__text--stock" : "inventoryDetail__text--nostock"}`}>{this.state.inventoryItem.status}</h4>
                                 <h4 className="inventoryDetail__right-title" >WAREHOUSE</h4>
                                 <p className="inventoryDetail__text">{this.state.inventoryItem.warehouseName}</p>
                             </section>

@@ -45,6 +45,7 @@
     &__input{
         @include formfield;
         margin-bottom: 0;
+
         &--select{
             background-image: url('../../assets/Icons/arrow_drop_down-24px.svg') ;
             background-repeat: no-repeat;
@@ -55,6 +56,10 @@
             height: 7rem;
             resize: none;
         }
+
+        &--error{
+            @include formfield-error;
+        }
     }
     &__status{
         @include flex-row{
@@ -62,6 +67,7 @@
             justify-content:space-between;
         }
         &-label{
+            @include medium-body-text;
             width: 50%;
             padding:0 2rem 0 .5rem;
         }

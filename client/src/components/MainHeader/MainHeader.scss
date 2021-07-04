@@ -12,27 +12,30 @@
         justify-content: space-between;
         align-items: center;
     }
+
     &__left{
         @include flex-row{
             justify-content: flex-start;
             
         }
         padding:1.5rem 0;
+    }
 
-        &__img{
-            padding-right: .25rem;
-            margin-left: 1rem;
-            cursor: pointer;
+    &__img{
+        padding-right: .25rem;
+        margin-left: 1rem;
+        cursor: pointer;
 
-            @include desktop{
-                margin-left: 1.75rem;
-            }
+        @include desktop{
+            margin-left: 1.75rem;
         }
+    }
 
-            &__title{
-                margin: 0;
-            }
-        }
+    &__title{
+        margin: 0 0 0 $small-space;
+    }
+    
+
     &__right{
         &-button{
             @include button-cta;
@@ -49,5 +52,9 @@
                 display: block;
             }
         }
+    }
+
+    &__link{
+        text-decoration: none;
     }
 }

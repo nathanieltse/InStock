@@ -42,6 +42,10 @@
     &__input{
         @include formfield;
         margin-bottom: 0;
+
+        &--error{
+            @include formfield-error;
+        }
     }
 
     &__warning{
