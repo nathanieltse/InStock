@@ -199,24 +199,25 @@ class InventoryForm extends Component {
                         <label htmlFor="status" className="inventoryForm__label">Status</label>
                             <div className="inventoryForm__status">
                                 <div className={this.state.data.status === "In Stock" ? "" : "inventoryForm__status-slate"}>
+                                    
                                     <input
+                                        for="InStock"   
                                         type="radio"
-                                        id="status"
                                         name="status"
                                         checked={this.state.data && this.state.data.status === "In Stock"? "checked": "" }
                                         value="In Stock"
                                         onChange={this.handleChange} />
-                                    <label htmlFor="status" className="inventoryForm__status-label">In Stock</label>
+                                    <label htmlFor="status" className="inventoryForm__status-label" >In Stock</label>
                                 </div>
                                 <div className={this.state.data.status === "Out of Stock" ? "" : "inventoryForm__status-slate" }>
+                                    
                                     <input
                                         type="radio"
-                                        id="status"
                                         name="status"
                                         checked={this.state.data && this.state.data.status === "Out of Stock" ? "checked" : ""}
                                         value="Out of Stock"
                                         onChange={this.handleChange} />
-                                    <label htmlFor="status" className="inventoryForm__status-label">Out of Stock</label>
+                                    <label htmlFor="status" className="inventoryForm__status-label" >Out of Stock</label>
                                 </div>
                             </div>
 
