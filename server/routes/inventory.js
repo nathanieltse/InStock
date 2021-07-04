@@ -77,12 +77,12 @@ router.put('/inventory/:inventoryId/edit', ((req, res) => {
     let inventoryId = req.params.inventoryId;
     
     //remember to send warehouseId from front-end
-    const {warehouseId,  warehouseName, itemName, description, category, status, quantity } = req.body;
+    const {warehouseID,  warehouseName, itemName, description, category, status, quantity } = req.body;
 
-     if (warehouseId, warehouseName && itemName && description && category && status && quantity) {
+     if (warehouseID, warehouseName && itemName && description && category && status && quantity) {
         const newInventoryInfo = {
             "id": inventoryId,
-            warehouseId,
+            warehouseID,
             warehouseName,
             itemName,
             description,
