@@ -29,7 +29,10 @@ class InventoryDetail extends Component {
                 <p>Loading...</p>
                 :
                 <div className="inventoryDetail">
-                    <MainHeader headerName={this.state.inventoryItem.itemName} editInventoryId={this.state.inventoryItem.id} navigate={this.props}/>
+                    <MainHeader 
+                        headerName={this.state.inventoryItem.itemName} 
+                        editInventoryId={this.state.inventoryItem.id} 
+                        navigate={this.props}/>
                     <div className="inventoryDetail__wrapper">
                         <div className="inventoryDetail__left">
                             <section className="inventoryDetail__left-section">

@@ -25,6 +25,7 @@ class WarehouseMainDisplay extends Component {
         axios.delete(`/api/warehouses/${id}`)
         .then(res => {
             console.log(res)
+            this.hideModal()
             getWarehouses()
             .then(res=> {
                 this.setState({
@@ -63,8 +64,8 @@ class WarehouseMainDisplay extends Component {
             <>
                 <PageHeader path={this.props.match.url}/> 
                 <Modal 
-                    display={this.state.displayModal} 
-                    hide={this.hideModal}
+                    displayModal={this.state.displayModal} 
+                    hideModal={this.hideModal}
                     showWarehouseModal={this.showWarehouseModal} 
                     currentWarehouse={this.state.currentWarehouse} 
                     deleteWarehouse={this.deleteWarehouse}>
