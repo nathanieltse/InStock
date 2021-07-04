@@ -58,7 +58,7 @@ router.put('/warehouses/:warehouseId',((req,res)=>{
     fs.writeFile(__dirname + '/../data/warehouses.json', JSON.stringify(newWarehouseDataSet, null, 2), (err1)=> {
         fs.writeFile(__dirname + '/../data/inventories.json', JSON.stringify(newInventoryDataSet, null, 2), (err2)=> {
             if(err1 || err2){
-                throw Error()
+                console.log(err1 || err2)
             } else {
                 res.status(200).json("warehouse info updated")
             }

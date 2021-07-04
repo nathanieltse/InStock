@@ -105,7 +105,6 @@ router.put('/inventory/:inventoryId/edit', ((req, res) => {
                  res.status(200).json("Inventory info updated")
              }
          })
-         res.status(200).json("Item Added")
     }
 }))
 
