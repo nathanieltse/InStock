@@ -7,12 +7,28 @@ import Footer from '../../components/PageFooter/PageFooter'
 import './InventoryPage.scss'
 import Modal from "../../components/Modal/Modal"
 import InventoryForm from "../../components/InventoryForm/InventoryForm"
+import InventoryDetail from "../../components/InventoryDetail/InventoryDetail"
 
 class InventoryPage extends Component {
     state={
         inventoryList:[],
         displayModal: false,
         currentInventory: null,
+    }
+
+    deleteInventory = (id) => {
+        axios.delete(`/api/inventory/${id}`)
+        .then(res => {
+            console.log(res)
+            this.hideModal()
+        axios.get(`/api/inventory`)
+            .then(res=> {
+                this.setState({
+                    inventoryList: res.data
+                })
+            }
+                )
+        })
     }
 
     showInventoryModal = (inventory) => {
@@ -23,7 +39,7 @@ class InventoryPage extends Component {
     }
 
     hideModal = () =>{
-        this.setState({ displayModal: false })
+        this.setState({ displayModal: false, currentInventory: null })
     }
 
     componentDidMount(){
@@ -37,7 +53,7 @@ class InventoryPage extends Component {
             <>
                 <PageHeader path={this.props.match.url}/> 
                 <Modal displayModal={this.state.displayModal} hideModal={this.hideModal}
-                showInventoryModal={this.showInventoryModal} currentInventory={this.state.currentInventory}>
+                showInventoryModal={this.showInventoryModal} currentInventory={this.state.currentInventory} deleteInventory={this.deleteInventory}>
                 </Modal>
                 <BrowserRouter>
                     <Switch>
@@ -53,7 +69,8 @@ class InventoryPage extends Component {
                                                 addItemValue="+ Add New Inventory"
                                                 listingColumn={["INVENTORY", "CATEGORY", "STATUS", "QTY", "WAREHOUSE" , "ACTIONS"]}
                                                 {...routeProps}/>
-                                }} />
+                            }} />
+                            <Route path="/inventory/:inventoryId/detail" component={InventoryDetail}/>
                             <Route path="/inventory/add" component={InventoryForm} />
                             <Route path="/inventory/:inventoryId/edit" component={InventoryForm} />
                         </section>

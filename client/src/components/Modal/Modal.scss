@@ -21,18 +21,21 @@
     
 
     &-container__style{
+        @include flex-column{
+            justify-content: space-between;
+        };
         width: 90%;
         margin: 0 auto;
      }
     
     &-button__container{
-        display:flex;
-        flex-direction: row-reverse;
-        margin-bottom: 2rem;
+            display:flex;
+            flex-direction: row-reverse;
+            margin-bottom: 2rem;
     }
 
     &-body__style{
-        margin-bottom: 15rem;
+        margin-bottom: 20rem;
         @include tablet{
         width: 34rem;
         margin-bottom:1.5rem;
@@ -42,13 +45,12 @@
     &-title__style{
         margin: 2rem 0;
         @include tablet{
-        font-size: $normal-header-font;
-        font-weight: $weight-semi;
-        margin-top:1.5rem;
+            margin-top:2rem;
         }
     }
 
     &-image__style{
+        padding: $small-space;
         display:flex;
         flex-direction: column-reverse;
         position: absolute;
@@ -63,14 +65,14 @@
         left:50%;
         transform: translate(-50%,-50%);
         @include tablet{
-        position:fixed;
-        background: white;
-        width: 42rem;
-        height: auto;
-        top:50%;
-        left:50%;
-        transform: translate(-50%,-50%);
-        border-radius: 3px;
+            position:fixed;
+            background: white;
+            width: 42rem;
+            height: auto;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            border-radius: 3px;
         }
     
       }

@@ -3,9 +3,10 @@ import Actions from "../Actions/Actions"
 import chevron from "../../assets/Icons/chevron_right-24px.svg"
 import "./ListingCard.scss"
 import { Link } from "react-router-dom";
+import Modal from '../Modal/Modal'
 
-function ListingCard({ data, pagePath, showDeleteModal, display, hide, route , displayModal, hideModal, showInventoryModal}) {
-    
+function ListingCard({ data, pagePath, showDeleteModal, showInventoryModal }) {
+ 
     return (
         pagePath === "warehouse" ?
         <>
@@ -31,7 +32,10 @@ function ListingCard({ data, pagePath, showDeleteModal, display, hide, route , d
                     <p className="listingcard__text">{data.contact.email}</p>
                 </section>
                 <section className="listingcard__item">
-                    <Actions path={data.id} warehouse={data} showDeleteModal={showDeleteModal} hide={hide} display={display}/>
+                    <Actions 
+                        editPath={`/warehouses/${data.id}/edit`} 
+                        showDeleteModal={() => showDeleteModal(data)} 
+                    />
                 </section>
             </article>
         </>
@@ -40,14 +44,14 @@ function ListingCard({ data, pagePath, showDeleteModal, display, hide, route , d
             <article className="listingcard">
                 <section className="listingcard__item listingcard__item--priority">
                     <h4 className="listingcard__title">INVENTORY ITEM</h4>
-                        <Link className="listingcard__link" to={`/inventory/${data.id}`} >
+                        <Link className="listingcard__link" to={ `/inventory/${data.id}/detail`} >
                             <h3 className="listingcard__main-text">{data.itemName}</h3>
-                            <img className="listingcard__arrow-icon" src={chevron} alt="expand warehouse detail"/>
+                            <img className="listingcard__arrow-icon" src={chevron} alt="expand inventory detail"/>
                         </Link>
                 </section>
                 <section className="listingcard__item">
                     <h4 className="listingcard__title">STATUS</h4>
-                    <p className={data.status === "In Stock" ? "listingcard__status--active" : "listingcard__status--inactive"}>{data.status.toUpperCase()}</p>
+                    <p className={data.status === "In Stock" ? "listingcard__status--active" : "listingcard__status--inactive"}>{data.status? data.status.toUpperCase(): "loading ..."}</p>
                 </section>
                 <section className="listingcard__item listingcard__item--secondary">
                     <h4 className="listingcard__title">CATEGORY</h4>
@@ -66,8 +70,12 @@ function ListingCard({ data, pagePath, showDeleteModal, display, hide, route , d
                     </section>
                 }
                 <section className="listingcard__item">
-                    <Actions  path={data.id} route={route} inventory={data} displayModal={displayModal} hideModal={hideModal}
-                        showInventoryModal={showInventoryModal}/>
+                    <Actions 
+                        editPath={`/inventory/${data.id}/edit`} 
+                        showDeleteModal={() => showInventoryModal(data)} 
+                        id={data.id}
+                    />
+                    <Modal id={data.id}/>
                 </section>
             </article>
         </>

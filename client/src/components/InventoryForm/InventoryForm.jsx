@@ -2,17 +2,14 @@ import { Component } from 'react'
 import axios from 'axios'
 import MainHeader from '../MainHeader/MainHeader'
 import errorIcon from '../../assets/Icons/error-24px.svg'
-//import { addWarehouse } from "../../utils/api"
+import { URL } from "../../utils/api.js"
 import { getWarehouses, addInventory } from "../../utils/api"
 
 import './InventoryForm.scss'
 
-const edit = false
 
 let warehouseData = [];
 let categories = [];
-
-
 
 class InventoryForm extends Component {
     state = {
@@ -22,7 +19,6 @@ class InventoryForm extends Component {
             description: false,
             itemName: false,
             quantity:false,
-            status:false,
             warehouseName:false,
         }
     }
@@ -43,10 +39,9 @@ class InventoryForm extends Component {
                     categories.push(item.category)
                 })
         })
-        if (edit) {
+        if (this.props.match.params.inventoryId) {
             axios
-                // .get(`/api/inventory/${this.props.match.params.inventoryId}`)
-                .get(`/api/inventory/9b4f79ea-0e6c-4e59-8e05-afd933d0b3d3`)
+                .get(`/api/inventory/${this.props.match.params.inventoryId}`)
                 .then(res => {
                     const { category, description, itemName, status,id,  quantity, warehouseName } = res.data[0]
                     this.setState({
@@ -75,23 +70,26 @@ class InventoryForm extends Component {
 
     handleAdd = (e) => {
         e.preventDefault()
-        const { category, description, itemName,status, quantity, warehouseName } = this.state.data
+        const { category, description, itemName, quantity, warehouseName, status } = this.state.data
         let warehouseId = warehouseData.find(warehouse => warehouse.name === warehouseName)
 
         if (category && description && itemName && quantity && warehouseName) {
+
             const data = {
-                "category": category,
-                "description": description,
-                "itemName": itemName,
-                "quantity": quantity,
-                "status": status,
+                category,
+                description,
+                itemName,
+                "quantity": status === "Out of Stock" ? "0" : quantity,
+                status,
                 "warehouseID": warehouseId.id,
-                "warehouseName": warehouseName
+                warehouseName
             }
+            console.log(data)
             
             addInventory(data)
                 .then((res => {
-                    console.log("posted")
+                    alert("Inventory Item Added")
+                    this.props.history.push("/inventory")
                 })).catch(err => {
                     console.log(err)
                 })
@@ -102,44 +100,52 @@ class InventoryForm extends Component {
 
     handleSave = (e) => {
         e.preventDefault()
-        const { category, description, itemName, status, quantity, warehouseName } = this.state.data
-
-        if (category && description && itemName && quantity && warehouseName) {
+        const { category, description, itemName, status, quantity,  warehouseName } = this.state.data
+        const id = this.props.match.params.inventoryId
+        console.log(status)
+        if (category && description && itemName && warehouseName) {
             let warehouseId = warehouseData.find(warehouse => warehouse.name === warehouseName)
-            console.log("put req")
+
             axios
-                .put(`/api/inventory/9b4f79ea-0e6c-4e59-8e05-afd933d0b3d3/edit`,
-                        {
+                .put(`${URL}/inventory/${id}/edit`,
+                        {   "id": id,
                             "category": category,
                             "description": description,
                             "itemName": itemName,
-                            "quantity": quantity,
+                            "quantity": status === "Out of Stock" ? "0" : quantity,
                             "status": status,
                             "warehouseID": warehouseId.id,
                             "warehouseName": warehouseName
                         }
                 )
-                .then(res => alert("Inventory Edited edited!"))
+                .then(res => {
+                    alert("Inventory Item Edited")
+                    this.props.history.push("/inventory")
+                })
                 .catch(err => console.log(err))
         } else {
             alert("field can't be empty!")
         }
     }
+    
 
     handleCancel = (e) => {
         e.preventDefault()
-        this.props.history.push("/")
+        this.props.history.push("/inventory")
     }
+
+
 
     render() {
         let uniqueCategories = categories.filter((category, index, array) => array.indexOf(category) === index);
-
+        const { category, quantity, status } = this.state.data
+        console.log(status,quantity)
         return (
-            (edit && this.state.data=== 0) ?
+            (this.props.match.params.inventoryId && this.state.data=== 0) ?
                 <p> Loading ... </p>  
             :
-            <form className="inventoryForm" onSubmit={edit ? this.handleSave : this.handleAdd}>
-                <MainHeader navigate={this.props} headerName={edit ? "Edit Inventory Item" : "Add New Inventory Item"} />
+                <form className="inventoryForm" onSubmit={this.props.match.params.inventoryId ? this.handleSave : this.handleAdd}>
+                    <MainHeader navigate={this.props} headerName={this.props.match.params.inventoryId ? "Edit Inventory Item" : "Add New Inventory Item"} />
                 <div className="inventoryForm__wrapper">
                     <div className="inventoryForm__left">
                         <h2 className="inventoryForm__title">Item Details</h2>
@@ -172,13 +178,13 @@ class InventoryForm extends Component {
 
                         <label htmlFor="category" className="inventoryForm__label">Category</label>
                             <select name="category" className="inventoryForm__input inventoryForm__input--select" onChange={this.handleChange}>
-                                    <option value={this.state.data ? this.state.data.category : "Please Select"} >{edit ? this.state.data.category : "Please Select"}</option>
+                                <option value={this.state.data ? this.state.data.category : "Please Select"} >{this.props.match.params.inventoryId ? this.state.data.category : "Please Select"}</option>
                                     {uniqueCategories.map(item => {
                                         return (<option key={item.id} value={`${item}`}  >{`${item} `} </option>)
                                     })}
                             </select>
 
-                            <div className={(this.state.data.category === "Please select" || !this.state.data.category) ? "inventoryForm__warning--valid" : "inventoryForm__warning"}>
+                            <div className={this.state.data.category  ? "inventoryForm__warning--valid" : "inventoryForm__warning"}>
                                 <img className="inventoryForm__warning-icon" src={errorIcon} alt="error icon" />
                                 <p className="inventoryForm__warning-text">This field is required</p>
                             </div>
@@ -188,51 +194,61 @@ class InventoryForm extends Component {
                         <h2 className="inventoryForm__title">Item Availability</h2>
                         <label htmlFor="status" className="inventoryForm__label">Status</label>
                             <div className="inventoryForm__status">
-                                <div className={this.state.data.status === "Out Of stock" ? "inventoryForm__status-slate" : ""}>
-                                    <input type="radio" id="status" name="status" value="In Stock" onChange={this.handleChange} />
+                                <div className={this.state.data.status === "In Stock" ? "" : "inventoryForm__status-slate"}>
+                                    <input
+                                        type="radio"
+                                        id="status"
+                                        name="status"
+                                        checked={this.state.data && this.state.data.status === "In Stock"? "checked": "" }
+                                        value="In Stock"
+                                        onChange={this.handleChange} />
                                     <label htmlFor="status" className="inventoryForm__status-label">In Stock</label>
                                 </div>
-                                <div className={this.state.data.status === "In Stock"? "inventoryForm__status-slate": "" }>
-                                    <input type="radio" id="status" name="status" value="Out Of stock" onChange={this.handleChange} />
+                                <div className={this.state.data.status === "Out of Stock" ? "" : "inventoryForm__status-slate" }>
+                                    <input
+                                        type="radio"
+                                        id="status"
+                                        name="status"
+                                        checked={this.state.data && this.state.data.status === "Out of Stock" ? "checked" : ""}
+                                        value="Out of Stock"
+                                        onChange={this.handleChange} />
                                     <label htmlFor="status" className="inventoryForm__status-label">Out of Stock</label>
                                 </div>
                             </div>
 
-                            <label htmlFor="quantity" className={this.state.data.status === "In Stock"   ? "inventoryForm__label" : "inventoryForm__label-hide"}>Quantity</label>
+                            <label htmlFor="quantity" className={this.state.data.status === "Out of Stock" ? "inventoryForm__label-hide" : "inventoryForm__label"}>Quantity</label>
                             <input
                                 placeholder="0"
                                 name="quantity"
-                                className={this.state.data.status === "In Stock"  ? "inventoryForm__input" : "inventoryForm__label-hide"}
-                                value={this.state.data ? this.state.data.quantity : ""}
+                                className={this.state.data.status === "Out of Stock" ? "inventoryForm__label-hide" : "inventoryForm__input"}
+                                value={this.state.data.status === "Out of stock" ? "0" : this.state.data.quantity}
                                 onChange={this.handleChange} />
 
-                            <div className={this.state.data.status ? "inventoryForm__warning--valid" : "inventoryForm__warning"}>
-                                <img className="inventoryForm__warning-icon" src={errorIcon} alt="error icon" />
-                                <p className="inventoryForm__warning-text">This field is required</p>
+                            <div className={this.state.data.status !== "In Stock" ? "inventoryForm__warning" : "inventoryForm__warning--valid"}
+                            >
+                                <img className={this.state.data.status === "Out of Stock" ? "hide" : "inventoryForm__warning-icon"} src={errorIcon} alt="error icon" />
+                                <p className={this.state.data.status === "Out of Stock" ? "hide" : "inventoryForm__warning-text"}>This field is required</p>
                             </div>
-
-                        
                         <label htmlFor="warehouseName" className="inventoryForm__label">Warehouse</label>
 
                             <select name="warehouseName" className="inventoryForm__input inventoryForm__input--select" onChange={this.handleChange}>
-                                <option value={this.state.data ? this.state.data.warehouseName : "Please Select"} selected>{edit ? this.state.data.warehouseName : "Please Select"}</option>
+                                <option value={this.state.data ? this.state.data.warehouseName : "Please Select"} value="Please Select">{this.props.match.params.inventoryId ? this.state.data.warehouseName : "Please Select"}</option>
                                     {warehouseData.map(item => {
                                         return (
-                                            <option key={item.id} value={`${item.name}`}  >{`${item.name} `}  </option>
+                                            <option key={item.id} value={`${item.name}`} >{`${item.name} `}</option>
                                         )
                                     })}
                                 
-                                <div className={(this.state.data.warehouseName === "Please select" || !this.state.data.warehouseName) ? "inventoryForm__warning--valid" : "inventoryForm__warning"}>
+                                <div className={this.state.data.warehouseName   ? "inventoryForm__warning--valid" : "inventoryForm__warning"}>
                                     <img className="inventoryForm__warning-icon" src={errorIcon} alt="error icon" />
                                     <p className="inventoryForm__warning-text">This field is required</p>
                                 </div>
-
                         </select>
                     </div>
                 </div>
                 <div className="inventoryForm__action">
                     <button className="inventoryForm__cancel" onClick={this.handleCancel}>Cancel</button>
-                    <button type="submit" className="inventoryForm__submit">{edit ? "Save" : "+ Add Item"}</button>
+                    <button type="submit" className="inventoryForm__submit">{this.props.match.params.inventoryId ? "Save" : "+ Add Item"}</button>
                 </div>
             </form>
 
