@@ -201,7 +201,6 @@ class InventoryForm extends Component {
                                 <div className={this.state.data.status === "In Stock" ? "" : "inventoryForm__status-slate"}>
                                     <input
                                         type="radio"
-                                        id="status"
                                         name="status"
                                         checked={this.state.data && this.state.data.status === "In Stock"? "checked": "" }
                                         value="In Stock"
@@ -211,7 +210,6 @@ class InventoryForm extends Component {
                                 <div className={this.state.data.status === "Out of Stock" ? "" : "inventoryForm__status-slate" }>
                                     <input
                                         type="radio"
-                                        id="status"
                                         name="status"
                                         checked={this.state.data && this.state.data.status === "Out of Stock" ? "checked" : ""}
                                         value="Out of Stock"
