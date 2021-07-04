@@ -221,7 +221,7 @@ class InventoryForm extends Component {
                                 placeholder="0"
                                 name="quantity"
                                 className={this.state.data.status === "Out of Stock" ? "inventoryForm__label-hide" : "inventoryForm__input"}
-                                value={this.state.data.status === "Out of stock" ? "0" : this.state.data.quantity}
+                                value={this.state.data.status === "Out of stock" ? "" : this.state.data.quantity}
                                 onChange={this.handleChange} />
 
                             <div className={this.state.data.status !== "In Stock" ? "inventoryForm__warning" : "inventoryForm__warning--valid"}
