@@ -86,8 +86,9 @@ class WarehouseForm extends Component {
                     }
                     addWarehouse(data)
                         .then(res => {
-                            alert("Warehouse edited!")
+                            alert("Warehouse Added!")
                             this.props.history.push("/")
+                            this.props.updateData(true)
                         })
                         .catch(err => console.log(err))
                 } else {
@@ -120,6 +121,7 @@ class WarehouseForm extends Component {
                         .then(res => {
                             alert("Warehouse edited!")
                             this.props.history.push("/")
+                            this.props.updateData(true)
                         })
                         .catch(err => console.log(err))
                 } else {
@@ -151,8 +153,10 @@ class WarehouseForm extends Component {
         }
     }
 
-    render(){
+    render() {
+        console.log(this.props)
         return (
+
                 <form 
                     className="warehouseform" 
                     onSubmit={this.props.match.params.warehousesId ? this.handleEdit : this.handleAdd}>

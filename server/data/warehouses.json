@@ -16,7 +16,7 @@
     "id": "5bf7bd6c-2b16-4129-bddc-9d37ff8539e9",
     "name": "King West",
     "address": "469 King Street West",
-    "city": "Toronto",
+    "city": "Torontooo",
     "country": "CAN",
     "contact": {
       "name": "Greame Lyon",
@@ -101,6 +101,19 @@
       "position": "Warehouse Manager",
       "phone": "+1 (646) 123-1234",
       "email": "vmendoza@instock.com"
+    }
+  },
+  {
+    "id": "af6129ca-f7a3-4904-85c1-4df6ceb3552b",
+    "name": "new",
+    "address": "new",
+    "city": "new",
+    "country": "new",
+    "contact": {
+      "name": "new",
+      "position": "new",
+      "phone": "+1 (646) 123-1234",
+      "email": "paujla@instock.com"
     }
   }
 ]
