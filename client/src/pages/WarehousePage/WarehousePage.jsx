@@ -61,9 +61,9 @@ class WarehouseMainDisplay extends Component {
             .catch(error => console.log(error))
     }
 
-    updateNewFormData = (data) => {
+    updateNewFormData = () => {
         this.setState({
-            isUpdated: data
+            isUpdated: true
         })
     }
 
@@ -109,7 +109,7 @@ class WarehouseMainDisplay extends Component {
                                     {...routeProps} />
                             }} />
                             <Route path="/warehouses/add" render={routeProps => {
-                                return <WarehouseForm updateData={(data) => this.updateNewFormData(data)}  {...routeProps}/>
+                                return <WarehouseForm updateData={() => this.updateNewFormData()}  {...routeProps}/>
                             }}/>
                             <Route path="/warehouses/:warehouseId/detail" render={routeProps => {
                                 return <WarehouseDetails
@@ -119,7 +119,7 @@ class WarehouseMainDisplay extends Component {
                                             {...routeProps}/>
                             }} />
                             <Route path="/warehouses/:warehousesId/edit" render={routeProps => {
-                                return <WarehouseForm updateData={(data) => this.updateNewFormData(data)} {...routeProps}/>
+                                return <WarehouseForm updateData={() => this.updateNewFormData()} {...routeProps}/>
                             }}/>
                             <Route path="/inventory/:inventoryId/detail" component={InventoryDetail} />
                             <Route path="/inventory/:inventoryId/edit" component={InventoryForm} />
