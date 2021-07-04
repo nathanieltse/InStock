@@ -5,19 +5,18 @@
 @use "../../partials/variables" as *;
  
 .listingcard{
+    @include element-block;
     @include flex-row{
         flex-wrap: wrap;
         justify-content: space-between;
         gap: $regular-space;
     }
     border-top: $divider;
-    padding: $normal-space;
    
     @include tablet{
         flex-wrap: nowrap;
         align-items: center;
         justify-content:none;
-        padding: $normal-space $medium-space;
     }
 
     &__item{

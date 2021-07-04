@@ -5,7 +5,7 @@ import "./ListingCard.scss"
 import { Link } from "react-router-dom";
 import Modal from '../Modal/Modal'
 
-function ListingCard({ data, pagePath, showDeleteModal, showInventoryModal }) {
+function ListingCard({ data, pagePath, showWarehouseModal, showInventoryModal }) {
  
     return (
         pagePath === "warehouse" ?
@@ -34,7 +34,7 @@ function ListingCard({ data, pagePath, showDeleteModal, showInventoryModal }) {
                 <section className="listingcard__item">
                     <Actions 
                         editPath={`/warehouses/${data.id}/edit`} 
-                        showDeleteModal={() => showDeleteModal(data)} 
+                        showDeleteModal={() => showWarehouseModal(data)} 
                     />
                 </section>
             </article>
@@ -51,7 +51,9 @@ function ListingCard({ data, pagePath, showDeleteModal, showInventoryModal }) {
                 </section>
                 <section className="listingcard__item">
                     <h4 className="listingcard__title">STATUS</h4>
-                    <p className={data.status === "In Stock" ? "listingcard__status--active" : "listingcard__status--inactive"}>{data.status? data.status.toUpperCase(): "loading ..."}</p>
+                    <h4 className={data.status === "In Stock" ? "listingcard__status--active" : "listingcard__status--inactive"}>
+                        {data.status? data.status.toUpperCase(): "loading ..."}
+                    </h4>
                 </section>
                 <section className="listingcard__item listingcard__item--secondary">
                     <h4 className="listingcard__title">CATEGORY</h4>

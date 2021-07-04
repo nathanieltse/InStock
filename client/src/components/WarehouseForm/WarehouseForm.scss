@@ -17,8 +17,8 @@
     }
 
     &__left,&__right{
+        @include element-block;
         @include flex-column;
-        padding:$medium-space $normal-space ;
 
         @include tablet{
             width: 50%;
@@ -42,6 +42,10 @@
     &__input{
         @include formfield;
         margin-bottom: 0;
+
+        &--error{
+            @include formfield-error;
+        }
     }
 
     &__warning{

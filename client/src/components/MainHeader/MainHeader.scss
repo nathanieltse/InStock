@@ -6,33 +6,29 @@
 
 
 .main-header{
+    @include element-block;
     border-bottom: $divider;
-    padding: 0 1.5rem ;
     @include flex-row{
         justify-content: space-between;
         align-items: center;
     }
+
     &__left{
         @include flex-row{
             justify-content: flex-start;
             
         }
-        padding:1.5rem 0;
+    }
 
-        &__img{
-            padding-right: .25rem;
-            margin-left: 1rem;
-            cursor: pointer;
+    &__img{
+        cursor: pointer;
+    }
 
-            @include desktop{
-                margin-left: 1.75rem;
-            }
-        }
+    &__title{
+        margin-left: $small-space;
+    }
+    
 
-            &__title{
-                margin: 0;
-            }
-        }
     &__right{
         &-button{
             @include button-cta;
@@ -49,5 +45,9 @@
                 display: block;
             }
         }
+    }
+
+    &__link{
+        text-decoration: none;
     }
 }

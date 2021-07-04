@@ -9,10 +9,10 @@
     @include element-body;
     
     &__wrapper{
+        @include element-block;
         @include flex-row{
             flex-wrap: wrap;
         }
-        padding:1.5rem;
 
         @include tablet{
             flex-wrap: nowrap;
@@ -22,31 +22,6 @@
             margin-left: 0.5rem;
         }
     }
-    // &__header{
-    //     border-bottom: $divider;
-    //     @include tablet{
-    //         @include flex-row{
-    //             justify-content: space-between;
-    //             align-items: center;
-    //         }
-    //     }
-    //     &-button{
-    //         @include button-cta;
-    //         @include button;
-    //         @include flex-row{
-    //             align-items: center;
-    //             justify-content: space-evenly;
-    //         }
-    //         margin-right: $medium-space;
-    //         color: $white;
-    //         &img{
-    //             color: $white;
-    //             @include tablet{
-    //                 margin-right: $small-space;
-    //             }
-    //         }
-    //     }
-    // }
 
     &__detail-container{
         width: 50%;

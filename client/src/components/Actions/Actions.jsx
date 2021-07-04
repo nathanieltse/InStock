@@ -8,13 +8,13 @@ function Actions({ editPath, showDeleteModal }) {
     
     return (
         <section className="actions" >
-            <Link className="actions__link">
+            <div className="actions__link">
                 <img
                     className="actions__delete"
                     src={deleteIcon}
-                    alt="Delete Icon" onClick={showDeleteModal}
-                />
-            </Link> 
+                    alt="Delete Icon" 
+                    onClick={showDeleteModal}/>
+            </div> 
             <Link className="actions__link" to={editPath}>
                 <img
                     className="actions__edit"
