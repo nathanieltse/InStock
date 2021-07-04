@@ -1,5 +1,14 @@
 [
   {
+    "id": "3ce124a4-78b0-4d80-91b9-11f9ced631a7",
+    "warehouseName": "Manhattan",
+    "itemName": "Phone Charger",
+    "description": "This USB-C phone charger features fast charging for the latest devices.",
+    "category": "Electronics",
+    "status": "In Stock",
+    "quantity": 99999
+  },
+  {
     "id": "c0ba64a8-0ecb-4a7d-ab7f-2dbbd1d437b1",
     "warehouseName": "King West",
     "itemName": "Winter Jacket",
@@ -625,5 +634,15 @@
     "category": "Electronics",
     "status": "In Stock",
     "quantity": 0
+  },
+  {
+    "id": "703d3fd3-3117-497d-9525-5fcea969acf8",
+    "warehouseName": "Santa Monica",
+    "itemName": "new",
+    "description": "new",
+    "warehouseID": "89898957-04ba-4bd0-9f5c-a7aea7447963",
+    "category": "Apparel",
+    "status": "In Stock",
+    "quantity": 5
   }
 ]
