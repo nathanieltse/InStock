@@ -14,6 +14,7 @@ class InventoryPage extends Component {
         inventoryList:[],
         displayModal: false,
         currentInventory: null,
+        isUpdated: false,
     }
 
     deleteInventory = (id) => {
@@ -51,6 +52,25 @@ class InventoryPage extends Component {
         .catch(error => console.log(error))
     }
 
+    updateNewFormData = () => {
+        this.setState({
+            isUpdated: true
+        })
+    }
+
+    componentDidUpdate = () => {
+        if (this.state.isUpdated) {
+            axios.get(`/api/inventory`)
+                .then(res => this.setState(
+                    {
+                        inventoryList: res.data,
+                        isUpdated: false
+                    }))
+                .catch(error => console.log(error))
+            
+        }
+    }
+
     render () {
         return (
             <>
@@ -76,8 +96,12 @@ class InventoryPage extends Component {
                                                     {...routeProps}/>
                                 }} />
                                 <Route path="/inventory/:inventoryId/detail" component={InventoryDetail}/>
-                                <Route path="/inventory/add" component={InventoryForm} />
-                                <Route path="/inventory/:inventoryId/edit" component={InventoryForm} />
+                            <Route path="/inventory/add" render={routeProps => {
+                                return <InventoryForm {...routeProps} updateData={this.updateNewFormData} />
+                                }} />
+                            <Route path="/inventory/:inventoryId/edit" render={routeProps => {
+                                return <InventoryForm {...routeProps} updateData={this.updateNewFormData}/>
+                                }} />
                         </Switch>
                     </section>
                 </BrowserRouter>

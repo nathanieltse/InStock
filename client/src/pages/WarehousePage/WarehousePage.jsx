@@ -19,6 +19,7 @@ class WarehouseMainDisplay extends Component {
         warehouseList: [],
         displayModal: false,
         currentWarehouse: null,
+        isUpdated: false,
     }
 
     deleteWarehouse = (id) => {
@@ -30,7 +31,8 @@ class WarehouseMainDisplay extends Component {
                 getWarehouses()
                 .then(res=> { console.log(res)
                     this.setState({
-                        warehouseList: res.data
+                        warehouseList: res.data,
+                        isUpdated: false
                     })
                 })
             })
@@ -70,9 +72,31 @@ class WarehouseMainDisplay extends Component {
             .then(data => {
                 this.setState({
                     warehouseList: data,
+                    isUpdate: false
                 });
             })
             .catch(error => console.log(error))
+    }
+
+    updateNewFormData = () => {
+        this.setState({
+            isUpdated: true
+        })
+    }
+
+    componentDidUpdate = () => {
+        if(this.state.isUpdated) {
+            axios
+                .get(`/api/warehouses`)
+                .then(res => res.data)
+                .then(data => {
+                    this.setState({
+                        warehouseList: data,
+                        isUpdated: false
+                    });
+                })
+                .catch(error => console.log(error))
+        }
     }
 
     render() {
@@ -101,7 +125,9 @@ class WarehouseMainDisplay extends Component {
                                     listingColumn={["WAREHOUSE", "ADDRESS", "CONTACT NAME", "CONTACT INFORMATION", "ACTIONS"]}
                                     {...routeProps} />
                             }} />
-                            <Route path="/warehouses/add" component={WarehouseForm} />
+                            <Route path="/warehouses/add" render={routeProps => {
+                                return <WarehouseForm updateData={() => this.updateNewFormData()}  {...routeProps}/>
+                            }}/>
                             <Route path="/warehouses/:warehouseId/detail" render={routeProps => {
                                 return <WarehouseDetails
                                             display={this.state.displayModal} hide={this.hideModal}
@@ -109,7 +135,9 @@ class WarehouseMainDisplay extends Component {
                                             listingColumn={["INVENTORY", "CATEGORY", "STATUS", "QTY", "ACTIONS"]}
                                             {...routeProps}/>
                             }} />
-                            <Route path="/warehouses/:warehousesId/edit" component={WarehouseForm} />
+                            <Route path="/warehouses/:warehousesId/edit" render={routeProps => {
+                                return <WarehouseForm updateData={() => this.updateNewFormData()} {...routeProps}/>
+                            }}/>
                             <Route path="/inventory/:inventoryId/detail" component={InventoryDetail} />
                             <Route path="/inventory/:inventoryId/edit" component={InventoryForm} />
 
