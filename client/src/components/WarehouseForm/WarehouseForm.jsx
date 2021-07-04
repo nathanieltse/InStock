@@ -70,51 +70,59 @@ class WarehouseForm extends Component {
         e.preventDefault()
         //add warehouse
         const {name, address, city, country, contactName, position, phone, email} = this.state.form
-        if (name, address, city, country, contactName, position, phone, email) {
-            const data = {
-                "name": this.state.data.name,
-                "address": this.state.data.address,
-                "city": this.state.data.city,
-                "country": this.state.data.country,
-                "contact": {
-                    "name": this.state.data.contactName,
-                    "position": this.state.data.position,
-                    "phone": this.state.data.phone,
-                    "email": this.state.data.email,
+        if (this.ifEmailValid(this.state.data.email)){
+            if (name, address, city, country, contactName, position, phone, email) {
+                const data = {
+                    "name": this.state.data.name,
+                    "address": this.state.data.address,
+                    "city": this.state.data.city,
+                    "country": this.state.data.country,
+                    "contact": {
+                        "name": this.state.data.contactName,
+                        "position": this.state.data.position,
+                        "phone": this.state.data.phone,
+                        "email": this.state.data.email,
+                    }
                 }
+                addWarehouse(data)
+                    .then(res => {
+                        alert("Warehouse edited!")
+                        this.props.history.push("/")
+                    })
+                    .catch(err => console.log(err))
+            } else {
+                alert("field can't be empty!")
             }
-            addWarehouse(data)
-                .then((res => {
-                    console.log(res)
-                })).catch(err => {
-                    console.log(err)
-            })
-        } else {
-            alert("field can't be empty!")
         }
     }
 
-    handleSave = (e) =>{
+    handleEdit = (e) =>{
         e.preventDefault()
         const {name, address, city, country, contactName, position, phone, email} = this.state.form
-        if (name && address && city && country && contactName && position && phone && email){
-            axios
-                .put(`/api/warehouses/${this.props.match.params.warehousesId}`,{
-                    "name":this.state.data.name,
-                    "address":this.state.data.address,
-                    "city":this.state.data.city,
-                    "country":this.state.data.country,
-                    "contact":{
-                        "name":this.state.data.contactName,
-                        "position":this.state.data.position,
-                        "phone":this.state.data.phone,
-                        "email":this.state.data.email,
-                    }
-                })
-                .then(res => alert("Warehouse edited!"))
-                .catch(err => console.log(err))
-        } else {
-            alert("field can't be empty!")
+        if (this.ifEmailValid(this.state.data.email)){
+            if (name && address && city && country && contactName && position && phone && email){
+                
+                axios
+                    .put(`/api/warehouses/${this.props.match.params.warehousesId}`,{
+                        "name":this.state.data.name,
+                        "address":this.state.data.address,
+                        "city":this.state.data.city,
+                        "country":this.state.data.country,
+                        "contact":{
+                            "name":this.state.data.contactName,
+                            "position":this.state.data.position,
+                            "phone":this.state.data.phone,
+                            "email":this.state.data.email,
+                        }
+                    })
+                    .then(res => {
+                        alert("Warehouse edited!")
+                        this.props.history.push("/")
+                    })
+                    .catch(err => console.log(err))
+            } else {
+                alert("field can't be empty!")
+            }
         }
     }
 
@@ -123,9 +131,26 @@ class WarehouseForm extends Component {
         this.props.history.push("/")
     }
 
+    ifEmailValid = (email) => {
+        if (email.includes('@instock.com')){
+            return true
+        } else {
+            return alert('Invalid email')
+        }
+    }
+
+    ifNumbervalid = (phone) => {
+        // let format = new RegExp (/^[\+1]?[(]?[0-9]{3})[)]?[-]?([0-9]{3})[-]?([0-9]{4})$/)
+        if(phone){
+            return true
+        } else {
+            return alert("Phone number format need to be +1(area code) 000-0000")
+        }
+    }
+
     render(){
         return (
-                <form className="warehouseform" onSubmit={this.props.match.params.warehousesId ? this.handleSave : this.handleAdd}>
+                <form className="warehouseform" onSubmit={this.props.match.params.warehousesId ? this.handleEdit : this.handleAdd}>
                     <MainHeader navigate={this.props} headerName={this.props.match.params.warehousesId ? "Edit Form" : "Add Warehouse"}/>
                     <div className="warehouseform__wrapper">
                         <div className="warehouseform__left">
