@@ -75,6 +75,7 @@ class WarehouseMainDisplay extends Component {
                 .then(data => {
                     this.setState({
                         warehouseList: data,
+                        isUpdated: false
                     });
                 })
                 .catch(error => console.log(error))
