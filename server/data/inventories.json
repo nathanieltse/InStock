@@ -636,5 +636,15 @@
     "category": "Electronics",
     "status": "In Stock",
     "quantity": 0
+  },
+  {
+    "id": "703d3fd3-3117-497d-9525-5fcea969acf8",
+    "warehouseName": "Santa Monica",
+    "itemName": "new",
+    "description": "new",
+    "warehouseID": "89898957-04ba-4bd0-9f5c-a7aea7447963",
+    "category": "Apparel",
+    "status": "In Stock",
+    "quantity": 5
   }
 ]
