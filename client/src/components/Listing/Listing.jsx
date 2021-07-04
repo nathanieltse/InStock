@@ -9,7 +9,10 @@ function Listing({ dataList, pagePath, addItemPath, addItemValue, listingColumn,
 
     return (
         <section className="listing">
-            <SearchHeader addItemPath={addItemPath} value={addItemValue} pagePath={pagePath}/>
+            <SearchHeader 
+                addItemPath={addItemPath} 
+                value={addItemValue} 
+                pagePath={pagePath}/>
             <section className="listing__labels-container">
                 {listingColumn.map((column, index) => {
                     return <Labels key={index} name={column} />
@@ -17,8 +20,17 @@ function Listing({ dataList, pagePath, addItemPath, addItemValue, listingColumn,
             </section>
             {dataList.map(item => {
                 return (
-                        <ListingCard key={item.id} data={item} pagePath={pagePath} showDeleteModal={showDeleteModal} hide={hide} display={display} route={route} displayModal={displayModal} hideModal={hideModal}
-                        showInventoryModal={showInventoryModal}/>
+                        <ListingCard 
+                            key={item.id} 
+                            data={item} 
+                            pagePath={pagePath} 
+                            showDeleteModal={showDeleteModal} 
+                            hide={hide} 
+                            display={display} 
+                            route={route} 
+                            displayModal={displayModal} 
+                            hideModal={hideModal}
+                            showInventoryModal={showInventoryModal}/>
                 )
             })}
         </section>

@@ -71,28 +71,31 @@ class WarehouseForm extends Component {
         //add warehouse
         const {name, address, city, country, contactName, position, phone, email} = this.state.form
         if (this.ifEmailValid(this.state.data.email)){
-            if (name, address, city, country, contactName, position, phone, email) {
-                const data = {
-                    "name": this.state.data.name,
-                    "address": this.state.data.address,
-                    "city": this.state.data.city,
-                    "country": this.state.data.country,
-                    "contact": {
-                        "name": this.state.data.contactName,
-                        "position": this.state.data.position,
-                        "phone": this.state.data.phone,
-                        "email": this.state.data.email,
+            if (this.ifNumbervalid(this.state.data.phone)){
+                if (name, address, city, country, contactName, position, phone, email) {
+                    const data = {
+                        "name": this.state.data.name,
+                        "address": this.state.data.address,
+                        "city": this.state.data.city,
+                        "country": this.state.data.country,
+                        "contact": {
+                            "name": this.state.data.contactName,
+                            "position": this.state.data.position,
+                            "phone": this.state.data.phone,
+                            "email": this.state.data.email,
+                        }
                     }
+                    addWarehouse(data)
+                        .then(res => {
+                            alert("Warehouse edited!")
+                            this.props.history.push("/")
+                        })
+                        .catch(err => console.log(err))
+                } else {
+                    alert("field can't be empty!")
                 }
-                addWarehouse(data)
-                    .then(res => {
-                        alert("Warehouse edited!")
-                        this.props.history.push("/")
-                    })
-                    .catch(err => console.log(err))
-            } else {
-                alert("field can't be empty!")
             }
+            
         }
     }
 
@@ -100,28 +103,30 @@ class WarehouseForm extends Component {
         e.preventDefault()
         const {name, address, city, country, contactName, position, phone, email} = this.state.form
         if (this.ifEmailValid(this.state.data.email)){
-            if (name && address && city && country && contactName && position && phone && email){
-                
-                axios
-                    .put(`/api/warehouses/${this.props.match.params.warehousesId}`,{
-                        "name":this.state.data.name,
-                        "address":this.state.data.address,
-                        "city":this.state.data.city,
-                        "country":this.state.data.country,
-                        "contact":{
-                            "name":this.state.data.contactName,
-                            "position":this.state.data.position,
-                            "phone":this.state.data.phone,
-                            "email":this.state.data.email,
-                        }
-                    })
-                    .then(res => {
-                        alert("Warehouse edited!")
-                        this.props.history.push("/")
-                    })
-                    .catch(err => console.log(err))
-            } else {
-                alert("field can't be empty!")
+            if (this.ifNumbervalid(this.state.data.phone)){
+                if (name && address && city && country && contactName && position && phone && email){
+                    
+                    axios
+                        .put(`/api/warehouses/${this.props.match.params.warehousesId}`,{
+                            "name":this.state.data.name,
+                            "address":this.state.data.address,
+                            "city":this.state.data.city,
+                            "country":this.state.data.country,
+                            "contact":{
+                                "name":this.state.data.contactName,
+                                "position":this.state.data.position,
+                                "phone":this.state.data.phone,
+                                "email":this.state.data.email,
+                            }
+                        })
+                        .then(res => {
+                            alert("Warehouse edited!")
+                            this.props.history.push("/")
+                        })
+                        .catch(err => console.log(err))
+                } else {
+                    alert("field can't be empty!")
+                }
             }
         }
     }
@@ -140,8 +145,8 @@ class WarehouseForm extends Component {
     }
 
     ifNumbervalid = (phone) => {
-        let format = new RegExp (/^[\+1]?[(]?[0-9]{3})[)]?[-]?([0-9]{3})[-]?([0-9]{4})$/)
-        if(phone){
+        let format = new RegExp (/^[\+]?[1]?[\ ]?[(]?[0-9]{3}[)]?[\ ]?([0-9]{3})[-]?([0-9]{4})$/)
+        if(phone.match(format)){
             return true
         } else {
             return alert("Phone number format need to be +1(area code) 000-0000")
