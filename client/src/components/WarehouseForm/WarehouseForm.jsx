@@ -88,7 +88,7 @@ class WarehouseForm extends Component {
                         .then(res => {
                             alert("Warehouse Added!")
                             this.props.history.push("/")
-                            this.props.updateData(true)
+                            this.props.updateData()
                         })
                         .catch(err => console.log(err))
                 } else {
@@ -121,7 +121,7 @@ class WarehouseForm extends Component {
                         .then(res => {
                             alert("Warehouse edited!")
                             this.props.history.push("/")
-                            this.props.updateData(true)
+                            this.props.updateData()
                         })
                         .catch(err => console.log(err))
                 } else {

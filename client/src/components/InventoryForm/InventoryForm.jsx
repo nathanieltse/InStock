@@ -200,8 +200,7 @@ class InventoryForm extends Component {
                             <div className="inventoryForm__status">
                                 <div className={this.state.data.status === "In Stock" ? "" : "inventoryForm__status-slate"}>
                                     
-                                    <input
-                                        for="InStock"   
+                                    <input  
                                         type="radio"
                                         name="status"
                                         checked={this.state.data && this.state.data.status === "In Stock"? "checked": "" }
@@ -233,7 +232,7 @@ class InventoryForm extends Component {
                                 <img className={this.state.data.status === "Out of Stock" ? "hide" : "inventoryForm__warning-icon"} src={errorIcon} alt="error icon" />
                                 <p className={this.state.data.status === "Out of Stock" ? "hide" : "inventoryForm__warning-text"}>This field is required</p>
                             </div>
-                        <label htmlFor="warehouseName" className="inventoryForm__label">Warehouse</label>
+                            <label htmlFor="warehouseName" className="inventoryForm__label">Warehouse</label>
 
                             <select 
                                 name="warehouseName" 
