@@ -87,6 +87,7 @@ class InventoryForm extends Component {
                 .then((res => {
                     alert("Inventory Item Added")
                     this.props.history.push("/inventory")
+                    this.props.updateData()
                 })).catch(err => console.log(err))
         } else {
             alert("field can't be empty!")
@@ -115,6 +116,7 @@ class InventoryForm extends Component {
                 .then(res => {
                     alert("Inventory Item Edited")
                     this.props.history.push("/inventory")
+                    this.props.updateData()
                 })
                 .catch(err => console.log(err))
         } else {
