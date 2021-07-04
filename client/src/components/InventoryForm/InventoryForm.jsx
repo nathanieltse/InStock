@@ -82,7 +82,7 @@ class InventoryForm extends Component {
                 "warehouseID": warehouseId.id,
                 warehouseName
             }
-            
+           
             addInventory(data)
                 .then((res => {
                     alert("Inventory Item Added")
@@ -97,7 +97,6 @@ class InventoryForm extends Component {
         e.preventDefault()
         const { category, description, itemName, status, quantity,  warehouseName } = this.state.data
         const id = this.props.match.params.inventoryId
-        console.log(status)
         if (category && description && itemName && warehouseName) {
             let warehouseId = warehouseData.find(warehouse => warehouse.name === warehouseName)
 
