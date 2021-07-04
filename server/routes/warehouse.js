@@ -66,7 +66,7 @@ router.put('/warehouses/:warehouseId',((req,res)=>{
     })
 }))
 
-//get inventory in one warehouse
+//get inventories in one warehouse
 router.get('/warehouses/:warehouseId/inventory', ((req, res) => {
     let { warehouseId } = req.params;
     const data = inventories.filter(inventory => inventory.warehouseID === warehouseId)
@@ -110,11 +110,26 @@ router.delete(`/warehouses/:warehouseId`, ((req, res) => {
     const selectedWarehouse = warehouses.findIndex(warehouse => warehouse.id === warehouseId)
     const warehouse = warehouses[selectedWarehouse];
     warehouses.splice(selectedWarehouse, 1)
-    const dataObject = JSON.stringify(warehouses, null, 2);
-    fs.writeFile('../data/warehouses.json', dataObject, (err) => {
-        console.log(err)
+
+
+    const newInventoryDataSet = inventories.filter(inventory => {
+        if (inventory.warehouseID !== warehouseId){
+            return inventory
+        } 
     })
-    res.status(200).json(warehouse)
+   
+    const dataObject = JSON.stringify(warehouses, null, 2);
+    const newInventory = JSON.stringify(newInventoryDataSet, null, 2);
+    fs.writeFile(__dirname + '/../data/warehouses.json', dataObject, (err) => {
+        console.log(err)
+  
+    fs.writeFile(__dirname + '/../data/inventories.json', newInventory, (err) => {
+        console.log(err)
+        })
+    })
+    res.status(200).json(newInventory)
+
+    
 }))
 
 

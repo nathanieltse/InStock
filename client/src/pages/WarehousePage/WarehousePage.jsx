@@ -26,14 +26,31 @@ class WarehouseMainDisplay extends Component {
             .delete(`/api/warehouses/${id}`)
             .then(res => {
                 this.hideModal()
+                // this.deleteAssociatedInventory(id)
                 getWarehouses()
-                .then(res=> {
+                .then(res=> { console.log(res)
                     this.setState({
                         warehouseList: res.data
                     })
                 })
             })
     }
+
+    
+
+    // deleteAssociatedInventory = (id) => {
+    //     axios
+    //         .delete(`/api/warehouses/${id}/inventory`)
+    //         // .then(res => {
+    //         //     this.hideModal()
+    //         //     getWarehouses()
+    //         //     .then(res=> { console.log(res)
+    //         //         this.setState({
+    //         //             warehouseList: res.data
+    //         //         })
+    //         //     })
+    //         // })
+    // }
         
     showWarehouseModal = (warehouse) => {
         this.setState({ 
