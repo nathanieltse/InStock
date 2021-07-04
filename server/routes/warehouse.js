@@ -26,7 +26,6 @@ router.get('/warehouses/:warehouseId', ((req, res) => {
 //edit warehouse detail
 router.put('/warehouses/:warehouseId',((req,res)=>{
     let { warehouseId } = req.params;
-    const selectedWarehouse = warehouses.find(warehouse => warehouse.id === warehouseId)
     const newWarehouseInfo = {
         "id":warehouseId,
         "name": req.body.name,
@@ -47,13 +46,23 @@ router.put('/warehouses/:warehouseId',((req,res)=>{
             return warehouse = warehouse
         }
     })
-    
-    fs.writeFile(__dirname + '/../data/warehouses.json', JSON.stringify(newWarehouseDataSet, null, 2), (err)=> {
-        if(err){
-            console.log(err)
+
+    const newInventoryDataSet = inventories.map(inventory => {
+        if (inventory.warehouseID === warehouseId){
+            return {...inventory, warehouseName:req.body.name}
         } else {
-            res.status(200).json("warehouse info updated")
+            return inventory = inventory
         }
+    })
+    
+    fs.writeFile(__dirname + '/../data/warehouses.json', JSON.stringify(newWarehouseDataSet, null, 2), (err1)=> {
+        fs.writeFile(__dirname + '/../data/inventories.json', JSON.stringify(newInventoryDataSet, null, 2), (err2)=> {
+            if(err1 || err2){
+                console.log(err1 || err2)
+            } else {
+                res.status(200).json("warehouse info updated")
+            }
+        })
     })
 }))
 
