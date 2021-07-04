@@ -4,8 +4,7 @@ import closeIcon from "../../assets/Icons/close-24px.svg";
 
 const Modal = ({ hide, display, currentWarehouse, currentInventory, hideModal, displayModal, deleteWarehouse, deleteInventory }) => {
   
-
-    if (currentWarehouse===null || !display && !displayModal ) {
+    if (!display && !displayModal ) {
         return null;
     } 
     

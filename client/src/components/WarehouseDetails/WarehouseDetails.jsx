@@ -17,7 +17,6 @@ class WarehouseDetails extends Component{
     }
 
     deleteInventory = (id) => {
-        console.log(id);
         const warehouseId = this.props.match.params.warehouseId
         axios.delete(`/api/inventory/${id}`)
         .then(res => {
