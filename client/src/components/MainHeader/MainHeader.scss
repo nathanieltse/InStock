@@ -6,8 +6,8 @@
 
 
 .main-header{
+    @include element-block;
     border-bottom: $divider;
-    padding: 0 1.5rem ;
     @include flex-row{
         justify-content: space-between;
         align-items: center;
@@ -18,21 +18,14 @@
             justify-content: flex-start;
             
         }
-        padding:1.5rem 0;
     }
 
     &__img{
-        padding-right: .25rem;
-        margin-left: 1rem;
         cursor: pointer;
-
-        @include desktop{
-            margin-left: 1.75rem;
-        }
     }
 
     &__title{
-        margin: 0 0 0 $small-space;
+        margin-left: $small-space;
     }
     
 

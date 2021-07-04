@@ -5,13 +5,13 @@
 @use "../../partials/variables" as *;
 
 .search-header{
+    @include element-block;
     width: 100%;
-    padding: $medium-space $normal-space $normal-space;
+    padding-top: $medium-space;
     @include tablet{
         @include flex-row{
             justify-content: space-between;
             align-items: center;
-            padding-top:$normal-space;
         };
     }
     

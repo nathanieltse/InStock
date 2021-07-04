@@ -28,9 +28,9 @@ class InventoryDetail extends Component {
             this.state.inventoryItem === null ?
                 <p>Loading...</p>
                 :
-                <div className="inventory-detail">
+                <div className="inventoryDetail">
                     <MainHeader headerName={this.state.inventoryItem.itemName} editInventoryId={this.state.inventoryItem.id} navigate={this.props}/>
-                    <div className="inventoryDetail">
+                    <div className="inventoryDetail__wrapper">
                         <div className="inventoryDetail__left">
                             <section className="inventoryDetail__left-section">
                                 <h4 className="inventoryDetail__left-title" >ITEM DESCRIPTION</h4>

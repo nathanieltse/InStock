@@ -4,31 +4,27 @@
 @use "../../partials/spacings" as *;
 @use "../../partials/variables" as *;
 
-.inventory-detail{
-    @include element-body;
-}
-
 .inventoryDetail{
-    margin-top: $medium-space;
-        @include tablet{
-            @include flex-row;
-            margin-top: $small-space;
-        }
-    &__left{
-        padding:0 $normal-space ;
+    @include element-body;
+
+    &__wrapper{
+        @include element-block;
             @include tablet{
-                flex: 1 1 0px;
-                border-right: $divider;
-                padding:0 $medium-space ;
-                margin: $medium-space 0;
+                @include flex-row;
             }
+    }
+    &__left{
+        @include tablet{
+            flex: 1 1 0px;
+            border-right: $divider;
+            padding-right: $max-space ;
+        }
         &-title{
             margin-bottom: $small-space;
             color: $secondary-color-slate;
         }
     }
     &__right{
-        padding:0 $normal-space ;
         @include flex-row; 
         &-title{
             margin-bottom: 0rem;
@@ -37,8 +33,7 @@
 
             @include tablet{
                 flex: 1 1 0px;
-                padding: 0 $medium-space ;
-                margin: $medium-space 0;
+                padding: 0 $max-space ;
             }
         &-section{
             flex: 1 1 0px
@@ -47,7 +42,7 @@
     &__text{
         @include medium-body-text;
         margin-bottom: $medium-space;
-       
+        
         &--stock{
             @include tag-in-stock;
         }
@@ -56,3 +51,4 @@
         }
     }
 }
+

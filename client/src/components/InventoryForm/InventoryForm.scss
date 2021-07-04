@@ -17,8 +17,8 @@
     }
 
     &__left,&__right{
+        @include element-block;
         @include flex-column;
-        padding:$medium-space $normal-space ;
 
         @include tablet{
             width: 50%;
