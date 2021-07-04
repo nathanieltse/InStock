@@ -154,7 +154,6 @@ class WarehouseForm extends Component {
     }
 
     render() {
-        console.log(this.props)
         return (
 
                 <form 
