@@ -8,6 +8,7 @@
 
 .listing{
     @include element-body;
+
     &__labels-container{
         background-color: $background-color-grey;
         box-sizing: border-box;
@@ -15,9 +16,8 @@
         display: none;
         @include tablet{
             @include flex-row;
+            @include element-block;
             justify-content:space-between;
-            padding: $regular-space $medium-space;
-
         } 
     }
 }

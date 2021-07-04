@@ -18,30 +18,29 @@ class WarehouseDetails extends Component{
 
     deleteInventory = (id) => {
         const warehouseId = this.props.match.params.warehouseId
-        axios.delete(`/api/inventory/${id}`)
-        .then(res => {
-            console.log(res)
-            this.hideModal()
-            axios.get(`/api/warehouses/${warehouseId}/inventory`)
-                .then(res => {
-                console.log(res)
-                this.setState({
-                    inventoryList: res.data,
-                }) 
-                }
-            )
-        })
+        axios
+            .delete(`/api/inventory/${id}`)
+            .then(res => {
+                this.hideModal()
+                axios
+                    .get(`/api/warehouses/${warehouseId}/inventory`)
+                    .then(res => this.setState({inventoryList: res.data}) 
+                )
+            })
     }
     
     showInventoryModal = (inventory) => {
-        this.setState
-        ({ displayModal: true,
+        this.setState({ 
+            displayModal: true,
             currentInventory: inventory
-         })
+        })
     }
 
     hideModal = () =>{
-        this.setState({ displayModal: false, currentInventory: null })
+        this.setState({ 
+            displayModal: false, 
+            currentInventory: null 
+        })
     }
     
     componentDidMount() {
@@ -63,7 +62,10 @@ class WarehouseDetails extends Component{
         return (
             this.state.warehouse && this.state.inventoryList?
                 <section className="warehouseDetail">
-                    <MainHeader navigate={this.props} headerName={warehouse.name} editWarehouseId={ warehouse.id}/>
+                    <MainHeader 
+                        navigate={this.props} 
+                        headerName={warehouse.name} 
+                        editWarehouseId={ warehouse.id}/>
                 <article className="warehouseDetail__wrapper">
                     <div className="warehouseDetail__detail-container warehouseDetail__detail-container--primary">
                         <h4 className="warehouseDetail__title">WAREHOUSE ADDRESS: </h4>
@@ -91,11 +93,19 @@ class WarehouseDetails extends Component{
 
                 {inventoryList.map(item => {
                     return (
-                        <ListingCard key={item.id} data={item} pagePath="warehouse/inventory" showInventoryModal={this.showInventoryModal}/>
+                        <ListingCard 
+                            key={item.id} 
+                            data={item} 
+                            pagePath="warehouse/inventory" 
+                            showInventoryModal={this.showInventoryModal}/>
                     )
                 })}
-                 <Modal displayModal={this.state.displayModal} hideModal={this.hideModal}
-                showInventoryModal={this.showInventoryModal} currentInventory={this.state.currentInventory} deleteInventory={this.deleteInventory}></Modal>
+                 <Modal 
+                    displayModal={this.state.displayModal} 
+                    hideModal={this.hideModal}
+                    showInventoryModal={this.showInventoryModal} 
+                    currentInventory={this.state.currentInventory} 
+                    deleteInventory={this.deleteInventory}/>
             </section>
             
             :

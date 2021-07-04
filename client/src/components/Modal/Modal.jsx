@@ -2,19 +2,19 @@ import React from 'react';
 import "../Modal/Modal.scss";
 import closeIcon from "../../assets/Icons/close-24px.svg";
 
-const Modal = ({ hide, display, currentWarehouse, currentInventory, hideModal, displayModal, deleteWarehouse, deleteInventory }) => {
+const Modal = ({ currentWarehouse, currentInventory, hideModal, displayModal, deleteWarehouse, deleteInventory }) => {
   
-    if (!display && !displayModal ) {
+
+    if (currentWarehouse === null || !displayModal ) {
         return null;
     } 
-    
     
     return (
         currentWarehouse ? 
         <>
         <div className="modal display-block">
             <section className='modal-main'>
-                <img className="modal-image__style" src={closeIcon} alt="cancel" onClick={hide}/>
+                <img className="modal-image__style" src={closeIcon} alt="cancel" onClick={hideModal}/>
                     <div className="modal-container__style">
                         <div className="modal-container__text">
                             <h1 className="modal-title__style">Delete {currentWarehouse.name} warehouse?</h1>
@@ -25,13 +25,13 @@ const Modal = ({ hide, display, currentWarehouse, currentInventory, hideModal, d
                         <button className="delete-button__style" onClick={()=>deleteWarehouse(currentWarehouse.id)}>
                             Delete
                         </button>
-                        <button className="cancel-button__style" onClick={hide}>
+                        <button className="cancel-button__style" onClick={hideModal}>
                             Cancel
                         </button>
                     </div>
                 </div>
             </section>
-      </div>
+        </div>
       </>
 
       :
@@ -53,7 +53,7 @@ const Modal = ({ hide, display, currentWarehouse, currentInventory, hideModal, d
                     </div>
                 </div>
             </section>
-      </div>
+        </div>
       </>
     )
 }

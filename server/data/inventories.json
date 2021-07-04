@@ -10,16 +10,6 @@
     "quantity": 0
   },
   {
-    "id": "d9ef9352-2367-4272-8884-70cf80cb7a38",
-    "warehouseID": "2922c286-16cd-4d43-ab98-c79f698aeab0",
-    "warehouseName": "Manhattan",
-    "itemName": "Watch",
-    "description": "Crafted from premium materials including a full-grain leather strap and a stainless steel case, this watch features swiss movement and is waterproof up to 5 ATM.",
-    "category": "Accessories",
-    "status": "Out of Stock",
-    "quantity": 0
-  },
-  {
     "id": "b70067d1-49c9-4925-b830-67b3e98005d5",
     "warehouseID": "2922c286-16cd-4d43-ab98-c79f698aeab0",
     "warehouseName": "Manhattan",
@@ -627,6 +617,15 @@
     "description": "Organic and hypoallergenic, this soap is safe to use for all skin types.",
     "category": "Health",
     "status": "Out of Stock",
+    "quantity": 0
+  },
+  {
+    "id": "9d2f1c6c-e2a0-4cbb-962b-5cd7fafaeecb",
+    "warehouseName": "San Fran",
+    "itemName": "test",
+    "description": "he",
+    "category": "Electronics",
+    "status": "In Stock",
     "quantity": 0
   }
 ]

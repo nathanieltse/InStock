@@ -68,53 +68,64 @@ class WarehouseForm extends Component {
 
     handleAdd = (e) => {
         e.preventDefault()
-        //add warehouse
         const {name, address, city, country, contactName, position, phone, email} = this.state.form
-        if (name, address, city, country, contactName, position, phone, email) {
-            const data = {
-                "name": this.state.data.name,
-                "address": this.state.data.address,
-                "city": this.state.data.city,
-                "country": this.state.data.country,
-                "contact": {
-                    "name": this.state.data.contactName,
-                    "position": this.state.data.position,
-                    "phone": this.state.data.phone,
-                    "email": this.state.data.email,
+        if (email && this.ifEmailValid(this.state.data.email)){
+            if (phone && this.ifNumbervalid(this.state.data.phone)){
+                if (name && address && city && country && contactName && position && phone && email) {
+                    const data = {
+                        "name": this.state.data.name,
+                        "address": this.state.data.address,
+                        "city": this.state.data.city,
+                        "country": this.state.data.country,
+                        "contact": {
+                            "name": this.state.data.contactName,
+                            "position": this.state.data.position,
+                            "phone": this.state.data.phone,
+                            "email": this.state.data.email,
+                        }
+                    }
+                    addWarehouse(data)
+                        .then(res => {
+                            alert("Warehouse edited!")
+                            this.props.history.push("/")
+                        })
+                        .catch(err => console.log(err))
+                } else {
+                    alert("field can't be empty!")
                 }
-            }
-            addWarehouse(data)
-                .then((res => {
-                    console.log(res)
-                })).catch(err => {
-                    console.log(err)
-            })
-        } else {
-            alert("field can't be empty!")
-        }
+            }    
+        } 
     }
 
-    handleSave = (e) =>{
+    handleEdit = (e) =>{
         e.preventDefault()
         const {name, address, city, country, contactName, position, phone, email} = this.state.form
-        if (name && address && city && country && contactName && position && phone && email){
-            axios
-                .put(`/api/warehouses/${this.props.match.params.warehousesId}`,{
-                    "name":this.state.data.name,
-                    "address":this.state.data.address,
-                    "city":this.state.data.city,
-                    "country":this.state.data.country,
-                    "contact":{
-                        "name":this.state.data.contactName,
-                        "position":this.state.data.position,
-                        "phone":this.state.data.phone,
-                        "email":this.state.data.email,
-                    }
-                })
-                .then(res => alert("Warehouse edited!"))
-                .catch(err => console.log(err))
-        } else {
-            alert("field can't be empty!")
+        if (email && this.ifEmailValid(this.state.data.email)){
+            if (phone && this.ifNumbervalid(this.state.data.phone)){
+                if (name && address && city && country && contactName && position && phone && email){
+                    
+                    axios
+                        .put(`/api/warehouses/${this.props.match.params.warehousesId}`,{
+                            "name":this.state.data.name,
+                            "address":this.state.data.address,
+                            "city":this.state.data.city,
+                            "country":this.state.data.country,
+                            "contact":{
+                                "name":this.state.data.contactName,
+                                "position":this.state.data.position,
+                                "phone":this.state.data.phone,
+                                "email":this.state.data.email,
+                            }
+                        })
+                        .then(res => {
+                            alert("Warehouse edited!")
+                            this.props.history.push("/")
+                        })
+                        .catch(err => console.log(err))
+                } else {
+                    alert("field can't be empty!")
+                }
+            }
         }
     }
 
@@ -123,10 +134,31 @@ class WarehouseForm extends Component {
         this.props.history.push("/")
     }
 
+    ifEmailValid = (email) => {
+        if (email.includes('@instock.com')){
+            return true
+        } else {
+            return alert('Invalid email')
+        }
+    }
+
+    ifNumbervalid = (phone) => {
+        let format = new RegExp (/^[+]?[1]?[ ]?[(]?[0-9]{3}[)]?[ ]?([0-9]{3})[- ]?([0-9]{4})$/)
+        if(phone.match(format)){
+            return true
+        } else {
+            return alert("Phone number format need to be +1(area code) 000-0000")
+        }
+    }
+
     render(){
         return (
-                <form className="warehouseform" onSubmit={this.props.match.params.warehousesId ? this.handleSave : this.handleAdd}>
-                    <MainHeader navigate={this.props} headerName={this.props.match.params.warehousesId ? "Edit Form" : "Add Warehouse"}/>
+                <form 
+                    className="warehouseform" 
+                    onSubmit={this.props.match.params.warehousesId ? this.handleEdit : this.handleAdd}>
+                    <MainHeader 
+                        navigate={this.props} 
+                        headerName={this.props.match.params.warehousesId ? "Edit Form" : "Add Warehouse"}/>
                     <div className="warehouseform__wrapper">
                         <div className="warehouseform__left">
                             <h2 className="warehouseform__title">Warehouse Details</h2>
@@ -134,7 +166,7 @@ class WarehouseForm extends Component {
                             <input 
                                 placeholder="Warehouse Name" 
                                 name="name" 
-                                className="warehouseform__input"
+                                className={this.state.form.name ? "warehouseform__input" : "warehouseform__input warehouseform__input--error"}
                                 value={this.state.data? this.state.data.name : ""}
                                 onChange={this.handleChange}/>
                             <div className={this.state.form.name ? "warehouseform__warning--valid" : "warehouseform__warning"}>
@@ -145,7 +177,7 @@ class WarehouseForm extends Component {
                             <input 
                                 placeholder="Street Address" 
                                 name="address" 
-                                className="warehouseform__input"
+                                className={this.state.form.address ? "warehouseform__input" : "warehouseform__input warehouseform__input--error"}
                                 value={this.state.data? this.state.data.address : ""}
                                 onChange={this.handleChange}/>
                             <div className={this.state.form.address ? "warehouseform__warning--valid" : "warehouseform__warning"}>
@@ -156,7 +188,7 @@ class WarehouseForm extends Component {
                             <input 
                                 placeholder="City" 
                                 name="city" 
-                                className="warehouseform__input"
+                                className={this.state.form.city ? "warehouseform__input" : "warehouseform__input warehouseform__input--error"}
                                 value={this.state.data? this.state.data.city : ""}
                                 onChange={this.handleChange}/>
                             <div className={this.state.form.city ? "warehouseform__warning--valid" : "warehouseform__warning"}>
@@ -167,7 +199,7 @@ class WarehouseForm extends Component {
                             <input 
                                 placeholder="Country" 
                                 name="country" 
-                                className="warehouseform__input"
+                                className={this.state.form.country ? "warehouseform__input" : "warehouseform__input warehouseform__input--error"}
                                 value={this.state.data? this.state.data.country : ""}
                                 onChange={this.handleChange}/>
                             <div className={this.state.form.country ? "warehouseform__warning--valid" : "warehouseform__warning"}>
@@ -181,7 +213,7 @@ class WarehouseForm extends Component {
                             <input 
                                 placeholder="Contact Name" 
                                 name="contactName" 
-                                className="warehouseform__input"
+                                className={this.state.form.contactName ? "warehouseform__input" : "warehouseform__input warehouseform__input--error"}
                                 value={this.state.data? this.state.data.contactName : ""}
                                 onChange={this.handleChange}/>
                             <div className={this.state.form.contactName ? "warehouseform__warning--valid" : "warehouseform__warning"}>
@@ -192,7 +224,7 @@ class WarehouseForm extends Component {
                             <input 
                                 placeholder="Position" 
                                 name="position" 
-                                className="warehouseform__input"
+                                className={this.state.form.position ? "warehouseform__input" : "warehouseform__input warehouseform__input--error"}
                                 value={this.state.data? this.state.data.position : ""}
                                 onChange={this.handleChange}/>
                             <div className={this.state.form.position ? "warehouseform__warning--valid" : "warehouseform__warning"}>
@@ -203,7 +235,7 @@ class WarehouseForm extends Component {
                             <input 
                                 placeholder="Phone Number" 
                                 name="phone" 
-                                className="warehouseform__input"
+                                className={this.state.form.phone ? "warehouseform__input" : "warehouseform__input warehouseform__input--error"}
                                 value={this.state.data? this.state.data.phone : ""}
                                 onChange={this.handleChange}/>
                             <div className={this.state.form.phone ? "warehouseform__warning--valid" : "warehouseform__warning"}>
@@ -214,7 +246,7 @@ class WarehouseForm extends Component {
                             <input 
                                 placeholder="Email" 
                                 name="email" 
-                                className="warehouseform__input"
+                                className={this.state.form.email ? "warehouseform__input" : "warehouseform__input warehouseform__input--error"}
                                 value={this.state.data? this.state.data.email : ""}
                                 onChange={this.handleChange}/>
                             <div className={this.state.form.email ? "warehouseform__warning--valid" : "warehouseform__warning"}>
@@ -225,7 +257,9 @@ class WarehouseForm extends Component {
                     </div>
                     <div className="warehouseform__action">
                         <button className="warehouseform__cancel" onClick={this.handleCancel}>Cancel</button>
-                        <button type="submit" className="warehouseform__submit">{this.props.match.params.warehousesId ? "Save" : "+ Add Warehouse"}</button>
+                        <button type="submit" className="warehouseform__submit">
+                            {this.props.match.params.warehousesId ? "Save" : "+ Add Warehouse"}
+                        </button>
                     </div>
                 </form>
                 

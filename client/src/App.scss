@@ -10,7 +10,11 @@
 .app {
   
   &__body{
+    @include flex-column;
     background-color: $background-color-grey;
+    min-height: 100vh;
+    
   }
+
 }
 

@@ -9,6 +9,7 @@ import WarehouseDetails from '../../components/WarehouseDetails/WarehouseDetails
 import "./WarehousePage.scss"
 import Modal from "../../components/Modal/Modal"
 import InventoryDetail from "../../components/InventoryDetail/InventoryDetail"
+import InventoryForm from "../../components/InventoryForm/InventoryForm"
 import { getWarehouses } from '../../utils/api';
 
 
@@ -21,24 +22,24 @@ class WarehouseMainDisplay extends Component {
     }
 
     deleteWarehouse = (id) => {
-        axios.delete(`/api/warehouses/${id}`)
-        .then(res => {
-            this.hideModal()
-            getWarehouses()
-            .then(res=> {
-                this.setState({
-                    warehouseList: res.data
+        axios
+            .delete(`/api/warehouses/${id}`)
+            .then(res => {
+                this.hideModal()
+                getWarehouses()
+                .then(res=> {
+                    this.setState({
+                        warehouseList: res.data
+                    })
                 })
-            }
-                )
-        })
+            })
     }
         
-    showDeleteModal = (warehouse) => {
-        this.setState
-        ({ displayModal: true,
+    showWarehouseModal = (warehouse) => {
+        this.setState({ 
+            displayModal: true,
             currentWarehouse: warehouse
-         })
+        })
     }
 
     hideModal = () =>{
@@ -46,14 +47,15 @@ class WarehouseMainDisplay extends Component {
     }
 
     componentDidMount() {
-        axios.get(`/api/warehouses`)
+        axios
+            .get(`/api/warehouses`)
             .then(res => res.data)
             .then(data => {
                 this.setState({
                     warehouseList: data,
                 });
             })
-            .catch(error => { console.log(error) })
+            .catch(error => console.log(error))
     }
 
     render() {
@@ -61,17 +63,20 @@ class WarehouseMainDisplay extends Component {
         return (
             <>
                 <PageHeader path={this.props.match.url}/> 
-                <Modal display={this.state.displayModal} hide={this.hideModal}
-                showDeleteModal={this.showDeleteModal} currentWarehouse={this.state.currentWarehouse} deleteWarehouse={this.deleteWarehouse}>
+                <Modal 
+                    displayModal={this.state.displayModal} 
+                    hideModal={this.hideModal}
+                    showWarehouseModal={this.showWarehouseModal} 
+                    currentWarehouse={this.state.currentWarehouse} 
+                    deleteWarehouse={this.deleteWarehouse}>
                 </Modal>
                 <BrowserRouter>
-                    <Switch>
+                    <section className="warehouse-wrapper">
+                        <Switch>
 
-                        <section className="warehouse-wrapper">
                             <Route exact path="/" render={routeProps => {
                                 return <Listing
-                                    display={this.state.displayModal} hide={this.hideModal}
-                                    showDeleteModal={this.showDeleteModal} 
+                                    showWarehouseModal={this.showWarehouseModal} 
                                     dataList={this.state.warehouseList}
                                     pagePath="warehouse"
                                     addItemPath="/warehouses/add"
@@ -83,16 +88,17 @@ class WarehouseMainDisplay extends Component {
                             <Route path="/warehouses/:warehouseId/detail" render={routeProps => {
                                 return <WarehouseDetails
                                             display={this.state.displayModal} hide={this.hideModal}
-                                            showDeleteModal={this.showDeleteModal}  
+                                            showWarehouseModal={this.showWarehouseModal}  
                                             listingColumn={["INVENTORY", "CATEGORY", "STATUS", "QTY", "ACTIONS"]}
                                             {...routeProps}/>
                             }} />
                             <Route path="/warehouses/:warehousesId/edit" component={WarehouseForm} />
                             <Route path="/inventory/:inventoryId/detail" component={InventoryDetail} />
+                            <Route path="/inventory/:inventoryId/edit" component={InventoryForm} />
 
-                        </section>
 
-                    </Switch>
+                        </Switch>
+                    </section>
                 </BrowserRouter>
                 <Footer />
             </>
