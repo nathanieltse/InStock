@@ -5,7 +5,7 @@ import SearchHeader from "../SearchHeader/SearchHeader"
 
 import "./Listing.scss";
 
-function Listing({ dataList, pagePath, addItemPath, addItemValue, listingColumn, showDeleteModal, display, hide, showInventoryModal, displayModal, hideModal, route }) {
+function Listing({ dataList, pagePath, addItemPath, addItemValue, listingColumn, showWarehouseModal, showInventoryModal}) {
 
     return (
         <section className="listing">
@@ -24,12 +24,7 @@ function Listing({ dataList, pagePath, addItemPath, addItemValue, listingColumn,
                             key={item.id} 
                             data={item} 
                             pagePath={pagePath} 
-                            showDeleteModal={showDeleteModal} 
-                            hide={hide} 
-                            display={display} 
-                            route={route} 
-                            displayModal={displayModal} 
-                            hideModal={hideModal}
+                            showWarehouseModal={showWarehouseModal} 
                             showInventoryModal={showInventoryModal}/>
                 )
             })}

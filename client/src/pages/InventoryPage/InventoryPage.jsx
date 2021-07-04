@@ -52,17 +52,19 @@ class InventoryPage extends Component {
         return (
             <>
                 <PageHeader path={this.props.match.url}/> 
-                <Modal displayModal={this.state.displayModal} hideModal={this.hideModal}
-                showInventoryModal={this.showInventoryModal} currentInventory={this.state.currentInventory} deleteInventory={this.deleteInventory}>
+                <Modal 
+                    displayModal={this.state.displayModal} 
+                    hideModal={this.hideModal}
+                    showInventoryModal={this.showInventoryModal} 
+                    currentInventory={this.state.currentInventory} 
+                    deleteInventory={this.deleteInventory}>
                 </Modal>
                 <BrowserRouter>
                     <Switch>
                         <section className="inventory-wrapper">
                                 <Route exact path="/inventory" render={routeProps => {
                                     return <Listing 
-                                                displayModal={this.state.displayModal} hideModal={this.hideModal}
                                                 showInventoryModal={this.showInventoryModal} 
-                                                route="inventory"
                                                 dataList={this.state.inventoryList} 
                                                 pagePath="inventory" 
                                                 addItemPath="/inventory/add"

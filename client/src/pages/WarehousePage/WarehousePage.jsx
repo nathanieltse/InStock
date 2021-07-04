@@ -35,7 +35,7 @@ class WarehouseMainDisplay extends Component {
         })
     }
         
-    showDeleteModal = (warehouse) => {
+    showWarehouseModal = (warehouse) => {
         this.setState
         ({ displayModal: true,
             currentWarehouse: warehouse
@@ -62,8 +62,12 @@ class WarehouseMainDisplay extends Component {
         return (
             <>
                 <PageHeader path={this.props.match.url}/> 
-                <Modal display={this.state.displayModal} hide={this.hideModal}
-                showDeleteModal={this.showDeleteModal} currentWarehouse={this.state.currentWarehouse} deleteWarehouse={this.deleteWarehouse}>
+                <Modal 
+                    display={this.state.displayModal} 
+                    hide={this.hideModal}
+                    showWarehouseModal={this.showWarehouseModal} 
+                    currentWarehouse={this.state.currentWarehouse} 
+                    deleteWarehouse={this.deleteWarehouse}>
                 </Modal>
                 <BrowserRouter>
                     <Switch>
@@ -71,8 +75,7 @@ class WarehouseMainDisplay extends Component {
                         <section className="warehouse-wrapper">
                             <Route exact path="/" render={routeProps => {
                                 return <Listing
-                                    display={this.state.displayModal} hide={this.hideModal}
-                                    showDeleteModal={this.showDeleteModal} 
+                                    showWarehouseModal={this.showWarehouseModal} 
                                     dataList={this.state.warehouseList}
                                     pagePath="warehouse"
                                     addItemPath="/warehouses/add"
@@ -84,7 +87,7 @@ class WarehouseMainDisplay extends Component {
                             <Route path="/warehouses/:warehouseId/detail" render={routeProps => {
                                 return <WarehouseDetails
                                             display={this.state.displayModal} hide={this.hideModal}
-                                            showDeleteModal={this.showDeleteModal}  
+                                            showWarehouseModal={this.showWarehouseModal}  
                                             listingColumn={["INVENTORY", "CATEGORY", "STATUS", "QTY", "ACTIONS"]}
                                             {...routeProps}/>
                             }} />

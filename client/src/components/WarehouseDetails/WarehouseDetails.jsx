@@ -92,11 +92,19 @@ class WarehouseDetails extends Component{
 
                 {inventoryList.map(item => {
                     return (
-                        <ListingCard key={item.id} data={item} pagePath="warehouse/inventory" showInventoryModal={this.showInventoryModal}/>
+                        <ListingCard 
+                            key={item.id} 
+                            data={item} 
+                            pagePath="warehouse/inventory" 
+                            showInventoryModal={this.showInventoryModal}/>
                     )
                 })}
-                 <Modal displayModal={this.state.displayModal} hideModal={this.hideModal}
-                showInventoryModal={this.showInventoryModal} currentInventory={this.state.currentInventory} deleteInventory={this.deleteInventory}></Modal>
+                 <Modal 
+                    displayModal={this.state.displayModal} 
+                    hideModal={this.hideModal}
+                    showInventoryModal={this.showInventoryModal} 
+                    currentInventory={this.state.currentInventory} 
+                    deleteInventory={this.deleteInventory}/>
             </section>
             
             :
