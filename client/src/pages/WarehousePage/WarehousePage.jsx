@@ -28,7 +28,7 @@ class WarehouseMainDisplay extends Component {
             .then(res => {
                 this.hideModal()
                 getWarehouses()
-                .then(res=> {
+                .then(res=> { console.log(res)
                     this.setState({
                         warehouseList: res.data,
                         isUpdated: false
@@ -36,6 +36,8 @@ class WarehouseMainDisplay extends Component {
                 })
             })
     }
+
+    
         
     showWarehouseModal = (warehouse) => {
         this.setState({ 
