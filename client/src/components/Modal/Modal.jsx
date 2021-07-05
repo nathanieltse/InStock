@@ -13,20 +13,20 @@ const Modal = ({ currentWarehouse, currentInventory, hideModal, displayModal, de
         currentWarehouse ? 
         <>
         <div className="modal display-block">
-            <section className='modal-main'>
-                <img className="modal-image__style" src={closeIcon} alt="cancel" onClick={hideModal}/>
-                    <div className="modal-container__style">
-                        <div className="modal-container__text">
-                            <h1 className="modal-title__style">Delete {currentWarehouse.name} warehouse?</h1>
-                            <p className="modal-body__style">Please confirm that you'd like to delete the {currentWarehouse.name} from the list of warehouses. You won't be able to undo this action.</p>
-                        </div>
+            <section className='modal__main'>
+                <div className="modal__container">
+                    <img className="modal__cancel-icon" src={closeIcon} alt="cancel" onClick={hideModal}/>
+                    <div className="modal__container-text">
+                        <h1 className="modal__title">Delete {currentWarehouse.name} warehouse?</h1>
+                        <p className="modal__body">Please confirm that you'd like to delete the {currentWarehouse.name} from the list of warehouses. You won't be able to undo this action.</p>
+                    </div>
 
-                    <div className="modal-button__container">                        
-                        <button className="delete-button__style" onClick={()=>deleteWarehouse(currentWarehouse.id)}>
-                            Delete
-                        </button>
-                        <button className="cancel-button__style" onClick={hideModal}>
+                    <div className="modal__button-container">              
+                        <button className="cancel__button" onClick={hideModal}>
                             Cancel
+                        </button>          
+                        <button className="delete__button" onClick={()=>deleteWarehouse(currentWarehouse.id)}>
+                            Delete
                         </button>
                     </div>
                 </div>

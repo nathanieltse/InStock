@@ -41,6 +41,10 @@
             }
         }
 
+        &--head{
+            order:-2;
+        }
+
         &--priority{
             @include tablet{
                 order:-1;
