@@ -21,18 +21,23 @@
     
 
     &-container__style{
+        height:100%;
         @include flex-column{
             justify-content: space-between;
         };
         width: 90%;
         margin: 0 auto;
      }
+
+    &-container__text{
+        height:13.5rem;
+    }
     
     &-button__container{
             display:flex;
             flex-direction: row-reverse;
             margin-bottom: 2rem;
-            margin-top: -5rem;
+            margin-top: 0rem;
             width:23rem;
 
             @include tablet{
@@ -88,6 +93,7 @@
     
       }
   }
+
 
 .delete-button__style, .cancel-button__style{
     @include button;
