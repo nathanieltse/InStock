@@ -72,7 +72,6 @@ class InventoryForm extends Component {
         let warehouseId = warehouseData.find(warehouse => warehouse.name === warehouseName)
 
         if (category && description && itemName && quantity && warehouseName) {
-
             const data = {
                 category,
                 description,
